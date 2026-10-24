@@ -21,6 +21,39 @@ function cleanCaption(c = '') {
     .trim();
 }
 
+// Las fotonoticias de Xinhua traen títulos técnicos ("PERU-LIMA-PESCA (6/6)").
+// grupo: la clave de la galería; ubicacion: "Perú · Lima"; titular legible a partir del pie de foto.
+const SLUG_RE = /^[A-ZÁÉÍÓÚÜÑ0-9][A-ZÁÉÍÓÚÜÑ0-9 .,'’&\-]+(\s*\(\d+\/?\d*\)?)?$/;
+const esSlug = (t = '') => SLUG_RE.test(t.trim()) && t === t.toUpperCase();
+const baseSlug = (t = '') => t.replace(/\s*\(\d+\/?\d*\)?\s*$/, '').trim();
+const PAISES = { PERU: 'Perú', MEXICO: 'México', ESPANA: 'España', BRASIL: 'Brasil', CHILE: 'Chile', COLOMBIA: 'Colombia', CHINA: 'China', SIRIA: 'Siria', TURQUIA: 'Turquía', IRAN: 'Irán', JAPON: 'Japón', CANADA: 'Canadá', PANAMA: 'Panamá', 'REINO UNIDO': 'Reino Unido', 'EEUU': 'EE. UU.', ONU: 'ONU' };
+const tc = (w) => w.toLowerCase().replace(/(^|[\s(])([a-záéíóúüñ])/g, (m, a, b) => a + b.toUpperCase());
+function ubicacionDe(slug) {
+  const p = baseSlug(slug).split('-').map((s) => s.trim()).filter(Boolean);
+  if (!p.length) return null;
+  return PAISES[p[0]] || tc(p[0]);
+}
+function recorta(s, max = 115) {
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:]$/, '') + '…';
+}
+function titularDesdePie(pie = '') {
+  if (!pie) return null;
+  const limpia = (s) => s
+    .replace(/^(Imagen|Foto)(\s+compuesta)?(\s+tomada con un dron)?\s+del?\s+\d{1,2}\s+de\s+\w+\s+de\s+\d{4}\s+(de|del)\s+/i, '')
+    .replace(/^Vista aérea tomada con un dron el\s+\d{1,2}\s+de\s+\w+\s+de\s+\d{4}\s+(de|del)\s+/i, 'Vista aérea de ')
+    .replace(/,?\s+el\s+\d{1,2}\s+de\s+\w+\s+de\s+\d{4}/gi, '')
+    .replace(/\s*\((i|d|c|izq\.|der\.)\)/gi, '')
+    .trim();
+  const frases = pie.split(/(?<=\.)\s+(?=[A-ZÁÉÍÓÚÑ"“])/).map(limpia).filter((f) => f.length > 25);
+  if (!frases.length) return null;
+  // La 2.ª frase suele ser el contexto noticioso; la 1.ª describe la foto
+  let t = (frases[1] && frases[1].length < 220 ? frases[1] : frases[0]).replace(/\.$/, '');
+  t = t.charAt(0).toUpperCase() + t.slice(1);
+  return recorta(t);
+}
+
 async function getJson(url) {
   const res = await fetch(url, { headers: { 'User-Agent': 'XiNews-ingest/0.1', Accept: 'application/json' } });
   if (!res.ok) throw new Error(`HTTP ${res.status} ${url}`);
@@ -80,24 +113,30 @@ async function runIngest() {
     conFoto++;
 
     const meta = m?.media_details?.image_meta || {};
-    const titulo = stripTags(p.title?.rendered);
-    const resumen = stripTags(p.excerpt?.rendered).replace(/\s*\[…\]\s*$/, '…');
+    const original = stripTags(p.title?.rendered);
+    const pie = cleanCaption(meta.caption || '') || cleanCaption(stripTags(p.content?.rendered));
+    const slug = esSlug(original);
+    const titulo = slug ? (titularDesdePie(pie) || tc(baseSlug(original))) : original;
+    const grupo = slug ? baseSlug(original) : original;
+    const resumen = slug ? recorta(pie, 220) : stripTags(p.excerpt?.rendered).replace(/\s*\[…\]\s*$/, '…');
+    const cuerpo = slug ? (pie ? `<p>${pie.replace(/</g, '&lt;')}</p>` : '') : (p.content?.rendered || '');
     const r = await q(
       `INSERT INTO noticias_widget
         (sitio, wp_id, titulo, resumen, cuerpo_html, categoria, url, publicado_at,
-         foto_wp_url, foto_wp_ancho, foto_wp_alto, foto_pie, foto_credito)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
+         foto_wp_url, foto_wp_ancho, foto_wp_alto, foto_pie, foto_credito, grupo, titulo_original, ubicacion)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)
        ON CONFLICT (sitio, wp_id) DO UPDATE SET
          titulo=EXCLUDED.titulo, resumen=EXCLUDED.resumen, cuerpo_html=EXCLUDED.cuerpo_html,
          categoria=EXCLUDED.categoria, url=EXCLUDED.url,
          foto_wp_url=EXCLUDED.foto_wp_url, foto_wp_ancho=EXCLUDED.foto_wp_ancho, foto_wp_alto=EXCLUDED.foto_wp_alto,
-         foto_pie=EXCLUDED.foto_pie, foto_credito=EXCLUDED.foto_credito
+         foto_pie=EXCLUDED.foto_pie, foto_credito=EXCLUDED.foto_credito,
+         grupo=EXCLUDED.grupo, titulo_original=EXCLUDED.titulo_original, ubicacion=EXCLUDED.ubicacion
        RETURNING (xmax = 0) AS insertada`,
       [
-        cfg.wpSite, p.id, titulo, resumen, p.content?.rendered || '',
+        cfg.wpSite, p.id, titulo, resumen, cuerpo,
         cats[p.categories?.[0]] || 'Internacional', p.link,
         p.date_gmt ? new Date(p.date_gmt + 'Z') : new Date(),
-        fotoUrl, ancho, alto, cleanCaption(meta.caption || ''), meta.credit || null,
+        fotoUrl, ancho, alto, pie, meta.credit || null, grupo, original, slug ? ubicacionDe(original) : null,
       ]
     );
     if (r.rows[0]?.insertada) nuevas++;
@@ -105,4 +144,4 @@ async function runIngest() {
   return { posts: posts.length, conFoto, nuevas, ms: Date.now() - started };
 }
 
-module.exports = { runIngest, cleanCaption, decode };
+module.exports = { runIngest, cleanCaption, decode, titularDesdePie, ubicacionDe, esSlug, baseSlug };
