@@ -1,0 +1,6 @@
+/* Galería de fotonoticias */
+.galeria { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -14px; padding: 0 14px 6px; }
+.galeria::-webkit-scrollbar { display: none; }
+.galeria figure { flex: 0 0 86%; margin: 0; scroll-snap-align: start; background: var(--fondo); border-radius: var(--radio); overflow: hidden; }
+.galeria img { width: 100%; aspect-ratio: 3/2; object-fit: cover; background: var(--linea); }
+.galeria figcaption { padding: 8px 10px 10px; font-size: 12.5px; line-height: 1.4; color: var(--gris); }
