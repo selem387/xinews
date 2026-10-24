@@ -53,7 +53,6 @@
   }, { threshold: 0.5 }) : null;
   function track(ev) {
     const body = JSON.stringify({ ...ev, sesion });
-    try { if (navigator.sendBeacon) { navigator.sendBeacon(API + '/v1/events', new Blob([body], { type: 'application/json' })); return; } } catch {}
     fetch(API + '/v1/events', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true }).catch(() => {});
   }
   const observeAds = () => io && document.querySelectorAll('[data-ad]').forEach((el) => io.observe(el));
