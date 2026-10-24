@@ -38,6 +38,8 @@ function newsOut(n, full = false) {
     pie: n.foto_pie || null,
     credito: n.foto_credito ? `Xinhua/${n.foto_credito}` : 'Xinhua',
     fuente: 'Xinhua',
+    ubicacion: n.ubicacion || null,
+    fotos: n.fotos || 1,
     lectura_min: Math.max(1, Math.round(String(n.cuerpo_html || '').replace(/<[^>]+>/g, ' ').split(/\s+/).length / 200)),
   };
   if (full) o.cuerpo_html = n.cuerpo_html;
@@ -60,12 +62,14 @@ async function latestNews(limit, offset = 0, categoria) {
   const params = [limit, offset];
   let where = '';
   if (categoria) { params.push(categoria); where = `WHERE lower(categoria)=lower($3)`; }
-  // Xinhua publica galerías como varias notas con el mismo título: se deja una por título
+  // Xinhua publica galerías como varias notas del mismo grupo: se deja una por grupo (la de foto HD o la más ancha)
   const { rows } = await q(
-    `SELECT * FROM (
-       SELECT DISTINCT ON (titulo) * FROM noticias_widget ${where}
-       ORDER BY titulo, (foto_grande_key IS NOT NULL) DESC, foto_wp_ancho DESC NULLS LAST, publicado_at DESC
-     ) t ORDER BY publicado_at DESC NULLS LAST, id DESC LIMIT $1 OFFSET $2`,
+    `SELECT t.*, g.fotos FROM (
+       SELECT DISTINCT ON (COALESCE(grupo, titulo)) * FROM noticias_widget ${where}
+       ORDER BY COALESCE(grupo, titulo), (foto_grande_key IS NOT NULL) DESC, foto_wp_ancho DESC NULLS LAST, wp_id ASC
+     ) t
+     JOIN LATERAL (SELECT count(*)::int fotos FROM noticias_widget x WHERE x.grupo = t.grupo) g ON true
+     ORDER BY publicado_at DESC NULLS LAST, id DESC LIMIT $1 OFFSET $2`,
     params
   );
   return rows;
@@ -139,8 +143,13 @@ app.get('/v1/news/:id', async (req, res, next) => {
   try {
     const { rows } = await q('SELECT * FROM noticias_widget WHERE id=$1', [Number(req.params.id)]);
     if (!rows[0]) return res.status(404).json({ error: 'no encontrada' });
-    const ads = await activeAds();
-    res.json({ ...newsOut(rows[0], true), anuncio: ads[0] ? adOut(ads[0]) : null });
+    const n = rows[0];
+    const [ads, gal] = await Promise.all([
+      activeAds(),
+      n.grupo ? q(`SELECT * FROM noticias_widget WHERE grupo=$1 ORDER BY wp_id ASC LIMIT 12`, [n.grupo]) : { rows: [] },
+    ]);
+    const galeria = gal.rows.map((g) => ({ id: g.id, imagen: imgNews(g), imagen_hd: Boolean(g.foto_grande_key), pie: g.foto_pie, credito: g.foto_credito ? `Xinhua/${g.foto_credito}` : 'Xinhua' }));
+    res.json({ ...newsOut({ ...n, fotos: galeria.length || 1 }, true), galeria, anuncio: ads[0] ? adOut(ads[0]) : null });
   } catch (e) { next(e); }
 });
 
@@ -216,7 +225,7 @@ app.post('/v1/news/foto-grande', requireKey, upload.single('file'), async (req, 
     if (!row) return res.status(404).json({ error: 'nota no encontrada (aún no ingerida); reintentar tras la próxima ingesta', wp_id: b.wp_id, url: b.url });
 
     const key = `noticias/${row.id}-${Date.now()}`;
-    if (req.file) await storage.put(key, req.file.buffer, req.file.mimetype);
+    if (req.file) await storage.putImage(key, req.file.buffer, req.file.mimetype, 1600);
     else if (b.image_url) await storage.putFromUrl(key, b.image_url);
     else return res.status(400).json({ error: 'falta file o image_url' });
 
