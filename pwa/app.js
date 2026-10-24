@@ -1,4 +1,4 @@
-/* XiNews PWA: simula el widget de pantalla de inicio y el portal de noticias de Xinhua */
+/* MX News PWA: simula el widget de pantalla de inicio, la pantalla -1 y el portal de noticias de Xinhua */
 (() => {
   const API = (window.XINEWS_API || 'https://api.xinews.informadorweb.com.mx').replace(/\/$/, '');
   const $app = document.getElementById('app');
@@ -85,34 +85,66 @@
     </a>`;
   }
 
-  // ---------- Pantalla de inicio con widget ----------
+  // ---------- Pantalla de inicio con widget y pantalla -1 ----------
+  let enMenos1 = false; // recuerda si el usuario estaba en la pantalla -1 al volver de una nota
+  const statusbar = (hora) => `<div class="statusbar"><span>${hora}</span><span class="ic">
+          <svg viewBox="0 0 24 24"><path d="M2 22h20V2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 21 1 8a16 16 0 0 1 22 0z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M16 4h-1V2H9v2H8a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/></svg></span></div>`;
+  const ICON_FEED = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4zm0 6h10v2H4zm0 6h16v2H4z"/></svg>';
+
   async function renderInicio() {
     const now = new Date();
     const hora = now.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', hour12: false });
     const fecha = now.toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long' });
+    const h = now.getHours();
+    const saludo = h < 12 ? 'Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches';
     $app.innerHTML = `
-      <div class="home">
-        <div class="statusbar"><span>${hora}</span><span class="ic">
-          <svg viewBox="0 0 24 24"><path d="M2 22h20V2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 21 1 8a16 16 0 0 1 22 0z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M16 4h-1V2H9v2H8a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/></svg></span></div>
-        <div class="clock"><div class="hora">${hora}</div><div class="fecha"><span>${fecha}</span><span class="clima" id="clima"></span></div></div>
-        <div id="w">${widgetSkeleton()}</div>
-        <div class="demo-sw" role="group" aria-label="Tamaño del widget">
-          <button data-w="42" class="${widgetSize === '42' ? 'on' : ''}">Widget 4×2</button>
-          <button data-w="44" class="${widgetSize === '44' ? 'on' : ''}">Widget 4×4</button>
-        </div>
-        <div class="hint">Toca una noticia para abrir el portal XiNews</div>
-        <div class="apps">
-          ${['📞|Teléfono', '💬|Mensajes', '📷|Cámara', '🗺️|Mapas', '🎵|Música', '⚙️|Ajustes', '🛒|Tienda', '📧|Correo'].map((a) => { const [i, t] = a.split('|'); return `<div class="app"><i>${i}</i><span>${t}</span></div>`; }).join('')}
-        </div>
-        <div class="dock">${['📞', '💬', '🌐', '📷'].map((i) => `<div class="app"><i>${i}</i></div>`).join('')}</div>
+      <div class="pager" id="pager">
+        <div class="pg"><section class="menos1" aria-label="MX News, pantalla a la izquierda del inicio">
+          ${statusbar(hora)}
+          <header class="m1cab">
+            <div class="m1top"><span class="marca">MX<b>News</b></span><span class="vivo"><i></i>EN VIVO</span></div>
+            <div class="m1saludo">${saludo}</div>
+            <div class="m1fecha"><span>${fecha}</span><span class="clima" data-clima></span></div>
+            <nav class="m1chips">${['Internacional', 'Ciencia', 'Finanzas', 'Deportes', 'Nacional', 'Viajes'].map((c) => `<a class="chip" href="#/portal/${encodeURIComponent(c)}">${c}</a>`).join('')}</nav>
+          </header>
+          <div id="m1feed">${'<div class="m1card"><div class="sk" style="aspect-ratio:16/9;border-radius:0"></div><div class="m1txt"><div class="sk" style="height:44px"></div></div></div>'.repeat(3)}</div>
+        </section></div>
+        <div class="pg"><div class="home">
+          ${statusbar(hora)}
+          <div class="clock"><div class="hora">${hora}</div><div class="fecha"><span>${fecha}</span><span class="clima" data-clima></span></div></div>
+          <div id="w">${widgetSkeleton()}</div>
+          <div class="demo-sw" role="group" aria-label="Tamaño del widget">
+            <button data-w="42" class="${widgetSize === '42' ? 'on' : ''}">Widget 4×2</button>
+            <button data-w="44" class="${widgetSize === '44' ? 'on' : ''}">Widget 4×4</button>
+          </div>
+          <div class="hint">Desliza a la derecha para abrir MX News · Toca una noticia para leerla</div>
+          <div class="apps">
+            ${['📞|Teléfono', '💬|Mensajes', '📷|Cámara', '🗺️|Mapas', '🎵|Música', '⚙️|Ajustes', '🛒|Tienda', '📧|Correo'].map((a) => { const [i, t] = a.split('|'); return `<div class="app"><i>${i}</i><span>${t}</span></div>`; }).join('')}
+          </div>
+          <div class="paginas"><button data-ir="0" aria-label="Abrir MX News">${ICON_FEED}</button><button data-ir="1" class="on" aria-label="Pantalla de inicio"></button></div>
+          <div class="dock">${['📞', '💬', '🌐', '📷'].map((i) => `<div class="app"><i>${i}</i></div>`).join('')}</div>
+        </div></div>
       </div>`;
+    const pager = document.getElementById('pager');
+    const irA = (i, suave = true) => pager.scrollTo({ left: i * pager.clientWidth, behavior: suave ? 'smooth' : 'auto' });
+    requestAnimationFrame(() => irA(enMenos1 ? 0 : 1, false));
+    let m1Contada = false;
+    pager.addEventListener('scroll', () => {
+      const i = Math.round(pager.scrollLeft / pager.clientWidth);
+      enMenos1 = i === 0;
+      $app.querySelectorAll('.paginas button').forEach((b) => b.classList.toggle('on', Number(b.dataset.ir) === i));
+      if (enMenos1 && !m1Contada) { m1Contada = true; track({ tipo: 'apertura', superficie: 'pantalla-1' }); }
+    }, { passive: true });
+    $app.querySelectorAll('[data-ir]').forEach((b) => b.addEventListener('click', () => irA(Number(b.dataset.ir))));
+    arrastre(pager, irA);
     $app.querySelectorAll('[data-w]').forEach((b) => b.addEventListener('click', () => {
       widgetSize = b.dataset.w; try { localStorage.setItem('xn_w', widgetSize); } catch {}
       renderInicio();
     }));
-    loadClima().then((c) => { const el = document.getElementById('clima'); if (el && c) el.textContent = `${c.i} ${c.t}° CDMX`; });
+    loadClima().then((c) => { if (c) $app.querySelectorAll('[data-clima]').forEach((el) => { el.textContent = `${c.i} ${c.t}° CDMX`; }); });
+    cargarMenos1();
     try {
       const d = await api('/v1/widget');
       document.getElementById('w').innerHTML = widgetSize === '42' ? widget42(d) : widget44(d);
@@ -121,6 +153,51 @@
       track({ tipo: 'apertura', superficie: 'widget' + widgetSize });
     } catch (e) {
       document.getElementById('w').innerHTML = `<div class="widget"><div class="aviso">No se pudo cargar el widget: ${esc(e.message)}</div></div>`;
+    }
+  }
+
+  // Arrastre con mouse para la demo en computadora (en el celular basta el dedo)
+  function arrastre(el, irA) {
+    let x0 = null; let s0 = 0; let movio = false;
+    el.addEventListener('dragstart', (e) => e.preventDefault());
+    el.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      x0 = e.clientX; s0 = el.scrollLeft; movio = false;
+    });
+    el.addEventListener('pointermove', (e) => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0;
+      if (!movio && Math.abs(dx) > 6) { movio = true; el.style.scrollSnapType = 'none'; try { el.setPointerCapture(e.pointerId); } catch {} }
+      if (movio) el.scrollLeft = s0 - dx;
+    });
+    const fin = () => {
+      if (x0 === null) return;
+      x0 = null;
+      if (!movio) return;
+      el.style.scrollSnapType = '';
+      const i = el.scrollLeft < el.clientWidth / 2 ? 0 : 1;
+      irA(i);
+    };
+    el.addEventListener('pointerup', fin);
+    el.addEventListener('pointercancel', fin);
+    el.addEventListener('click', (e) => { if (movio) { e.preventDefault(); e.stopPropagation(); movio = false; } }, true);
+  }
+
+  // Pantalla -1: el feed de MX News a la izquierda del escritorio
+  const m1Card = (n) => `<a class="m1card" href="#/nota/${n.id}">${img(n.imagen, n.titulo)}<div class="m1txt"><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3>${metaNota(n)}</div></a>`;
+  const m1Ad = (a) => `<a class="m1card m1ad" href="${esc(a.cta_url)}?s=pantalla-1" target="_blank" rel="noopener sponsored" data-ad="${a.id}" data-sup="pantalla-1">${img(a.imagen, a.marca)}<div class="m1txt">${etiquetaAd(a)}<h3>${esc(a.titular || a.marca)}</h3><span class="meta">${esc(a.marca)}</span></div></a>`;
+  async function cargarMenos1() {
+    const box = document.getElementById('m1feed');
+    if (!box) return;
+    try {
+      const { items } = await api('/v1/feed?limit=24');
+      if (!document.body.contains(box)) return;
+      box.innerHTML = items.map((it) => (it.tipo === 'anuncio' ? m1Ad(it) : m1Card(it))).join('')
+        + '<a class="m1mas" href="#/portal">Ver todas las noticias en MX News</a>'
+        + '<p class="pie-demo">Contenido: Agencia de Noticias Xinhua. Los anuncios marcados como "Ejemplo de pauta" son ilustrativos y no representan campañas contratadas.</p>';
+      observeAds();
+    } catch (e) {
+      box.innerHTML = `<div class="aviso">No se pudieron cargar las noticias: ${esc(e.message)}</div>`;
     }
   }
   const widgetSkeleton = () => `<div class="widget ${widgetSize === '42' ? 'w42' : 'w44'}" style="${widgetSize === '42' ? '' : 'height:470px'}"><div class="sk" style="position:absolute;inset:0;border-radius:0"></div></div>`;
@@ -137,7 +214,7 @@
     }
     return `<div class="widget w42">
       <div class="carrusel" id="carr">${slides.join('')}</div>
-      <div class="top"><span class="marca">Xi<b>News</b><span class="cn">新华新闻</span></span><span class="vivo"><i></i>EN VIVO</span></div>
+      <div class="top"><span class="marca">MX<b>News</b></span><span class="vivo"><i></i>EN VIVO</span></div>
       <div class="puntos">${slides.map((_, i) => `<i class="${i === 0 ? 'on' : ''}"></i>`).join('')}</div>
     </div>`;
   }
@@ -162,7 +239,7 @@
     }
     const ult = t[3] || t[0];
     return `<div class="widget w44">
-      <div class="wbar"><span class="marca">Xi<b>News</b><span class="cn">新华新闻</span></span><span class="vivo"><i></i>EN VIVO</span></div>
+      <div class="wbar"><span class="marca">MX<b>News</b></span><span class="vivo"><i></i>EN VIVO</span></div>
       ${ult ? `<a class="ultima" href="#/nota/${ult.id}"><span>ÚLTIMA HORA</span><em>${esc(ult.titulo)}</em></a>` : ''}
       ${n ? `<a class="princ" href="#/nota/${n.id}">${img(n.imagen, n.titulo)}<div class="txt"><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3></div></a>` : ''}
       ${filas.join('')}
@@ -174,7 +251,7 @@
   const CATS = ['Portada', 'Internacional', 'Finanzas', 'Ciencia', 'Deportes', 'Cultura y Espectáculos', 'Nacional', 'Viajes'];
   function cabecera(activa) {
     return `<header class="cab">
-      <div class="r1"><a href="#/inicio" class="marca" aria-label="Volver a inicio">Xi<b>News</b><span class="cn">新华新闻</span></a>
+      <div class="r1"><a href="#/inicio" class="marca" aria-label="Volver a inicio">MX<b>News</b></a>
         <div class="acc"><span class="vivo"><i></i>EN VIVO</span>
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg></div></div>
       <nav class="tabs">${CATS.map((c) => `<a class="tab ${c === activa ? 'on' : ''}" href="#/portal${c === 'Portada' ? '' : '/' + encodeURIComponent(c)}">${c}</a>`).join('')}</nav>
@@ -202,13 +279,13 @@
       </section>`;
       html += `<section class="sec">${adCard(ads[0], 'portal-1')}</section>`;
       const carr = resto.slice(0, 6);
-      if (carr.length) html += `<section class="sec"><h2>Lo más reciente <small>最新</small></h2><div class="carr">${carr.map((n) => `<a class="card" href="#/nota/${n.id}">${img(n.miniatura || n.imagen, n.titulo)}<div><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3></div></a>`).join('')}</div></section>`;
+      if (carr.length) html += `<section class="sec"><h2>Lo más reciente</h2><div class="carr">${carr.map((n) => `<a class="card" href="#/nota/${n.id}">${img(n.miniatura || n.imagen, n.titulo)}<div><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3></div></a>`).join('')}</div></section>`;
       const top = resto.slice(6, 11);
-      if (top.length) html += `<section class="sec"><h2>Lo más leído <small>热读</small></h2><div class="top5">${top.map((n) => `<a href="#/nota/${n.id}"><h3>${esc(n.titulo)}</h3></a>`).join('')}</div></section>`;
+      if (top.length) html += `<section class="sec"><h2>Lo más leído</h2><div class="top5">${top.map((n) => `<a href="#/nota/${n.id}"><h3>${esc(n.titulo)}</h3></a>`).join('')}</div></section>`;
       const lista = resto.slice(11);
       if (lista.length) {
         let k = 1;
-        html += `<section class="sec"><h2>Más noticias <small>更多</small></h2><div class="lista">${lista.map((n, i) => {
+        html += `<section class="sec"><h2>Más noticias</h2><div class="lista">${lista.map((n, i) => {
           let s = `<a class="card mini" href="#/nota/${n.id}">${img(n.miniatura || n.imagen, n.titulo)}<div><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3>${metaNota(n)}</div></a>`;
           if ((i + 1) % 5 === 0 && ads[k]) s += adCard(ads[k++], 'portal-lista');
           return s;
@@ -232,7 +309,7 @@
 
   // ---------- Nota ----------
   async function renderNota(id) {
-    $app.innerHTML = `<article class="nota"><div class="barra"><button onclick="history.length>1?history.back():location.hash='#/portal'"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>Volver</button><span class="marca">Xi<b>News</b></span><span></span></div>
+    $app.innerHTML = `<article class="nota"><div class="barra"><button onclick="history.length>1?history.back():location.hash='#/portal'"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>Volver</button><span class="marca">MX<b>News</b></span><span></span></div>
       <div class="cab-n"><div class="sk" style="height:26px;width:40%"></div><div class="sk" style="height:70px;margin-top:10px"></div></div><div class="sk" style="height:240px;border-radius:0"></div></article>`;
     try {
       const [n, feed] = await Promise.all([api('/v1/news/' + id), api('/v1/feed?limit=12').catch(() => ({ items: [] }))]);
@@ -247,14 +324,14 @@
       const adRel = ads.find((a) => !ad1 || a.id !== ad1.id) || ads[0];
       const wa = `https://wa.me/?text=${encodeURIComponent(n.titulo + ' · ' + location.origin + location.pathname + '#/nota/' + n.id)}`;
       $app.innerHTML = `<article class="nota">
-        <div class="barra"><button onclick="history.length>1?history.back():location.hash='#/portal'"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>Volver</button><a href="#/portal" class="marca">Xi<b>News</b></a><span></span></div>
+        <div class="barra"><button onclick="history.length>1?history.back():location.hash='#/portal'"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>Volver</button><a href="#/portal" class="marca">MX<b>News</b></a><span></span></div>
         <div class="cab-n"><span class="cat">${kick(n)}</span><h1>${esc(n.titulo)}</h1>${metaNota(n)}</div>
         <figure class="foto" style="margin:0">${img(n.imagen, n.titulo)}<figcaption><b>${esc(n.credito)}</b>${n.galeria && n.galeria.length > 1 ? ` · Galería de ${n.galeria.length} fotos` : ''}</figcaption></figure>
         <div class="texto">${cuerpo}</div>
-        ${n.galeria && n.galeria.length > 1 ? `<section class="sec"><h2>Galería <small>图集</small></h2><div class="galeria">${n.galeria.map((g) => `<figure>${img(g.imagen, g.pie || n.titulo)}<figcaption>${esc(g.pie || '')} <b>(${esc(g.credito)})</b></figcaption></figure>`).join('')}</div></section>` : ''}
+        ${n.galeria && n.galeria.length > 1 ? `<section class="sec"><h2>Galería</h2><div class="galeria">${n.galeria.map((g) => `<figure>${img(g.imagen, g.pie || n.titulo)}<figcaption>${esc(g.pie || '')} <b>(${esc(g.credito)})</b></figcaption></figure>`).join('')}</div></section>` : ''}
         <div class="share"><a class="wa" href="${wa}" target="_blank" rel="noopener">Compartir en WhatsApp</a><a class="orig" href="${esc(n.url)}" target="_blank" rel="noopener">Ver original</a></div>
         <div class="fuente">Fuente: Agencia de Noticias Xinhua. Publicado vía ${esc(new URL(n.url).hostname)}.</div>
-        ${rel.length ? `<section class="sec"><h2>Te puede interesar <small>相关</small></h2><div class="lista">${rel.map((r, i) => `${i === 2 && adRel ? adCard(adRel, 'nota-rel') : ''}<a class="card mini" href="#/nota/${r.id}">${img(r.miniatura || r.imagen, r.titulo)}<div><span class="cat">${kick(r)}</span><h3>${esc(r.titulo)}</h3>${metaNota(r)}</div></a>`).join('')}</div></section>` : ''}
+        ${rel.length ? `<section class="sec"><h2>Te puede interesar</h2><div class="lista">${rel.map((r, i) => `${i === 2 && adRel ? adCard(adRel, 'nota-rel') : ''}<a class="card mini" href="#/nota/${r.id}">${img(r.miniatura || r.imagen, r.titulo)}<div><span class="cat">${kick(r)}</span><h3>${esc(r.titulo)}</h3>${metaNota(r)}</div></a>`).join('')}</div></section>` : ''}
       </article>`;
       $app.scrollTop = 0; window.scrollTo(0, 0);
       observeAds();
