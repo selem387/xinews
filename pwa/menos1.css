@@ -1,0 +1,37 @@
+/* Escritorio con dos páginas: pantalla -1 (MX News) a la izquierda y el inicio */
+.pager { display: flex; height: 100vh; height: 100dvh; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.pager::-webkit-scrollbar { display: none; }
+@media (min-width: 560px) { .pager { height: 100%; } }
+.pg { flex: 0 0 100%; height: 100%; overflow-y: auto; scroll-snap-align: start; scroll-snap-stop: always; scrollbar-width: none; }
+.pg::-webkit-scrollbar { display: none; }
+.pager img { -webkit-user-drag: none; user-select: none; }
+
+/* Indicador de páginas sobre el dock */
+.paginas { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 22px 0 0; }
+.paginas button { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.45); }
+.paginas button.on { background: #fff; }
+.paginas button[data-ir="0"] { width: 16px; height: 16px; border-radius: 0; background: none; display: grid; place-items: center; }
+.paginas button[data-ir="0"] svg { width: 14px; height: 14px; fill: rgba(255,255,255,.6); }
+.paginas button[data-ir="0"].on svg { fill: #fff; }
+
+/* Pantalla -1 */
+.menos1 { min-height: 100%; background: var(--fondo); padding-bottom: 28px; }
+.menos1 .statusbar { color: var(--tinta); }
+.menos1 .statusbar svg { fill: var(--tinta); }
+.m1cab { padding: 14px 16px 6px; }
+.m1top { display: flex; justify-content: space-between; align-items: center; }
+.m1top .marca { font-size: 26px; color: var(--marino); }
+.m1saludo { font-family: var(--f-titular); font-weight: 600; font-size: 30px; line-height: 1; margin-top: 14px; }
+.m1fecha { display: flex; gap: 10px; align-items: center; color: var(--gris); font-size: 14px; margin-top: 4px; }
+.m1chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; margin: 14px -16px 0; padding: 0 16px 4px; }
+.m1chips::-webkit-scrollbar { display: none; }
+.m1chips .chip { background: var(--papel); border: 1px solid var(--linea); color: var(--tinta); }
+#m1feed { padding: 8px 12px 0; }
+.m1card { display: block; background: var(--papel); border-radius: 22px; overflow: hidden; margin-top: 12px; box-shadow: 0 1px 2px rgba(15,35,64,.06); }
+.m1card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: var(--linea); }
+.m1txt { padding: 12px 16px 14px; }
+.m1txt h3 { margin: 6px 0 6px; font-size: 18px; line-height: 1.25; font-weight: 700;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.m1ad { background: var(--patro); border: 1px solid var(--patro-borde); box-shadow: none; }
+.m1ad img { aspect-ratio: auto; max-height: 230px; }
+.m1mas { display: block; text-align: center; margin: 16px 0 0; padding: 13px; border-radius: 999px; background: var(--marino); color: #fff; font-weight: 700; font-size: 14px; }
