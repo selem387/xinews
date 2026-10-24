@@ -101,8 +101,8 @@ app.get('/v1', (_req, res) => res.json({
   },
 }));
 app.get('/v1/config', (_req, res) => res.json({
-  marca: 'XiNews',
-  subtitulo: '新华新闻 · Noticias de Xinhua',
+  marca: 'MX News',
+  subtitulo: 'Noticias de Xinhua',
   fuente: 'Agencia de Noticias Xinhua',
   anuncio_cada: cfg.adEvery,
   refresco_min: cfg.ingestEveryMin,
