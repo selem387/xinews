@@ -73,7 +73,8 @@
 
   // ---------- Piezas ----------
   const img = (src, alt = '', cls = '') => `<img src="${esc(src || 'icons/placeholder.svg')}" alt="${esc(alt)}" loading="lazy" decoding="async" ${cls ? `class="${cls}"` : ''} onerror="this.onerror=null;this.src='icons/placeholder.svg'">`;
-  const metaNota = (n) => `<span class="meta">Xinhua · ${hace(n.publicado_at)} · ${n.lectura_min} min${n.imagen_hd ? '<span class="hd">HD</span>' : ''}</span>`;
+  const metaNota = (n) => `<span class="meta">Xinhua · ${hace(n.publicado_at)} · ${n.fotos > 1 ? `${n.fotos} fotos` : `${n.lectura_min} min`}${n.imagen_hd ? '<span class="hd">HD</span>' : ''}</span>`;
+  const kick = (n) => esc(n.ubicacion || n.categoria);
   const etiquetaAd = (a) => `<span class="etq">Patrocinado · ${esc(a.etiqueta || 'Ejemplo de pauta')}</span>`;
 
   function adCard(a, sup) {
@@ -129,7 +130,7 @@
     const notas = [d.destacada, ...d.titulares].filter(Boolean).slice(0, 4);
     const slides = notas.map((n) => `
       <a class="slide" href="#/nota/${n.id}">${img(n.imagen, n.titulo)}
-        <div class="txt"><span class="cat">${esc(n.categoria)}</span><h3>${esc(n.titulo)}</h3><span class="meta">Xinhua · ${hace(n.publicado_at)}</span></div></a>`);
+        <div class="txt"><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3><span class="meta">Xinhua · ${hace(n.publicado_at)}</span></div></a>`);
     if (d.anuncio) {
       const a = d.anuncio;
       slides.splice(2, 0, `<a class="slide" href="${esc(a.cta_url)}?s=widget42" target="_blank" rel="noopener sponsored" data-ad="${a.id}" data-sup="widget42">${img(a.imagen, a.marca)}
@@ -155,7 +156,7 @@
   function widget44(d) {
     const t = d.titulares || [];
     const n = d.destacada;
-    const filas = t.slice(0, 3).map((x) => `<a class="fila" href="#/nota/${x.id}">${img(x.miniatura || x.imagen, x.titulo)}<div><span class="cat">${esc(x.categoria)}</span><h4>${esc(x.titulo)}</h4></div></a>`);
+    const filas = t.slice(0, 3).map((x) => `<a class="fila" href="#/nota/${x.id}">${img(x.miniatura || x.imagen, x.titulo)}<div><span class="cat">${kick(x)}</span><h4>${esc(x.titulo)}</h4></div></a>`);
     if (d.anuncio) {
       const a = d.anuncio;
       filas.splice(2, 0, `<a class="fila patro" href="${esc(a.cta_url)}?s=widget44" target="_blank" rel="noopener sponsored" data-ad="${a.id}" data-sup="widget44">${img(a.imagen, a.marca)}<div>${etiquetaAd(a)}<h4>${esc(a.marca)} · ${esc(a.titular || '')}</h4></div></a>`);
@@ -164,9 +165,9 @@
     return `<div class="widget w44">
       <div class="wbar"><span class="marca">Xi<b>News</b><span class="cn">新华新闻</span></span><span class="vivo"><i></i>EN VIVO</span></div>
       ${ult ? `<a class="ultima" href="#/nota/${ult.id}"><span>ÚLTIMA HORA</span><em>${esc(ult.titulo)}</em></a>` : ''}
-      ${n ? `<a class="princ" href="#/nota/${n.id}">${img(n.imagen, n.titulo)}<div class="txt"><span class="cat">${esc(n.categoria)}</span><h3>${esc(n.titulo)}</h3></div></a>` : ''}
+      ${n ? `<a class="princ" href="#/nota/${n.id}">${img(n.imagen, n.titulo)}<div class="txt"><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3></div></a>` : ''}
       ${filas.join('')}
-      <div class="chips">${['Internacional', 'China', 'Finanzas', 'Ciencia', 'Deportes', 'Viajes'].map((c) => `<a class="chip" href="#/portal/${encodeURIComponent(c)}">${c}</a>`).join('')}</div>
+      <div class="chips">${['Internacional', 'Ciencia', 'Finanzas', 'Deportes', 'Nacional', 'Viajes'].map((c) => `<a class="chip" href="#/portal/${encodeURIComponent(c)}">${c}</a>`).join('')}</div>
     </div>`;
   }
 
@@ -197,19 +198,19 @@
       html += `<div class="franja"><span>ÚLTIMA HORA</span><div class="mq"><em>${notas.slice(0, 5).map((n) => esc(n.titulo)).join('  •  ')}</em></div></div>`;
       const [h, s1, s2, ...resto] = notas;
       html += `<section class="sec">
-        <a class="card hero" href="#/nota/${h.id}">${img(h.imagen, h.titulo)}<div class="cuerpo"><span class="cat">${esc(h.categoria)}</span><h3>${esc(h.titulo)}</h3><p>${esc(h.resumen || '')}</p>${metaNota(h)}</div></a>
-        <div class="duo">${[s1, s2].filter(Boolean).map((n) => `<a class="card" href="#/nota/${n.id}">${img(n.miniatura || n.imagen, n.titulo)}<div><span class="cat">${esc(n.categoria)}</span><h3>${esc(n.titulo)}</h3></div></a>`).join('')}</div>
+        <a class="card hero" href="#/nota/${h.id}">${img(h.imagen, h.titulo)}<div class="cuerpo"><span class="cat">${kick(h)}</span><h3>${esc(h.titulo)}</h3><p>${esc(h.resumen || '')}</p>${metaNota(h)}</div></a>
+        <div class="duo">${[s1, s2].filter(Boolean).map((n) => `<a class="card" href="#/nota/${n.id}">${img(n.miniatura || n.imagen, n.titulo)}<div><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3></div></a>`).join('')}</div>
       </section>`;
       html += `<section class="sec">${adCard(ads[0], 'portal-1')}</section>`;
       const carr = resto.slice(0, 6);
-      if (carr.length) html += `<section class="sec"><h2>Lo más reciente <small>最新</small></h2><div class="carr">${carr.map((n) => `<a class="card" href="#/nota/${n.id}">${img(n.miniatura || n.imagen, n.titulo)}<div><span class="cat">${esc(n.categoria)}</span><h3>${esc(n.titulo)}</h3></div></a>`).join('')}</div></section>`;
+      if (carr.length) html += `<section class="sec"><h2>Lo más reciente <small>最新</small></h2><div class="carr">${carr.map((n) => `<a class="card" href="#/nota/${n.id}">${img(n.miniatura || n.imagen, n.titulo)}<div><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3></div></a>`).join('')}</div></section>`;
       const top = resto.slice(6, 11);
       if (top.length) html += `<section class="sec"><h2>Lo más leído <small>热读</small></h2><div class="top5">${top.map((n) => `<a href="#/nota/${n.id}"><h3>${esc(n.titulo)}</h3></a>`).join('')}</div></section>`;
       const lista = resto.slice(11);
       if (lista.length) {
         let k = 1;
         html += `<section class="sec"><h2>Más noticias <small>更多</small></h2><div class="lista">${lista.map((n, i) => {
-          let s = `<a class="card mini" href="#/nota/${n.id}">${img(n.miniatura || n.imagen, n.titulo)}<div><span class="cat">${esc(n.categoria)}</span><h3>${esc(n.titulo)}</h3>${metaNota(n)}</div></a>`;
+          let s = `<a class="card mini" href="#/nota/${n.id}">${img(n.miniatura || n.imagen, n.titulo)}<div><span class="cat">${kick(n)}</span><h3>${esc(n.titulo)}</h3>${metaNota(n)}</div></a>`;
           if ((i + 1) % 5 === 0 && ads[k]) s += adCard(ads[k++], 'portal-lista');
           return s;
         }).join('')}</div></section>`;
@@ -248,12 +249,13 @@
       const wa = `https://wa.me/?text=${encodeURIComponent(n.titulo + ' · ' + location.origin + location.pathname + '#/nota/' + n.id)}`;
       $app.innerHTML = `<article class="nota">
         <div class="barra"><button onclick="history.length>1?history.back():location.hash='#/portal'"><svg viewBox="0 0 24 24"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4L10.8 12z"/></svg>Volver</button><a href="#/portal" class="marca">Xi<b>News</b></a><span></span></div>
-        <div class="cab-n"><span class="cat">${esc(n.categoria)}</span><h1>${esc(n.titulo)}</h1>${metaNota(n)}</div>
-        <figure class="foto" style="margin:0">${img(n.imagen, n.titulo)}${n.pie ? `<figcaption>${esc(n.pie)} <b>(${esc(n.credito)})</b></figcaption>` : ''}</figure>
+        <div class="cab-n"><span class="cat">${kick(n)}</span><h1>${esc(n.titulo)}</h1>${metaNota(n)}</div>
+        <figure class="foto" style="margin:0">${img(n.imagen, n.titulo)}<figcaption><b>${esc(n.credito)}</b>${n.galeria && n.galeria.length > 1 ? ` · Galería de ${n.galeria.length} fotos` : ''}</figcaption></figure>
         <div class="texto">${cuerpo}</div>
+        ${n.galeria && n.galeria.length > 1 ? `<section class="sec"><h2>Galería <small>图集</small></h2><div class="galeria">${n.galeria.map((g) => `<figure>${img(g.imagen, g.pie || n.titulo)}<figcaption>${esc(g.pie || '')} <b>(${esc(g.credito)})</b></figcaption></figure>`).join('')}</div></section>` : ''}
         <div class="share"><a class="wa" href="${wa}" target="_blank" rel="noopener">Compartir en WhatsApp</a><a class="orig" href="${esc(n.url)}" target="_blank" rel="noopener">Ver original</a></div>
         <div class="fuente">Fuente: Agencia de Noticias Xinhua. Publicado vía ${esc(new URL(n.url).hostname)}.</div>
-        ${rel.length ? `<section class="sec"><h2>Te puede interesar <small>相关</small></h2><div class="lista">${rel.map((r, i) => `${i === 2 && adRel ? adCard(adRel, 'nota-rel') : ''}<a class="card mini" href="#/nota/${r.id}">${img(r.miniatura || r.imagen, r.titulo)}<div><span class="cat">${esc(r.categoria)}</span><h3>${esc(r.titulo)}</h3>${metaNota(r)}</div></a>`).join('')}</div></section>` : ''}
+        ${rel.length ? `<section class="sec"><h2>Te puede interesar <small>相关</small></h2><div class="lista">${rel.map((r, i) => `${i === 2 && adRel ? adCard(adRel, 'nota-rel') : ''}<a class="card mini" href="#/nota/${r.id}">${img(r.miniatura || r.imagen, r.titulo)}<div><span class="cat">${kick(r)}</span><h3>${esc(r.titulo)}</h3>${metaNota(r)}</div></a>`).join('')}</div></section>` : ''}
       </article>`;
       $app.scrollTop = 0; window.scrollTo(0, 0);
       observeAds();
