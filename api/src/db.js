@@ -25,6 +25,10 @@ CREATE TABLE IF NOT EXISTS noticias_widget (
   UNIQUE (sitio, wp_id)
 );
 CREATE INDEX IF NOT EXISTS noticias_widget_pub_idx ON noticias_widget (publicado_at DESC);
+ALTER TABLE noticias_widget ADD COLUMN IF NOT EXISTS grupo TEXT;
+ALTER TABLE noticias_widget ADD COLUMN IF NOT EXISTS titulo_original TEXT;
+ALTER TABLE noticias_widget ADD COLUMN IF NOT EXISTS ubicacion TEXT;
+CREATE INDEX IF NOT EXISTS noticias_widget_grupo_idx ON noticias_widget (grupo);
 
 CREATE TABLE IF NOT EXISTS anuncios (
   id                 SERIAL PRIMARY KEY,

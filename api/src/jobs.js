@@ -30,7 +30,7 @@ async function cacheAds() {
   for (const a of rows) {
     try {
       const key = `anuncios/${a.id}-${Date.now()}`;
-      await storage.putFromUrl(key, a.imagen_origen_url);
+      await storage.putFromUrl(key, a.imagen_origen_url, 1200);
       await q('UPDATE anuncios SET imagen_key=$1 WHERE id=$2', [key, a.id]);
       ok++;
     } catch (e) { errores.push({ id: a.id, error: e.message }); }

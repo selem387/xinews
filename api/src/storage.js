@@ -22,6 +22,23 @@ async function ensureBucket() {
   ready = true;
 }
 
+let sharp = null;
+try { sharp = require('sharp'); } catch { /* sin redimensionado */ }
+
+// Reduce el peso para celular: ancho máximo y WebP. Si falla, guarda el original.
+async function optimiza(buffer, contentType, maxWidth) {
+  if (!sharp || !maxWidth || !/^image\/(jpeg|png|webp)/.test(contentType || '')) return { buffer, contentType };
+  try {
+    const out = await sharp(buffer).rotate().resize({ width: maxWidth, withoutEnlargement: true }).webp({ quality: 80 }).toBuffer();
+    return { buffer: out, contentType: 'image/webp' };
+  } catch { return { buffer, contentType }; }
+}
+
+async function putImage(key, buffer, contentType, maxWidth) {
+  const o = await optimiza(buffer, contentType, maxWidth);
+  return put(key, o.buffer, o.contentType);
+}
+
 async function put(key, buffer, contentType) {
   await s3.send(new PutObjectCommand({
     Bucket: cfg.s3.bucket, Key: key, Body: buffer,
@@ -40,7 +57,7 @@ async function del(key) {
 }
 
 // Descarga una imagen remota y la guarda; devuelve la clave
-async function putFromUrl(key, url) {
+async function putFromUrl(key, url, maxWidth = 1600) {
   const res = await fetch(url, {
     headers: { 'User-Agent': 'Mozilla/5.0 (XiNews image fetcher)' },
     redirect: 'follow',
@@ -49,8 +66,8 @@ async function putFromUrl(key, url) {
   const type = res.headers.get('content-type') || 'image/jpeg';
   if (!type.startsWith('image/')) throw new Error(`No es imagen (${type}): ${url}`);
   const buf = Buffer.from(await res.arrayBuffer());
-  await put(key, buf, type);
+  await putImage(key, buf, type, maxWidth);
   return key;
 }
 
-module.exports = { ensureBucket, put, get, del, putFromUrl, isReady: () => ready };
+module.exports = { ensureBucket, put, putImage, get, del, putFromUrl, isReady: () => ready };
