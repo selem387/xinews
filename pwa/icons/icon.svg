@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#0F2340"/>
+  <path d="M0 352h512v48c0 61.9-50.1 112-112 112H112C50.1 512 0 461.9 0 400z" fill="#C3141E"/>
+  <text x="256" y="300" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="230" fill="#fff" letter-spacing="-6">Xi</text>
+  <text x="256" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="88" fill="#fff" letter-spacing="10">NEWS</text>
+</svg>
