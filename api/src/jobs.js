@@ -40,7 +40,11 @@ async function cacheAds() {
 }
 
 async function ingestSafe() {
-  try { state.lastIngest = { at: new Date().toISOString(), ...(await runIngest()) }; }
+  try {
+    state.lastIngest = { at: new Date().toISOString(), ...(await runIngest()) };
+    // Xinhua marca algunos créditos con "[e]"; se limpia para mostrarlo
+    await q(`UPDATE noticias_widget SET foto_credito = btrim(regexp_replace(foto_credito, '^\\[e\\]', '', 'i')) WHERE foto_credito ILIKE '[e]%'`);
+  }
   catch (e) { state.lastIngest = { at: new Date().toISOString(), error: e.message }; console.error('ingest', e); }
   return state.lastIngest;
 }
