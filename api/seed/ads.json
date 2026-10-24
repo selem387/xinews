@@ -1,0 +1,65 @@
+[
+  {
+    "brand": "BYD",
+    "sector": "Automotriz",
+    "product": "BYD Shark",
+    "headline": "Aventura híbrida con la BYD Shark",
+    "image_url": "https://www.byd.com/material/__CN/byd-site/mx/oc_octubre/10_OC_WEBSITE_SHARK.png",
+    "cta_url": "https://www.byd.com/mx",
+    "prioridad": 5
+  },
+  {
+    "brand": "MG Motor",
+    "sector": "Automotriz",
+    "product": "MG Cyberster",
+    "headline": "Siente la libertad del MG Cyberster",
+    "image_url": "https://mgmotor.sfo2.digitaloceanspaces.com/storage/banners/home/mg-cyberster-main-banner-02.webp",
+    "cta_url": "https://www.mgmotor.com.mx/",
+    "prioridad": 4
+  },
+  {
+    "brand": "Chirey",
+    "sector": "Automotriz",
+    "product": "Tiggo 8 PHEV",
+    "headline": "Tiggo 8 PHEV: híbrida, amplia y lista",
+    "image_url": "https://d16b8fnjzv0ami.cloudfront.net/media/MEDIA_FILES/2026/10/21/1792595615_image_compress.png",
+    "cta_url": "https://www.chirey.mx/promociones/",
+    "prioridad": 3
+  },
+  {
+    "brand": "Huawei",
+    "sector": "Tecnología",
+    "product": "HUAWEI Pura 90s Pro Max",
+    "headline": "Fotografía de otro nivel con Pura 90s",
+    "image_url": "https://consumer.huawei.com/dam/content/dam/huawei-cbg-site/common/mkt/homepage-x/new/0714-2026-huawei-flagship-product-launch/herobanner/pura90s-pro-max-pc.jpg",
+    "cta_url": "https://consumer.huawei.com/mx/phones/pura90s-pro-max/",
+    "prioridad": 4
+  },
+  {
+    "brand": "Hisense",
+    "sector": "Electrónica",
+    "product": "Pantallas ULED MiniLED",
+    "headline": "Más brillo y contraste con MiniLED",
+    "image_url": "https://hisense.com.mx/uploads/BANNER_MINI-LED_DESKTOP_1533x645pxv21.png",
+    "cta_url": "https://hisense.com.mx/",
+    "prioridad": 3
+  },
+  {
+    "brand": "DiDi",
+    "sector": "Movilidad y pagos",
+    "product": "Superapp DiDi",
+    "headline": "Viaja, pide y paga con DiDi",
+    "image_url": "https://images.ctfassets.net/n7hs0hadu6ro/2DjXr3yR5R4e5HnFuJfBbk/eab1f29846994a51b922361eaedb2f02/Web_banner__1_.jpg",
+    "cta_url": "https://web.didiglobal.com/mx/",
+    "prioridad": 3
+  },
+  {
+    "brand": "SHEIN",
+    "sector": "Moda y comercio electrónico",
+    "product": "Favoritos acogedores",
+    "headline": "Favoritos acogedores para la temporada",
+    "image_url": "https://img.ltwebstatic.com/v4/j/ccc/2026/10/15/ef/1792072873756ca39404a856de57f2e77cf475d043.jpg",
+    "cta_url": "https://www.shein.com.mx/",
+    "prioridad": 2
+  }
+]

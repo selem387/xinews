@@ -1,0 +1,20 @@
+{
+  "name": "xinews-api",
+  "version": "0.1.0",
+  "description": "XiNews API: noticias Xinhua con foto, anuncios, eventos y almacenamiento de fotos grandes con limpieza a 48 h",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.600.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.12.0"
+  }
+}
