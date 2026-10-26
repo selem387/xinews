@@ -114,8 +114,9 @@
         <div class="pg"><div class="home">
           ${statusbar(hora)}
           <div class="clock"><div class="hora">${hora}</div><div class="fecha"><span>${fecha}</span><span class="clima" data-clima></span></div></div>
-          <div id="w">${widgetSkeleton()}</div>
+          <div id="w">${widgetSize === '0' ? '' : widgetSkeleton()}</div>
           <div class="demo-sw" role="group" aria-label="Tamaño del widget">
+            <button data-w="0" class="${widgetSize === '0' ? 'on' : ''}">Sin widget</button>
             <button data-w="42" class="${widgetSize === '42' ? 'on' : ''}">Widget 4×2</button>
             <button data-w="44" class="${widgetSize === '44' ? 'on' : ''}">Widget 4×4</button>
           </div>
@@ -145,6 +146,7 @@
     }));
     loadClima().then((c) => { if (c) $app.querySelectorAll('[data-clima]').forEach((el) => { el.textContent = `${c.i} ${c.t}° CDMX`; }); });
     cargarMenos1();
+    if (widgetSize === '0') return;
     try {
       const d = await api('/v1/widget');
       document.getElementById('w').innerHTML = widgetSize === '42' ? widget42(d) : widget44(d);

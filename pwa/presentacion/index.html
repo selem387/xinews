@@ -95,6 +95,14 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 .steps span.cur{background:var(--navy);color:#fff}
 .steps span.done{background:#E3E8F0;color:var(--navy)}
 
+/* Flechas laterales */
+.side{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:rgba(15,35,64,.82);color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.side:hover{background:var(--red);border-color:var(--red)}
+.side:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.side:disabled{opacity:0;pointer-events:none}
+.side-prev{left:max(12px,env(safe-area-inset-left,0px))}
+.side-next{right:max(12px,env(safe-area-inset-right,0px))}
+
 /* Navegación */
 .bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:var(--paper)}
 .brand{padding-left:0.5cm;font-family:var(--display);font-weight:800;font-size:20px;color:var(--navy)} .brand b{color:var(--red)}
@@ -129,7 +137,6 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 <p class="lead">Noticias de Xinhua y publicidad de empresas chinas, a un gesto del dedo en los celulares de marcas chinas.</p>
 <div class="cover-ctas">
 <button class="next-cover" type="button" data-go="1">Comenzar <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-<a class="live" href="https://xinews.informadorweb.com.mx/" target="_blank" rel="noopener">Abrir en pantalla completa <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
 </div>
 <p class="hint">En el celular: desliza a la derecha para abrir la pantalla −1 y toca una noticia para leerla.</p>
 </div>
@@ -239,6 +246,8 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 </div>
 </section>
 
+<button class="side side-prev" id="sprev" type="button" aria-label="Diapositiva anterior"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+<button class="side side-next" id="snext" type="button" aria-label="Diapositiva siguiente"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
 </div>
 
 <nav class="bar" aria-label="Navegación de la presentación">
@@ -257,6 +266,7 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
   var slides=[].slice.call(document.querySelectorAll('.slide'));
   var dots=document.getElementById('dots'), count=document.getElementById('count');
   var prev=document.getElementById('prev'), next=document.getElementById('next');
+  var sprev=document.getElementById('sprev'), snext=document.getElementById('snext');
   var cur=0;
   slides.forEach(function(s,i){
     var b=document.createElement('button');
@@ -275,12 +285,14 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
     });
     [].forEach.call(dots.children,function(d,k){d.setAttribute('aria-current',k===i?'true':'false')});
     count.textContent=(i+1)+' / '+slides.length;
-    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    prev.disabled=sprev.disabled=i===0; next.disabled=snext.disabled=i===slides.length-1;
     cur=i;
     try{history.replaceState(null,'','#'+slides[i].id)}catch(e){}
   }
   prev.addEventListener('click',function(){go(cur-1)});
   next.addEventListener('click',function(){go(cur+1)});
+  sprev.addEventListener('click',function(){go(cur-1)});
+  snext.addEventListener('click',function(){go(cur+1)});
   [].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.addEventListener('click',function(){go(+b.getAttribute('data-go'))})});
   document.addEventListener('keydown',function(e){
     if(e.target.closest&&e.target.closest('input,textarea'))return;
