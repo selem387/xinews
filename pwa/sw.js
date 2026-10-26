@@ -1,5 +1,5 @@
 // Service worker: la app funciona sin internet con lo último que se vio (respaldo para la demo)
-const V = 'xinews-v5';
+const V = 'xinews-v6';
 const SHELL = ['./', 'index.html', 'styles.css', 'galeria.css', 'menos1.css', 'app.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/placeholder.svg', 'icons/icon-192.png'];
 
 self.addEventListener('install', (e) => {

@@ -3,7 +3,7 @@
   const API = (window.XINEWS_API || 'https://api.xinews.informadorweb.com.mx').replace(/\/$/, '');
   const $app = document.getElementById('app');
   const sesion = (() => { try { let s = localStorage.getItem('xn_s'); if (!s) { s = Math.random().toString(36).slice(2); localStorage.setItem('xn_s', s); } return s; } catch { return 'anon'; } })();
-  let widgetSize = (() => { try { return localStorage.getItem('xn_w') || '44'; } catch { return '44'; } })();
+  let widgetSize = (() => { try { return localStorage.getItem('xn_w2') || '0'; } catch { return '0'; } })();
   let stickyClosed = false;
   let timers = [];
 
@@ -141,7 +141,7 @@
     $app.querySelectorAll('[data-ir]').forEach((b) => b.addEventListener('click', () => irA(Number(b.dataset.ir))));
     arrastre(pager, irA);
     $app.querySelectorAll('[data-w]').forEach((b) => b.addEventListener('click', () => {
-      widgetSize = b.dataset.w; try { localStorage.setItem('xn_w', widgetSize); } catch {}
+      widgetSize = b.dataset.w; try { localStorage.setItem('xn_w2', widgetSize); } catch {}
       renderInicio();
     }));
     loadClima().then((c) => { if (c) $app.querySelectorAll('[data-clima]').forEach((el) => { el.textContent = `${c.i} ${c.t}° CDMX`; }); });
