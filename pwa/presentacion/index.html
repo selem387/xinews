@@ -56,6 +56,11 @@ p{margin:0}
   .phone{height:600px;max-width:100%;align-self:center}
 }
 
+/* 11 · Cierre */
+.closing h1{font-size:clamp(40px,4.6vw,72px)}
+.closing .lead{font-size:20px;line-height:1.45;max-width:40ch}
+.cta-final{display:inline-block;margin-top:34px;padding:16px 26px;border-radius:10px;background:var(--red);color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(26px,2.6vw,38px);line-height:1.1;letter-spacing:.01em;box-shadow:0 14px 36px rgba(195,20,30,.35);text-wrap:balance}
+
 /* 2 · Objetivo */
 .s-obj{background:var(--red);color:#fff}
 .s-obj .kicker{color:#FFD3D6}
@@ -247,6 +252,18 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 </div>
 </section>
 
+<section class="slide s-cover" id="s11" aria-label="Cierre">
+<div class="wrap cover closing">
+<div class="cover-txt">
+<p class="kicker">MX News · Xinhua</p>
+<h1>La pantalla −1 de los celulares chinos puede hablar de China.</h1>
+<p class="lead">Xinhua pone la confianza; las empresas chinas, la publicidad; las marcas de celulares, el espacio. Todos ganan y China gana.</p>
+<p class="cta-final">Convirtamos a Xinhua en el mejor promotor de las empresas chinas</p>
+</div>
+<div class="phone"><iframe id="demo2" src="/#/inicio" title="MX News en vivo: pantalla −1" loading="eager"></iframe></div>
+</div>
+</section>
+
 <button class="side side-prev" id="sprev" type="button" aria-label="Diapositiva anterior"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
 <button class="side side-next" id="snext" type="button" aria-label="Diapositiva siguiente"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
 </div>
@@ -288,6 +305,7 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
     count.textContent=(i+1)+' / '+slides.length;
     prev.disabled=sprev.disabled=i===0; next.disabled=snext.disabled=i===slides.length-1;
     cur=i;
+    if(slides[i].id==='s11')abrirMenos1(10);
     try{history.replaceState(null,'','#'+slides[i].id)}catch(e){}
   }
   prev.addEventListener('click',function(){go(cur-1)});
@@ -310,10 +328,19 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
     x0=null;
   });
 
-  var fr=document.getElementById('demo');
-  function fit(){var sc=fr.parentNode.clientHeight/844;fr.style.transform='scale('+sc+')';fr.style.width=(fr.parentNode.clientWidth/sc)+'px'}
-  if(window.ResizeObserver){new ResizeObserver(fit).observe(fr.parentNode)} else {window.addEventListener('resize',fit)}
-  fit();
+  [].forEach.call(document.querySelectorAll('.phone iframe'),function(fr){
+    function fit(){var h=fr.parentNode.clientHeight;if(!h)return;var sc=h/844;fr.style.transform='scale('+sc+')';fr.style.width=(fr.parentNode.clientWidth/sc)+'px'}
+    if(window.ResizeObserver){new ResizeObserver(fit).observe(fr.parentNode)} else {window.addEventListener('resize',fit)}
+    fit();
+  });
+  // En el cierre, el celular abre directo en la pantalla -1
+  var f2=document.getElementById('demo2');
+  function abrirMenos1(intentos){
+    try{var pg=f2.contentWindow.document.getElementById('pager');
+      if(pg&&pg.clientWidth){pg.style.scrollBehavior='auto';pg.scrollLeft=0;return}}catch(e){}
+    if(intentos>0)setTimeout(function(){abrirMenos1(intentos-1)},300);
+  }
+  f2.addEventListener('load',function(){setTimeout(function(){abrirMenos1(20)},400)});
   var start=0, h=(location.hash||'').slice(1);
   slides.forEach(function(s,i){if(s.id===h)start=i});
   go(start);
