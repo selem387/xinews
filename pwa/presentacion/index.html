@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>MX News · Presentación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+html,body{margin:0}*,*::before,*::after{box-sizing:border-box}
+/* Layout: una diapositiva a pantalla completa por vez; barra de navegación fija abajo. Look único de marca MX News (no cambia con el tema). */
+:root{
+  --navy:#0F2340; --navy-2:#1B3358; --red:#C3141E; --red-soft:#FF5A63; --pink:#F2A5AA;
+  --ink:#1A1F2B; --muted:#4A5468; --line:#D5DCE8; --paper:#FFFFFF; --mist:#F3F5F9;
+  --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+  --body:'Source Sans 3','Segoe UI',Arial,sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;overflow:hidden}
+.deck{position:relative;height:100%;display:flex;flex-direction:column}
+.stage{position:relative;flex:1;min-height:0}
+.slide{position:absolute;inset:0;overflow-y:auto;display:flex;opacity:0;visibility:hidden;transform:translateX(24px);transition:opacity .35s ease,transform .35s ease,visibility 0s .35s}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .35s ease}
+.slide.prev{transform:translateX(-24px)}
+@media (prefers-reduced-motion:reduce){.slide,.slide.on{transition:none;transform:none}}
+.wrap{width:100%;max-width:1180px;margin:auto;padding-block:48px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+p{margin:0}
+.kicker{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+
+/* 1 · Portada */
+.s-cover{background:var(--navy);color:#fff}
+.cover{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}
+.cover > div:first-child{padding-left:0.5cm;min-width:0}
+.cover .kicker{color:var(--pink)}
+.cover h1{font-weight:800;font-size:clamp(46px,6.4vw,92px);line-height:.95;margin-top:18px}
+.cover h1 .n{color:var(--red-soft)}
+.cover h1 .sub{display:block;font-weight:700;font-size:.62em;line-height:1.05;margin-top:18px;color:#D5DCE8}
+.cover .lead{margin-top:28px;font-size:18px;color:#C5CEDD;max-width:46ch}
+.phone{justify-self:center;width:min(330px,100%);aspect-ratio:390/760;border-radius:44px;padding:12px;background:#05101F;box-shadow:0 30px 70px rgba(0,0,0,.45),inset 0 0 0 2px #2A3D5E;position:relative}
+.phone .screen{width:100%;height:100%;border-radius:34px;overflow:hidden;background:#fff}
+.phone .screen{position:relative}
+.phone .screen iframe{position:absolute;top:0;left:0;width:390px;height:760px;border:0;transform-origin:0 0;background:#fff}
+.phone-cap{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:20px}
+.live{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;text-decoration:none;font-size:15px}
+.live:hover{background:#A9111A}
+.live:focus-visible,.navbtn:focus-visible,.dot:focus-visible,.next-cover:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.phone-cap small{color:#9FB0C9;font-size:13px}
+.next-cover{display:inline-flex;align-items:center;gap:12px;margin-top:36px;min-height:52px;padding:0 24px 0 28px;border:2px solid #fff;border-radius:999px;background:transparent;color:#fff;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.next-cover:hover{background:#fff;color:var(--navy)}
+
+/* 2 · Objetivo */
+.s-obj{background:var(--red);color:#fff}
+.s-obj .kicker{color:#FFD3D6}
+.s-obj h2{margin-top:22px;font-weight:700;font-size:clamp(34px,4.6vw,64px);line-height:1.05;max-width:24ch}
+
+/* Puntos */
+.s-point{background:var(--paper)}
+.point{display:grid;grid-template-columns:auto minmax(0,1fr);gap:40px;align-items:start}
+.num{font-family:var(--display);font-weight:800;font-size:clamp(120px,16vw,220px);line-height:.8;color:var(--red)}
+.point .kicker{color:var(--muted)}
+.point h2{margin-top:10px;font-weight:800;font-size:clamp(40px,5vw,68px);line-height:1;color:var(--navy)}
+.point .txt{margin-top:22px;font-size:clamp(20px,2.1vw,28px);line-height:1.4;max-width:40ch}
+.point .txt b{color:var(--navy)}
+.fact{margin-top:28px;display:inline-flex;align-items:baseline;gap:14px;padding:14px 22px;background:var(--mist);border-radius:8px}
+.fact strong{font-family:var(--display);font-weight:800;font-size:48px;line-height:1;color:var(--red)}
+.fact span{font-size:16px;color:var(--muted);max-width:30ch}
+
+/* 5 · Por qué se gana */
+.why{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;margin-top:28px}
+.why h3{font-weight:700;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:6px 12px;display:inline-block}
+.why .a h3{background:var(--navy)} .why .b h3{background:var(--red)}
+.why .a p{margin-top:16px;font-size:19px;line-height:1.45}
+.why .big{margin-top:18px;display:flex;align-items:baseline;gap:12px}
+.why .big strong{font-family:var(--display);font-weight:800;font-size:72px;line-height:1;color:var(--red)}
+.why .big span{color:var(--muted);font-size:15px;max-width:22ch}
+.tbl{margin-top:16px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);border-bottom:2px solid var(--navy)}
+td.x{background:#FBECED;font-weight:600;color:var(--navy)}
+thead th.x{color:var(--red);border-bottom-color:var(--red)}
+.note{margin-top:10px;font-size:13px;color:var(--muted)}
+
+/* Pasos */
+.steps{display:flex;gap:10px;margin-bottom:34px;flex-wrap:wrap}
+.steps span{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:999px;background:var(--mist);color:var(--muted)}
+.steps span.cur{background:var(--navy);color:#fff}
+.steps span.done{background:#E3E8F0;color:var(--navy)}
+
+/* Navegación */
+.bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:var(--paper)}
+.brand{padding-left:0.5cm;font-family:var(--display);font-weight:800;font-size:20px;color:var(--navy)} .brand b{color:var(--red)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.dot{width:28px;height:28px;border:0;border-radius:50%;background:transparent;cursor:pointer;display:grid;place-items:center;padding:0}
+.dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dot[aria-current="true"]::after{background:var(--red);transform:scale(1.25)}
+.ctrls{display:flex;align-items:center;gap:8px;padding-right:0.5cm}
+.count{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;min-width:46px;text-align:center}
+.navbtn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--navy);background:var(--paper);color:var(--navy);cursor:pointer;display:grid;place-items:center}
+.navbtn:hover{background:var(--navy);color:#fff}
+.navbtn:disabled{opacity:.3;cursor:default;background:var(--paper);color:var(--navy)}
+
+@media (max-width:860px){
+  .cover{gap:28px}
+  .phone{width:min(260px,100%)}
+  .next-cover{margin-top:24px}
+  .why{grid-template-columns:minmax(0,1fr)}
+  .point{grid-template-columns:minmax(0,1fr);gap:8px}
+  .dots{display:none}
+  .wrap{padding-block:32px}
+}
+@media (max-width:600px){
+  .cover{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+
+</head>
+<body>
+<div class="deck">
+<div class="stage" id="stage">
+
+<section class="slide s-cover" id="s1" aria-label="Portada">
+<div class="wrap cover">
+<div>
+<p class="kicker">Propuesta · Reunión con el director de corresponsales</p>
+<h1>MX<span class="n">News</span>: En la pantalla −1<span class="sub">La ventaja injusta para las empresas chinas</span></h1>
+<p class="lead">Noticias de Xinhua y publicidad de empresas chinas, a un gesto del dedo en los celulares de marcas chinas.</p>
+<button class="next-cover" type="button" data-go="1">Comenzar <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+<div>
+<div class="phone"><div class="screen"><iframe id="demo" src="/#/inicio" title="MX News en vivo: pantalla de inicio y pantalla −1" loading="eager"></iframe></div></div>
+<div class="phone-cap">
+<a class="live" href="https://xinews.informadorweb.com.mx/" target="_blank" rel="noopener">Abrir en pantalla completa <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+<small>Desliza a la derecha dentro del celular para ver la pantalla −1</small>
+</div>
+</div>
+</div>
+</section>
+
+<section class="slide s-obj" id="s2" aria-label="Objetivo">
+<div class="wrap">
+<p class="kicker">Objetivo</p>
+<h2>Que Xinhua colabore con el éxito de las empresas chinas generando un espacio preferencial de publicidad y atención masiva en celulares de marcas chinas.</h2>
+</div>
+</section>
+
+<section class="slide s-point" id="s3" aria-label="Propósito">
+<div class="wrap point"><div class="num">1</div><div>
+<p class="kicker">La propuesta</p>
+<h2>Propósito</h2>
+<p class="txt">Xinhua no busca beneficio propio: busca el de toda China, a través del éxito global de las empresas chinas, <b>empezando por América Latina.</b></p>
+</div></div>
+</section>
+
+<section class="slide s-point" id="s4" aria-label="Estrategia">
+<div class="wrap point"><div class="num">2</div><div>
+<p class="kicker">La propuesta</p>
+<h2>Estrategia</h2>
+<p class="txt">Generar un <b>espacio preferente para marcas chinas en celulares chinos</b>: las marcas de celulares aportan el espacio publicitario y las demás marcas chinas, la publicidad.</p>
+</div></div>
+</section>
+
+<section class="slide s-point" id="s5" aria-label="El espacio">
+<div class="wrap point"><div class="num">3</div><div>
+<p class="kicker">La propuesta</p>
+<h2>El espacio</h2>
+<p class="txt">La <b>pantalla −1</b> de los teléfonos de marcas chinas, a un gesto del dedo, con noticias de Xinhua y locales, y un precio de publicidad altamente preferente para empresas chinas.</p>
+<div class="fact"><strong>56 %</strong><span>de los teléfonos que se venden en México son de marcas chinas (Omdia, 2T-2026)</span></div>
+</div></div>
+</section>
+
+<section class="slide s-point" id="s6" aria-label="Cómo se gana">
+<div class="wrap point"><div class="num">4</div><div>
+<p class="kicker">La propuesta</p>
+<h2>Cómo se gana</h2>
+<p class="txt">Xinhua ofrecerá <b>a las marcas chinas de celulares</b> un mayor porcentaje de ingresos por publicidad que el que hoy les dan Taboola y Google, y <b>a los anunciantes chinos</b> un menor costo por anuncio que el que hoy les cobran Taboola y Google.</p>
+</div></div>
+</section>
+
+<section class="slide s-point" id="s7" aria-label="Por qué se gana">
+<div class="wrap"><div class="point"><div class="num" style="font-size:clamp(90px,10vw,140px)">5</div><div>
+<p class="kicker">La propuesta</p>
+<h2>Por qué se gana</h2>
+</div></div>
+<div class="why">
+<div class="a">
+<h3>Con las marcas de celulares</h3>
+<p>Hoy las marcas chinas que no están con Taboola no reciben ingresos adicionales por publicidad. En las que sí, Taboola reparte en promedio el 63 % del ingreso. Xinhua puede mejorar ese porcentaje.</p>
+<div class="big"><strong>63 %</strong><span>del ingreso que Taboola entrega en promedio a quien muestra el anuncio (Taboola, informe anual 2025)</span></div>
+</div>
+<div class="b">
+<h3>Con los anunciantes</h3>
+<div class="tbl"><table>
+<thead><tr><th>Concepto</th><th>Taboola</th><th class="x">Xinhua (50 % del costo)</th></tr></thead>
+<tbody>
+<tr><td>Costo por clic</td><td>US$0.10–0.50</td><td class="x">US$0.05–0.25</td></tr>
+<tr><td>Costo por mil impresiones</td><td>US$3–7</td><td class="x">US$1.50–3.50</td></tr>
+<tr><td>Presupuesto típico para empezar</td><td>US$500–1,000 al mes</td><td class="x">US$250–500 al mes</td></tr>
+<tr><td>Ingreso por mil impresiones (caso US$5)</td><td>US$5.00</td><td class="x">US$2.50</td></tr>
+<tr><td>Pago a la marca de celulares</td><td>~US$3.15 (63 %)</td><td class="x">US$1.25 (50 %)</td></tr>
+<tr><td>Lo que se queda la plataforma (gastos de operación)</td><td>~US$1.85 (37 %)</td><td class="x">US$1.25 (50 %)</td></tr>
+</tbody></table></div>
+<p class="note">Costos de Taboola: estimados de terceros; Taboola no publica lista de precios y vende por subasta.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="slide s-point" id="s8" aria-label="Paso 1">
+<div class="wrap">
+<div class="steps"><span class="cur">Paso 1 · Viabilidad</span><span>Paso 2 · Cartas de intención</span><span>Paso 3 · Preinstalación</span></div>
+<div class="point"><div class="num">1</div><div>
+<p class="kicker">Ruta de trabajo</p>
+<h2>Primer paso</h2>
+<p class="txt">Estudiar la <b>viabilidad del proyecto</b> en términos de capacidad institucional y de relaciones corporativas, y definir la mejor estrategia de relaciones.</p>
+</div></div>
+</div>
+</section>
+
+<section class="slide s-point" id="s9" aria-label="Paso 2">
+<div class="wrap">
+<div class="steps"><span class="done">Paso 1 · Viabilidad</span><span class="cur">Paso 2 · Cartas de intención</span><span>Paso 3 · Preinstalación</span></div>
+<div class="point"><div class="num">2</div><div>
+<p class="kicker">Ruta de trabajo</p>
+<h2>Segundo paso</h2>
+<p class="txt">Conseguir <b>cartas de intención de compra de publicidad</b> de 2–3 empresas chinas en México.</p>
+</div></div>
+</div>
+</section>
+
+<section class="slide s-point" id="s10" aria-label="Paso 3">
+<div class="wrap">
+<div class="steps"><span class="done">Paso 1 · Viabilidad</span><span class="done">Paso 2 · Cartas de intención</span><span class="cur">Paso 3 · Preinstalación</span></div>
+<div class="point"><div class="num">3</div><div>
+<p class="kicker">Ruta de trabajo</p>
+<h2>Tercer paso</h2>
+<p class="txt">Con las cartas de intención, explorar los requisitos para preinstalar la página −1 en <b>Xiaomi, Huawei, OPPO, Honor</b> y otras; definir los pasos a seguir y negociar con sus tomadores de decisión la preinstalación del portal de noticias y publicidad en su pantalla −1.</p>
+</div></div>
+</div>
+</section>
+
+</div>
+
+<nav class="bar" aria-label="Navegación de la presentación">
+<span class="brand">MX<b>News</b></span>
+<div class="dots" id="dots"></div>
+<div class="ctrls">
+<button class="navbtn" id="prev" type="button" aria-label="Diapositiva anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+<span class="count" id="count">1 / 10</span>
+<button class="navbtn" id="next" type="button" aria-label="Diapositiva siguiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+</nav>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var dots=document.getElementById('dots'), count=document.getElementById('count');
+  var prev=document.getElementById('prev'), next=document.getElementById('next');
+  var cur=0;
+  slides.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='dot'; b.type='button';
+    b.setAttribute('aria-label','Ir a la diapositiva '+(i+1)+': '+s.getAttribute('aria-label'));
+    b.addEventListener('click',function(){go(i)});
+    dots.appendChild(b);
+  });
+  function go(i){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach(function(s,k){
+      s.classList.toggle('on',k===i);
+      s.classList.toggle('prev',k<i);
+      s.setAttribute('aria-hidden',k===i?'false':'true');
+      if(k===i){s.scrollTop=0}
+    });
+    [].forEach.call(dots.children,function(d,k){d.setAttribute('aria-current',k===i?'true':'false')});
+    count.textContent=(i+1)+' / '+slides.length;
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    cur=i;
+    try{history.replaceState(null,'','#'+slides[i].id)}catch(e){}
+  }
+  prev.addEventListener('click',function(){go(cur-1)});
+  next.addEventListener('click',function(){go(cur+1)});
+  [].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.addEventListener('click',function(){go(+b.getAttribute('data-go'))})});
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(cur+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home'){go(0)} else if(e.key==='End'){go(slides.length-1)}
+  });
+  var x0=null,y0=null;
+  document.getElementById('stage').addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+  document.getElementById('stage').addEventListener('touchend',function(e){
+    if(x0===null)return;
+    var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5){go(cur+(dx<0?1:-1))}
+    x0=null;
+  });
+
+  var fr=document.getElementById('demo');
+  function fit(){var sc=fr.parentNode.clientWidth/390;fr.style.transform='scale('+sc+')';fr.style.height=(fr.parentNode.clientHeight/sc)+'px'}
+  if(window.ResizeObserver){new ResizeObserver(fit).observe(fr.parentNode)} else {window.addEventListener('resize',fit)}
+  fit();
+  var start=0, h=(location.hash||'').slice(1);
+  slides.forEach(function(s,i){if(s.id===h)start=i});
+  go(start);
+})();
+</script>
+
+</body>
+</html>
