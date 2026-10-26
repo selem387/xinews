@@ -31,28 +31,30 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
 p{margin:0}
 .kicker{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
 
-/* 1 · Portada */
-.s-cover{background:var(--navy);color:#fff}
-.cover{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}
-.cover > div:first-child{padding-left:0.5cm;min-width:0}
-.s-cover .wrap{max-width:none;padding-left:max(5vw,24px);padding-right:max(5vw,24px)}
-.cover > div:last-child{justify-self:end;display:flex;flex-direction:column;align-items:center;min-width:0}
+/* 1 · Portada: fondo como la demo de escritorio, texto a la izquierda del celular */
+.s-cover{color:#fff;background:radial-gradient(circle at 30% 20%,#1B3358,#070B14 70%)}
+.s-cover .wrap{max-width:none;margin:0;height:100%;padding-block:28px}
+.cover{height:100%;display:flex;align-items:center;justify-content:center;gap:clamp(40px,6vw,96px)}
+.cover-txt{flex:0 1 560px;min-width:0;padding-left:0.5cm}
 .cover .kicker{color:var(--pink)}
-.cover h1{font-weight:800;font-size:clamp(46px,6.4vw,92px);line-height:.95;margin-top:18px}
+.cover h1{font-weight:800;font-size:clamp(44px,5.4vw,84px);line-height:.95;margin-top:18px}
 .cover h1 .n{color:var(--red-soft)}
 .cover h1 .sub{display:block;font-weight:700;font-size:.62em;line-height:1.05;margin-top:18px;color:#D5DCE8}
-.cover .lead{margin-top:28px;font-size:18px;color:#C5CEDD;max-width:46ch}
-.phone{justify-self:center;width:min(330px,100%);aspect-ratio:390/760;border-radius:44px;padding:12px;background:#05101F;box-shadow:0 30px 70px rgba(0,0,0,.45),inset 0 0 0 2px #2A3D5E;position:relative}
-.phone .screen{width:100%;height:100%;border-radius:34px;overflow:hidden;background:#fff}
-.phone .screen{position:relative}
-.phone .screen iframe{position:absolute;top:0;left:0;width:390px;height:760px;border:0;transform-origin:0 0;background:#fff}
-.phone-cap{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:20px}
-.live{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;text-decoration:none;font-size:15px}
+.cover .lead{margin-top:24px;font-size:18px;color:#C5CEDD;max-width:46ch}
+.cover-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:32px}
+.cover .hint{margin-top:16px;font-size:14px;color:#9FB0C9}
+.phone{flex:none;height:100%;max-height:844px;aspect-ratio:390/844;border-radius:48px;overflow:hidden;background:#fff;position:relative;box-shadow:0 0 0 11px #05070c,0 0 0 13px #2b3245,0 30px 80px rgba(0,0,0,.55)}
+.phone iframe{position:absolute;top:0;left:0;width:390px;height:844px;border:0;transform-origin:0 0;background:#fff}
+.live{display:inline-flex;align-items:center;gap:8px;min-height:52px;padding:0 22px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;text-decoration:none;font-size:16px}
 .live:hover{background:#A9111A}
 .live:focus-visible,.navbtn:focus-visible,.dot:focus-visible,.next-cover:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
-.phone-cap small{color:#9FB0C9;font-size:13px}
-.next-cover{display:inline-flex;align-items:center;gap:12px;margin-top:36px;min-height:52px;padding:0 24px 0 28px;border:2px solid #fff;border-radius:999px;background:transparent;color:#fff;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.next-cover{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px 0 28px;border:2px solid #fff;border-radius:999px;background:transparent;color:#fff;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
 .next-cover:hover{background:#fff;color:var(--navy)}
+@media (max-width:860px){
+  .s-cover .wrap{height:auto;margin:auto}
+  .cover{height:auto;flex-direction:column;align-items:flex-start}
+  .phone{height:600px;max-width:100%;align-self:center}
+}
 
 /* 2 · Objetivo */
 .s-obj{background:var(--red);color:#fff}
@@ -107,16 +109,10 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 .navbtn:disabled{opacity:.3;cursor:default;background:var(--paper);color:var(--navy)}
 
 @media (max-width:860px){
-  .cover{gap:28px}
-  .phone{width:min(260px,100%)}
-  .next-cover{margin-top:24px}
   .why{grid-template-columns:minmax(0,1fr)}
   .point{grid-template-columns:minmax(0,1fr);gap:8px}
   .dots{display:none}
   .wrap{padding-block:32px}
-}
-@media (max-width:600px){
-  .cover{grid-template-columns:minmax(0,1fr)}
 }
 </style>
 
@@ -127,19 +123,17 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 
 <section class="slide s-cover" id="s1" aria-label="Portada">
 <div class="wrap cover">
-<div>
+<div class="cover-txt">
 <p class="kicker">Propuesta</p>
 <h1>MX<span class="n">News</span>: En la pantalla −1<span class="sub">La ventaja exclusiva para empresas chinas</span></h1>
 <p class="lead">Noticias de Xinhua y publicidad de empresas chinas, a un gesto del dedo en los celulares de marcas chinas.</p>
+<div class="cover-ctas">
 <button class="next-cover" type="button" data-go="1">Comenzar <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-</div>
-<div>
-<div class="phone"><div class="screen"><iframe id="demo" src="/#/inicio" title="MX News en vivo: pantalla de inicio y pantalla −1" loading="eager"></iframe></div></div>
-<div class="phone-cap">
 <a class="live" href="https://xinews.informadorweb.com.mx/" target="_blank" rel="noopener">Abrir en pantalla completa <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-<small>Desliza a la derecha dentro del celular para ver la pantalla −1</small>
 </div>
+<p class="hint">En el celular: desliza a la derecha para abrir la pantalla −1 y toca una noticia para leerla.</p>
 </div>
+<div class="phone"><iframe id="demo" src="/#/inicio" title="MX News en vivo: pantalla de inicio y pantalla −1" loading="eager"></iframe></div>
 </div>
 </section>
 
@@ -304,7 +298,7 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
   });
 
   var fr=document.getElementById('demo');
-  function fit(){var sc=fr.parentNode.clientWidth/390;fr.style.transform='scale('+sc+')';fr.style.height=(fr.parentNode.clientHeight/sc)+'px'}
+  function fit(){var sc=fr.parentNode.clientHeight/844;fr.style.transform='scale('+sc+')';fr.style.width=(fr.parentNode.clientWidth/sc)+'px'}
   if(window.ResizeObserver){new ResizeObserver(fit).observe(fr.parentNode)} else {window.addEventListener('resize',fit)}
   fit();
   var start=0, h=(location.hash||'').slice(1);
