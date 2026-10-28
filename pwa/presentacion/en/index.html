@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>MX News · Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+html,body{margin:0}*,*::before,*::after{box-sizing:border-box}
+:root{
+  --navy:#0F2340; --navy-2:#1B3358; --red:#C3141E; --red-soft:#FF5A63; --pink:#F2A5AA;
+  --ink:#1A1F2B; --muted:#4A5468; --line:#D5DCE8; --paper:#FFFFFF; --mist:#F3F5F9;
+  --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+  --body:'Source Sans 3','Segoe UI',Arial,sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;overflow:hidden}
+.deck{position:relative;height:100%;display:flex;flex-direction:column}
+.stage{position:relative;flex:1;min-height:0}
+.slide{position:absolute;inset:0;overflow-y:auto;display:flex;opacity:0;visibility:hidden;transform:translateX(24px);transition:opacity .35s ease,transform .35s ease,visibility 0s .35s}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .35s ease}
+.slide.prev{transform:translateX(-24px)}
+@media (prefers-reduced-motion:reduce){.slide,.slide.on{transition:none;transform:none}}
+.wrap{width:100%;max-width:1180px;margin:auto;padding-block:48px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+p{margin:0}
+.kicker{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+
+.s-cover{color:#fff;background:radial-gradient(circle at 30% 20%,#1B3358,#070B14 70%)}
+.s-cover .wrap{max-width:none;margin:0;height:100%;padding-block:28px}
+.cover{height:100%;display:flex;align-items:center;justify-content:center;gap:clamp(40px,6vw,96px)}
+.cover-txt{flex:0 1 560px;min-width:0;padding-left:0.5cm}
+.cover .kicker{color:var(--pink)}
+.cover h1{font-weight:800;font-size:clamp(44px,5.4vw,84px);line-height:.95;margin-top:18px}
+.cover h1 .n{color:var(--red-soft)}
+.cover h1 .sub{display:block;font-weight:700;font-size:.62em;line-height:1.05;margin-top:18px;color:#D5DCE8}
+.cover .lead{margin-top:24px;font-size:18px;color:#C5CEDD;max-width:46ch}
+.cover-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:32px}
+.cover .hint{margin-top:16px;font-size:14px;color:#9FB0C9}
+.phone{flex:none;height:100%;max-height:844px;aspect-ratio:390/844;border-radius:48px;overflow:hidden;background:#fff;position:relative;box-shadow:0 0 0 11px #05070c,0 0 0 13px #2b3245,0 30px 80px rgba(0,0,0,.55)}
+.phone iframe{position:absolute;top:0;left:0;width:390px;height:844px;border:0;transform-origin:0 0;background:#fff}
+.navbtn:focus-visible,.dot:focus-visible,.next-cover:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.next-cover{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 24px 0 28px;border:2px solid #fff;border-radius:999px;background:transparent;color:#fff;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.next-cover:hover{background:#fff;color:var(--navy)}
+@media (max-width:860px){
+  .s-cover .wrap{height:auto;margin:auto}
+  .cover{height:auto;flex-direction:column;align-items:flex-start}
+  .phone{height:600px;max-width:100%;align-self:center}
+}
+
+.closing h1{font-size:clamp(40px,4.6vw,72px)}
+.closing .lead{font-size:20px;line-height:1.45;max-width:40ch}
+.cta-final{display:inline-block;margin-top:34px;padding:16px 26px;border-radius:10px;background:var(--red);color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(26px,2.6vw,38px);line-height:1.1;letter-spacing:.01em;box-shadow:0 14px 36px rgba(195,20,30,.35);text-wrap:balance}
+
+.s-obj{background:var(--red);color:#fff}
+.s-obj .kicker{color:#FFD3D6}
+.s-obj h2{margin-top:22px;font-weight:700;font-size:clamp(34px,4.6vw,64px);line-height:1.05;max-width:24ch}
+
+.s-point{background:var(--paper)}
+.point{display:grid;grid-template-columns:auto minmax(0,1fr);gap:40px;align-items:start}
+.num{font-family:var(--display);font-weight:800;font-size:clamp(120px,16vw,220px);line-height:.8;color:var(--red)}
+.point.nonum{grid-template-columns:minmax(0,1fr)}
+.point .kicker{color:var(--muted)}
+.point h2{margin-top:10px;font-weight:800;font-size:clamp(40px,5vw,68px);line-height:1;color:var(--navy)}
+.point .txt{margin-top:22px;font-size:clamp(20px,2.1vw,28px);line-height:1.4;max-width:40ch}
+.point .txt b{color:var(--navy)}
+.fact{margin-top:28px;display:inline-flex;align-items:baseline;gap:14px;padding:14px 22px;background:var(--mist);border-radius:8px}
+.fact strong{font-family:var(--display);font-weight:800;font-size:48px;line-height:1;color:var(--red)}
+.fact span{font-size:16px;color:var(--muted);max-width:30ch}
+
+.why{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;margin-top:28px}
+.why h3{font-weight:700;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:6px 12px;display:inline-block}
+.why .a h3{background:var(--navy)} .why .b h3{background:var(--red)}
+.why .a p{margin-top:16px;font-size:19px;line-height:1.45}
+.why .big{margin-top:18px;display:flex;align-items:baseline;gap:12px}
+.why .big strong{font-family:var(--display);font-weight:800;font-size:72px;line-height:1;color:var(--red)}
+.why .big span{color:var(--muted);font-size:15px;max-width:22ch}
+.tbl{margin-top:16px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);border-bottom:2px solid var(--navy)}
+td.x{background:#FBECED;font-weight:600;color:var(--navy)}
+thead th.x{color:var(--red);border-bottom-color:var(--red)}
+.note{margin-top:10px;font-size:13px;color:var(--muted)}
+
+.steps{display:flex;gap:10px;margin-bottom:34px;flex-wrap:wrap}
+.steps span{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:999px;background:var(--mist);color:var(--muted)}
+.steps span.cur{background:var(--navy);color:#fff}
+.steps span.done{background:#E3E8F0;color:var(--navy)}
+
+.side{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:rgba(15,35,64,.82);color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.side:hover{background:var(--red);border-color:var(--red)}
+.side:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.side:disabled{opacity:0;pointer-events:none}
+.side-prev{left:max(12px,env(safe-area-inset-left,0px))}
+.side-next{right:max(12px,env(safe-area-inset-right,0px))}
+
+.bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:var(--paper)}
+.brand{padding-left:0.5cm;font-family:var(--display);font-weight:800;font-size:20px;color:var(--navy)} .brand b{color:var(--red)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.dot{width:28px;height:28px;border:0;border-radius:50%;background:transparent;cursor:pointer;display:grid;place-items:center;padding:0}
+.dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dot[aria-current="true"]::after{background:var(--red);transform:scale(1.25)}
+.ctrls{display:flex;align-items:center;gap:8px;padding-right:0.5cm}
+.count{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;min-width:46px;text-align:center}
+.navbtn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--navy);background:var(--paper);color:var(--navy);cursor:pointer;display:grid;place-items:center}
+.navbtn:hover{background:var(--navy);color:#fff}
+.navbtn:disabled{opacity:.3;cursor:default;background:var(--paper);color:var(--navy)}
+
+@media (max-width:860px){
+  .why{grid-template-columns:minmax(0,1fr)}
+  .point{grid-template-columns:minmax(0,1fr);gap:8px}
+  .dots{display:none}
+  .wrap{padding-block:32px}
+}
+</style>
+
+</head>
+<body>
+<div class="deck">
+<div class="stage" id="stage">
+
+<section class="slide s-cover" id="s1" aria-label="Cover">
+<div class="wrap cover">
+<div class="cover-txt">
+<p class="kicker">Proposal</p>
+<h1>MX<span class="n">News</span>: On the −1 screen<span class="sub">The exclusive advantage for Chinese companies</span></h1>
+<p class="lead">Xinhua news and advertising from Chinese companies, one swipe away on Chinese-brand mobile phones.</p>
+<div class="cover-ctas">
+<button class="next-cover" type="button" data-go="1">Begin <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+<p class="hint">On the phone: swipe right to open the −1 screen and tap a story to read it.</p>
+</div>
+<div class="phone"><iframe id="demo" src="/#/inicio" title="MX News live: home screen and −1 screen" loading="eager"></iframe></div>
+</div>
+</section>
+
+<section class="slide s-obj" id="s2" aria-label="Objective">
+<div class="wrap">
+<p class="kicker">Objective</p>
+<h2>For Xinhua to contribute to the success of Chinese companies by creating a preferential space for advertising and mass visibility on Chinese-brand mobile phones.</h2>
+</div>
+</section>
+
+<section class="slide s-point" id="s3" aria-label="Purpose">
+<div class="wrap point nonum"><div>
+<p class="kicker">The proposal</p>
+<h2>Purpose</h2>
+<p class="txt">Xinhua does not seek its own benefit: it seeks the benefit of all of China, through the global success of Chinese companies, <b>starting with Latin America.</b></p>
+</div></div>
+</section>
+
+<section class="slide s-point" id="s4" aria-label="Strategy">
+<div class="wrap point nonum"><div>
+<p class="kicker">The proposal</p>
+<h2>Strategy</h2>
+<p class="txt">Create a <b>preferential space for Chinese brands on Chinese phones</b>: the phone brands provide the advertising space and other Chinese brands provide the advertising.</p>
+</div></div>
+</section>
+
+<section class="slide s-point" id="s5" aria-label="The space">
+<div class="wrap point nonum"><div>
+<p class="kicker">The proposal</p>
+<h2>The space</h2>
+<p class="txt">The <b>−1 screen</b> of Chinese-brand phones, one swipe away, with Xinhua and local news, and highly preferential advertising rates for Chinese companies.</p>
+<div class="fact"><strong>56%</strong><span>of phones sold in Mexico are Chinese brands (Omdia, Q2 2026)</span></div>
+</div></div>
+</section>
+
+<section class="slide s-point" id="s6" aria-label="How we win">
+<div class="wrap point nonum"><div>
+<p class="kicker">The proposal</p>
+<h2>How we win</h2>
+<p class="txt">Xinhua will offer <b>Chinese phone brands</b> a higher share of advertising revenue than Taboola and Google give them today, and <b>Chinese advertisers</b> a lower cost per advert than Taboola and Google charge them today.</p>
+</div></div>
+</section>
+
+<section class="slide s-point" id="s7" aria-label="Why we win">
+<div class="wrap"><div class="point nonum"><div>
+<p class="kicker">The proposal</p>
+<h2>Why we win</h2>
+</div></div>
+<div class="why">
+<div class="a">
+<h3>With phone brands</h3>
+<p>Today, Chinese brands that do not work with Taboola receive no additional advertising revenue. Where they do, Taboola pays out 63% of revenue on average. Xinhua can improve on that percentage.</p>
+<div class="big"><strong>63%</strong><span>of revenue Taboola pays out on average to whoever displays the advert (Taboola, 2025 annual report)</span></div>
+</div>
+<div class="b">
+<h3>With advertisers</h3>
+<div class="tbl"><table>
+<thead><tr><th>Item</th><th>Taboola</th><th class="x">Xinhua (50% of the cost)</th></tr></thead>
+<tbody>
+<tr><td>Cost per click</td><td>US$0.10–0.50</td><td class="x">US$0.05–0.25</td></tr>
+<tr><td>Cost per thousand impressions</td><td>US$3–7</td><td class="x">US$1.50–3.50</td></tr>
+<tr><td>Typical starting budget</td><td>US$500–1,000 a month</td><td class="x">US$250–500 a month</td></tr>
+<tr><td>Revenue per thousand impressions (US$5 example)</td><td>US$5.00</td><td class="x">US$2.50</td></tr>
+<tr><td>Payment to the phone brand</td><td>~US$3.15 (63%)</td><td class="x">US$1.25 (50%)</td></tr>
+<tr><td>Retained by the platform (operating costs)</td><td>~US$1.85 (37%)</td><td class="x">US$1.25 (50%)</td></tr>
+</tbody></table></div>
+<p class="note">Taboola costs: third-party estimates; Taboola does not publish a price list and sells by auction.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="slide s-point" id="s8" aria-label="Step 1">
+<div class="wrap">
+<div class="steps"><span class="cur">Step 1 · Feasibility</span><span>Step 2 · Letters of intent</span><span>Step 3 · Pre-installation</span></div>
+<div class="point"><div class="num">1</div><div>
+<p class="kicker">Roadmap</p>
+<h2>First step</h2>
+<p class="txt">Assess the <b>feasibility of the project</b> in terms of institutional capacity and corporate relationships, and define the best relationship strategy.</p>
+</div></div>
+</div>
+</section>
+
+<section class="slide s-point" id="s9" aria-label="Step 2">
+<div class="wrap">
+<div class="steps"><span class="done">Step 1 · Feasibility</span><span class="cur">Step 2 · Letters of intent</span><span>Step 3 · Pre-installation</span></div>
+<div class="point"><div class="num">2</div><div>
+<p class="kicker">Roadmap</p>
+<h2>Second step</h2>
+<p class="txt">Secure <b>letters of intent to buy advertising</b> from 2–3 Chinese companies in Mexico.</p>
+</div></div>
+</div>
+</section>
+
+<section class="slide s-point" id="s10" aria-label="Step 3">
+<div class="wrap">
+<div class="steps"><span class="done">Step 1 · Feasibility</span><span class="done">Step 2 · Letters of intent</span><span class="cur">Step 3 · Pre-installation</span></div>
+<div class="point"><div class="num">3</div><div>
+<p class="kicker">Roadmap</p>
+<h2>Third step</h2>
+<p class="txt">With the letters of intent, explore the requirements for pre-installing the −1 screen on <b>Xiaomi, Huawei, OPPO, Honor</b> and others; define the next steps and negotiate with their decision-makers the pre-installation of the news and advertising portal on their −1 screen.</p>
+</div></div>
+</div>
+</section>
+
+<section class="slide s-cover" id="s11" aria-label="Close">
+<div class="wrap cover closing">
+<div class="cover-txt">
+<p class="kicker">MX News · Xinhua</p>
+<h1>The −1 screen on Chinese phones can speak for China.</h1>
+<p class="lead">Xinhua brings the trust; Chinese companies, the advertising; phone brands, the space. Everyone wins, and China wins.</p>
+<p class="cta-final">Let’s make Xinhua the leading champion of Chinese companies</p>
+</div>
+<div class="phone"><iframe id="demo2" src="/#/inicio" title="MX News live: −1 screen" loading="eager"></iframe></div>
+</div>
+</section>
+
+<button class="side side-prev" id="sprev" type="button" aria-label="Previous slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+<button class="side side-next" id="snext" type="button" aria-label="Next slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+
+<nav class="bar" aria-label="Presentation navigation">
+<span class="brand">MX<b>News</b></span>
+<div class="dots" id="dots"></div>
+<div class="ctrls">
+<button class="navbtn" id="prev" type="button" aria-label="Previous slide"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+<span class="count" id="count">1 / 11</span>
+<button class="navbtn" id="next" type="button" aria-label="Next slide"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+</nav>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var dots=document.getElementById('dots'), count=document.getElementById('count');
+  var prev=document.getElementById('prev'), next=document.getElementById('next');
+  var sprev=document.getElementById('sprev'), snext=document.getElementById('snext');
+  var cur=0;
+  slides.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='dot'; b.type='button';
+    b.setAttribute('aria-label','Go to slide '+(i+1)+': '+s.getAttribute('aria-label'));
+    b.addEventListener('click',function(){go(i)});
+    dots.appendChild(b);
+  });
+  function go(i){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach(function(s,k){
+      s.classList.toggle('on',k===i);
+      s.classList.toggle('prev',k<i);
+      s.setAttribute('aria-hidden',k===i?'false':'true');
+      if(k===i){s.scrollTop=0}
+    });
+    [].forEach.call(dots.children,function(d,k){d.setAttribute('aria-current',k===i?'true':'false')});
+    count.textContent=(i+1)+' / '+slides.length;
+    prev.disabled=sprev.disabled=i===0; next.disabled=snext.disabled=i===slides.length-1;
+    cur=i;
+    if(slides[i].id==='s11')abrirMenos1(10);
+    try{history.replaceState(null,'','#'+slides[i].id)}catch(e){}
+  }
+  prev.addEventListener('click',function(){go(cur-1)});
+  next.addEventListener('click',function(){go(cur+1)});
+  sprev.addEventListener('click',function(){go(cur-1)});
+  snext.addEventListener('click',function(){go(cur+1)});
+  [].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.addEventListener('click',function(){go(+b.getAttribute('data-go'))})});
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(cur+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home'){go(0)} else if(e.key==='End'){go(slides.length-1)}
+  });
+  var x0=null,y0=null;
+  document.getElementById('stage').addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+  document.getElementById('stage').addEventListener('touchend',function(e){
+    if(x0===null)return;
+    var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5){go(cur+(dx<0?1:-1))}
+    x0=null;
+  });
+
+  [].forEach.call(document.querySelectorAll('.phone iframe'),function(fr){
+    function fit(){var h=fr.parentNode.clientHeight;if(!h)return;var sc=h/844;fr.style.transform='scale('+sc+')';fr.style.width=(fr.parentNode.clientWidth/sc)+'px'}
+    if(window.ResizeObserver){new ResizeObserver(fit).observe(fr.parentNode)} else {window.addEventListener('resize',fit)}
+    fit();
+  });
+  var f2=document.getElementById('demo2');
+  function abrirMenos1(intentos){
+    try{var pg=f2.contentWindow.document.getElementById('pager');
+      if(pg&&pg.clientWidth){pg.style.scrollBehavior='auto';pg.scrollLeft=0;return}}catch(e){}
+    if(intentos>0)setTimeout(function(){abrirMenos1(intentos-1)},300);
+  }
+  f2.addEventListener('load',function(){setTimeout(function(){abrirMenos1(20)},400)});
+  var start=0, h=(location.hash||'').slice(1);
+  slides.forEach(function(s,i){if(s.id===h)start=i});
+  go(start);
+})();
+</script>
+
+</body>
+</html>
