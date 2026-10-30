@@ -135,6 +135,8 @@ a.nl:hover{color:var(--red)}
 .pot p{font-size:18px;line-height:1.45;margin-top:14px}
 .pot p.mut{color:var(--muted);font-size:16px;margin-top:26px}
 @media (max-width:860px){.pot{grid-template-columns:minmax(0,1fr);gap:8px}.pbar{grid-template-columns:70px 1fr}.pbar .fl{width:calc((100% - 210px) * var(--r))}.pbar .val{font-size:24px}}
+.bigs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
+.bigs .big{flex-direction:column;gap:6px}
 </style>
 
 </head>
@@ -207,8 +209,10 @@ a.nl:hover{color:var(--red)}
 <div class="a">
 <h3>With phone brands</h3>
 <p>Today, Chinese brands that do not work with Taboola receive no additional advertising revenue. Where they do, Taboola pays out 63% of revenue on average. Xinhua can improve on that percentage.</p>
-<div class="big"><strong>70%</strong><span>of advertising revenue goes to the phone brand with Xinhua</span></div>
+<div class="bigs">
 <div class="big"><strong style="color:var(--navy)">63%</strong><span>what Taboola passes on average to whoever displays the ad (Taboola, 2025 annual report)</span></div>
+<div class="big"><strong>70%</strong><span>of advertising revenue goes to the phone brand with Xinhua</span></div>
+</div>
 </div>
 <div class="b">
 <h3>With advertisers</h3>
