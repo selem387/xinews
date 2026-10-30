@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>MX News · Calculation detail</title>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: same one-pager system as the MX News presentation (English); each section is the derivation of one number, anchored by id */
+:root{
+  --red:#C3141E; --navy:#0F2340; --ink:#1A1D24; --paper:#FFFFFF; --mist:#F3F1EE; --line:#E2DDD8; --muted:#5E5A57; --gold:#B8893A;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  --f-han:"Noto Serif SC","Songti SC","SimSun",serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--navy)}
+.mast{background:var(--red);color:#fff;position:relative;overflow:hidden}
+.mast .wrap{max-width:880px;margin:0 auto;padding-block:40px 34px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px;position:relative}
+.kicker{font-family:var(--f-display);font-weight:600;letter-spacing:.24em;text-transform:uppercase;font-size:.95rem}
+.mast h1{font-family:var(--f-display);font-weight:700;text-transform:uppercase;font-size:clamp(2rem,5.5vw,3.3rem);line-height:.98}
+.mast h1 span{color:#FFD9B0}
+.mast .sub{opacity:.92;max-width:62ch}
+.mast a{color:#fff;font-weight:600}
+.seal{position:absolute;right:max(16px,3vw);top:18px;font-family:var(--f-han);font-weight:900;font-size:clamp(3rem,8vw,5.5rem);line-height:1;color:rgba(255,255,255,.14);writing-mode:vertical-rl;pointer-events:none}
+main{max-width:880px;margin:0 auto;padding-block:8px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav.idx{display:flex;flex-wrap:wrap;gap:8px 18px;padding-block:18px;border-bottom:1px solid var(--line);font-family:var(--f-display);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+section{display:grid;grid-template-columns:170px 1fr;gap:24px;padding-block:26px;border-bottom:1px solid var(--line);scroll-margin-top:8px}
+section>*{min-width:0}
+section:target{background:linear-gradient(90deg,var(--mist),transparent 70%)}
+.lbl{font-family:var(--f-display);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--red);font-size:1.15rem;line-height:1.15;border-top:3px solid var(--red);padding-top:8px;align-self:start}
+.lbl .han{display:block;font-family:var(--f-han);font-weight:600;color:var(--muted);letter-spacing:.05em;font-size:.95rem;margin-top:4px}
+.txt{display:grid;gap:12px;max-width:68ch}
+.txt h2{font-family:var(--f-display);font-weight:700;font-size:1.9rem;line-height:1.05;color:var(--navy)}
+.txt h3{font-family:var(--f-display);font-weight:600;font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);margin-top:6px}
+.res{font-family:var(--f-display);font-weight:700;font-size:1.25rem;color:var(--navy)}
+ol.list,ul.list{margin:0;padding-left:1.3em;display:grid;gap:8px}
+ol.list li::marker{font-family:var(--f-display);font-weight:700;color:var(--red)}
+ul.list li::marker{color:var(--red)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.93rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;color:#fff;background:var(--navy)}
+tr.tot td{font-weight:700;background:var(--mist);border-top:2px solid var(--red)}
+.note{font-size:.9rem;color:var(--muted);border-left:3px solid var(--gold);padding-left:12px}
+.back{font-size:.9rem}
+@media (max-width:680px){section{grid-template-columns:1fr;gap:12px}}
+</style>
+
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <div class="kicker">MX News · Calculation annex</div>
+    <h1>How each <span>number</span> is reached</h1>
+    <p class="sub">Detail of the "The potential" slide. All amounts in Mexican pesos (MXN), in millions. Exchange rate of 19.20 pesos per dollar where the source is in dollars. These are estimates built on stated assumptions, not market data.</p>
+    <p class="back"><a href="../#potential" >Back to the presentation</a></p>
+  </div>
+</header>
+
+<main>
+  <nav class="idx" aria-label="Index">
+    <a href="#digital">Digital spend</a><a href="#display">Display spend</a><a href="#piloto">Pilot</a><a href="#base">Base</a><a href="#alto">High</a><a href="#mensual">Per month</a><a href="#razonable">Reasonableness test</a>
+  </nav>
+
+  <section id="digital">
+    <div class="lbl">Digital spend</div>
+    <div class="txt">
+      <h2>$1,900 to $3,100 million MXN per year</h2>
+      <p class="res">What Chinese brands invest in digital advertising in Mexico.</p>
+      <h3>How it is reached</h3>
+      <ol class="list">
+        <li>Total advertising spend of Chinese brands is estimated across three sectors (table below): <b>$2,900 to $4,750 million MXN</b>.</li>
+        <li>The Mexican market's digital share is applied: <b>66.6%</b> of total advertising investment in 2025 ($124,625 of $187,155 million MXN, Valor Total Media 2026).</li>
+        <li>$2,900 × 0.66 = $1,914 million MXN and $4,750 × 0.66 = $3,135 million MXN; rounded: <b>$1,900 to $3,100 million MXN</b>.</li>
+      </ol>
+      <div class="tbl"><table>
+        <thead><tr><th>Sector</th><th>Calculation</th><th>Pesos per year</th></tr></thead>
+        <tbody>
+          <tr><td>Cars (BYD, MG, Geely, Chirey, GAC, Changan, JAC, GWM and others)</td><td>244,000 Chinese cars sold in 2025 (AMDA, 15% of the market) × $5,760 to $9,600 of advertising per car. Those amounts are US$300 to US$500 × 19.20. The benchmark is advertising per car sold by US manufacturers (Ford US$468, Toyota US$454, GM US$394, Chrysler US$664), adjusted downward for the lower media cost in Mexico</td><td>$1,400 to $2,350 million MXN</td></tr>
+          <tr><td>Technology and appliances (Xiaomi, Oppo, Honor, vivo, Hisense, TCL, Midea, Haier)</td><td>1% to 3% of annual sales estimated at $30,000 to $40,000 million MXN. Xiaomi and Oppo alone add up to about $20,000 million MXN (14% of a $142,000 million MXN phone market, The CIU); the rest is estimated for the other brands. The extreme calculation gives $300 to $1,200 million MXN; the central range is used</td><td>$400 to $900 million MXN</td></tr>
+          <tr><td>E-commerce (Temu, Shein, AliExpress, TikTok Shop)</td><td>In display alone, Temu invested $7.1 million USD in the first quarter of 2026 (Admetricks), about $545 million MXN annualized, and Temu and Shein together spent about $31 million USD in Mexico in 2023 (about $600 million MXN). The figure is roughly doubled to include search and social</td><td>$1,100 to $1,500 million MXN</td></tr>
+          <tr class="tot"><td>Total</td><td></td><td>$2,900 to $4,750 million MXN</td></tr>
+        </tbody></table></div>
+      <p class="note">Assumption to validate: there is no public figure for advertising spend per Chinese brand in Mexico. The technology and e-commerce ranges are the weakest and should be refined with a measurement quote (Nielsen Ad Intel or Admetricks).</p>
+    </div>
+  </section>
+
+  <section id="display">
+    <div class="lbl">Display spend</div>
+    <div class="txt">
+      <h2>$260 to $430 million MXN per year</h2>
+      <p class="res">The part of digital spend that goes to display, the media and portal format where MX News competes.</p>
+      <h3>How it is reached</h3>
+      <ol class="list">
+        <li>Display was <b>13.8%</b> of Mexico's digital investment in 2025 ($17,233 of $124,625 million MXN, Valor Total Media 2026). The rest is video (62.5%) and search (22.4%).</li>
+        <li>$1,900 × 0.138 = $262 million MXN and $3,100 × 0.138 = $428 million MXN; rounded: <b>$260 to $430 million MXN</b>.</li>
+      </ol>
+      <p class="note">Assumption to validate: Chinese brands are assumed to split their digital spend the same way the market does. If they invest more in video and social than the average, display would be lower.</p>
+    </div>
+  </section>
+
+  <section id="piloto">
+    <div class="lbl">Pilot scenario</div>
+    <div class="txt">
+      <h2>$40 million MXN per year</h2>
+      <p class="res">Year 1, with 1 or 2 phone brands.</p>
+      <h3>How it is reached</h3>
+      <ol class="list">
+        <li>By spend: <b>2%</b> of Chinese brands' digital spend is captured. $1,900 × 0.02 = $38 million MXN, rounded to <b>$40 million MXN</b>.</li>
+        <li>By audience, as a cross-check: <b>1.3 million active users</b> × <b>US$1.6</b> per user per year = $2.1 million USD × 19.20 = <b>$40 million MXN</b>. Advertising yield per user ranges from US$1 to US$3 per year ($25 to $75 million MXN), calculated from UNOTV data: 683 million impressions per month, eCPM of US$1 to US$3 and 7.4 million unique users.</li>
+        <li>The 1.3 million users are a working assumption: 1 or 2 brands with about 14% of the roughly 32 million phones sold per year would be 4.5 million new devices; with 30% active users, that gives 1.3 million MXN.</li>
+      </ol>
+      <p class="note">Assumption to validate: the number of new devices and the activation rate depend on the brand and on the type of preinstallation negotiated.</p>
+    </div>
+  </section>
+
+  <section id="base">
+    <div class="lbl">Base scenario</div>
+    <div class="txt">
+      <h2>$100 million MXN per year</h2>
+      <p class="res">Alliance with 3 or 4 phone brands.</p>
+      <h3>How it is reached</h3>
+      <ol class="list">
+        <li><b>4%</b> of Chinese brands' digital spend is captured at its midpoint. The midpoint of $1,900 to $3,100 million MXN is $2,500 million MXN.</li>
+        <li>$2,500 × 0.04 = <b>$100 million MXN</b>.</li>
+        <li>This equals about <b>29%</b> of Chinese brands' display spend ($100 of $345 million MXN, midpoint). It is a high share and assumes MX News captures a good part of Chinese brands' display; it is detailed in the reasonableness test.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="alto">
+    <div class="lbl">High scenario</div>
+    <div class="txt">
+      <h2>$190 million MXN per year</h2>
+      <p class="res">All phone brands, by year three.</p>
+      <h3>How it is reached</h3>
+      <ol class="list">
+        <li><b>6%</b> of Chinese brands' digital spend is captured at its high end of $3,100 million MXN.</li>
+        <li>$3,100 × 0.06 = $186 million MXN, rounded to <b>$190 million MXN</b>.</li>
+        <li>This equals between <b>44% and 73%</b> of Chinese brands' display ($190 of $430 or of $260 million MXN). It is a ceiling, not a target.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="mensual">
+    <div class="lbl">Revenue per month</div>
+    <div class="txt">
+      <h2>$3.3, $8.3 and $15.8 million MXN</h2>
+      <p class="res">Each scenario's annual revenue divided by 12 months.</p>
+      <h3>How it is reached</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Scenario</th><th>Per year</th><th>Calculation</th><th>Per month</th></tr></thead>
+        <tbody>
+          <tr><td>Pilot</td><td>$40 million MXN</td><td>$40 ÷ 12 = 3.33</td><td>$3.3 million MXN</td></tr>
+          <tr><td>Base</td><td>$100 million MXN</td><td>$100 ÷ 12 = 8.33</td><td>$8.3 million MXN</td></tr>
+          <tr><td>High</td><td>$190 million MXN</td><td>$190 ÷ 12 = 15.83</td><td>$15.8 million MXN</td></tr>
+        </tbody></table></div>
+      <p class="note">Monthly average of a full year. In the pilot, real revenue starts after the beta phase and the launch, so the first months will be lower.</p>
+    </div>
+  </section>
+
+  <section id="razonable">
+    <div class="lbl">Reasonableness test</div>
+    <div class="txt">
+      <h2>What share of Chinese brands' display each scenario represents</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Scenario</th><th>Revenue</th><th>Against display of $260 to $430 million MXN</th></tr></thead>
+        <tbody>
+          <tr><td>Pilot</td><td>$40 million MXN</td><td>9% to 15%</td></tr>
+          <tr><td>Base</td><td>$100 million MXN</td><td>23% to 38%</td></tr>
+          <tr><td>High</td><td>$190 million MXN</td><td>44% to 73%</td></tr>
+        </tbody></table></div>
+      <p>The pilot is defensible. The base already requires capturing about a quarter or more of Chinese brands' display, and the high scenario requires more than half at the low end. That is why the base scenario depends on MX News persuading advertisers to move budget from video and social, and on the medium being exclusive to Chinese brands.</p>
+      <h3>Sources</h3>
+      <ul class="list">
+        <li>Valor Total Media 2026 study (AVE, CIM and IAB México), October 8, 2026: <a href="https://marketing4ecommerce.mx/inversion-publicitaria-mexico-estudio-valor-total-media/" target="_blank" rel="noopener">Marketing4eCommerce</a>.</li>
+        <li>Chinese car sales 2025 (AMDA, INEGI): <a href="https://www.xataka.com.mx/automovil/hace-5-anos-ventas-autos-chinos-mexico-no-llegaban-al-1-2025-eso-cambio-tienen-15-mercado-reporte" target="_blank" rel="noopener">Xataka México</a>.</li>
+        <li>Advertising per car sold by US manufacturers: <a href="https://www.visualcapitalist.com/comparing-teslas-spending-on-rd-and-marketing-per-car-to-other-automakers/" target="_blank" rel="noopener">Visual Capitalist</a>.</li>
+        <li>Measured digital investment in Mexico (Admetricks): <a href="https://marketing4ecommerce.mx/mexico-supera-los-1000-millones-en-inversion-de-publicidad-digital/" target="_blank" rel="noopener">Marketing4eCommerce</a>. Shein and Temu in 2023: <a href="https://www.admetricks.com/blog/el-impacto-de-shein-y-temu-en-el-comercio-electr%C3%B3nico-de-m%C3%A9xico-y-espa%C3%B1a-tendencias-y-estrategias" target="_blank" rel="noopener">Admetricks</a>.</li>
+        <li>Market share of Chinese phone brands (The CIU): <a href="https://www.elfinanciero.com.mx/empresas/2025/04/25/marcas-asiaticas-alcanzan-353-del-mercado-mexicano/" target="_blank" rel="noopener">El Financiero</a>.</li>
+        <li>UNOTV audience and yield: <a href="https://www.cmi.mx/documents/Media_Kit_UnoTV_2025.pdf" target="_blank" rel="noopener">UNOTV Media Kit 2025 (CMI)</a>.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+</body>
+</html>

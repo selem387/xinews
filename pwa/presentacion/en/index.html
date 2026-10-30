@@ -117,6 +117,24 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
   .dots{display:none}
   .wrap{padding-block:32px}
 }
+
+/* 1 cm left margin on every slide except the cover slides */
+.slide:not(.s-cover) .wrap{padding-left:calc(max(24px,env(safe-area-inset-left,0px)) + 1cm)}
+/* The potential */
+.pbars{display:grid;gap:12px;margin-top:26px}
+.pbar{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center}
+.pbar>b{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.pbar .tr{display:flex;align-items:center;gap:12px;min-width:0}
+.pbar .fl{height:40px;background:var(--navy);width:calc((100% - 250px) * var(--r));min-width:8px}
+.pbar.hi .fl{background:var(--red)}
+.pbar .val{font-family:var(--display);font-weight:800;font-size:30px;line-height:1;color:var(--navy);white-space:nowrap}
+.pbar.hi .val{color:var(--red)}
+a.nl{color:inherit;text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:5px}
+a.nl:hover{color:var(--red)}
+.pot{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;margin-top:8px;align-items:start}
+.pot p{font-size:18px;line-height:1.45;margin-top:14px}
+.pot p.mut{color:var(--muted);font-size:16px;margin-top:26px}
+@media (max-width:860px){.pot{grid-template-columns:minmax(0,1fr);gap:8px}.pbar{grid-template-columns:70px 1fr}.pbar .fl{width:calc((100% - 210px) * var(--r))}.pbar .val{font-size:24px}}
 </style>
 
 </head>
@@ -208,6 +226,23 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 </div>
 </section>
 
+<section class="slide s-point" id="potential" aria-label="The potential">
+<div class="wrap"><div class="point nonum"><div>
+<p class="kicker">The proposal</p>
+<h2>The potential</h2>
+<p class="txt">MX News can generate <a class="nl" href="calculation/#base" target="_blank" rel="noopener">$100 million MXN</a> a year with 3 or 4 brands.</p>
+</div></div>
+<div class="pot">
+<div class="pbars" role="img" aria-label="MX News annual revenue: pilot 40 million MXN, base 100 million MXN, high 190 million MXN">
+<div class="pbar"><b>Pilot</b><div class="tr"><div class="fl" style="--r:.21"></div><span class="val"><a class="nl" href="calculation/#piloto" target="_blank" rel="noopener">$40 million MXN</a></span></div></div>
+<div class="pbar hi"><b>Base</b><div class="tr"><div class="fl" style="--r:.53"></div><span class="val"><a class="nl" href="calculation/#base" target="_blank" rel="noopener">$100 million MXN</a></span></div></div>
+<div class="pbar"><b>High</b><div class="tr"><div class="fl" style="--r:1"></div><span class="val"><a class="nl" href="calculation/#alto" target="_blank" rel="noopener">$190 million MXN</a></span></div></div>
+</div>
+<div><p class="mut">Annual revenue in Mexican pesos. Equivalent to <a class="nl" href="calculation/#mensual" target="_blank" rel="noopener">$3.3 million MXN</a> per month in the pilot, <a class="nl" href="calculation/#mensual" target="_blank" rel="noopener">$8.3 million MXN</a> per month in the base and <a class="nl" href="calculation/#mensual" target="_blank" rel="noopener">$15.8 million MXN</a> per month in the high scenario.</p><p>Chinese brands invest between <a class="nl" href="calculation/#digital" target="_blank" rel="noopener">$1,900 and $3,100 million MXN</a> a year in digital advertising in Mexico, and between <a class="nl" href="calculation/#display" target="_blank" rel="noopener">$260 and $430 million MXN</a> in display.</p><p><b style="color:var(--navy)">The 12-month pilot with 1 or 2 brands tests the <a class="nl" href="calculation/#piloto" target="_blank" rel="noopener">$40 million MXN</a> scenario.</b></p><p class="note">Estimates built on stated assumptions, not market data. Each number opens its calculation.</p></div>
+</div>
+</div>
+</section>
+
 <section class="slide s-point" id="s8" aria-label="Step 1">
 <div class="wrap">
 <div class="steps"><span class="cur">Step 1 · Feasibility</span><span>Step 2 · Letters of intent</span><span>Step 3 · Pre-installation</span></div>
@@ -262,7 +297,7 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 <div class="dots" id="dots"></div>
 <div class="ctrls">
 <button class="navbtn" id="prev" type="button" aria-label="Previous slide"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-<span class="count" id="count">1 / 11</span>
+<span class="count" id="count">1 / 12</span>
 <button class="navbtn" id="next" type="button" aria-label="Next slide"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
 </div>
 </nav>
