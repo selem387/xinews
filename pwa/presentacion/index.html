@@ -130,6 +130,24 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 }
 .bigs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
 .bigs .big{flex-direction:column;gap:6px}
+/* 1 cm left margin on every slide except the cover slides */
+.slide:not(.s-cover) .wrap{padding-left:calc(max(24px,env(safe-area-inset-left,0px)) + 1cm)}
+/* The potential */
+.pbars{display:grid;gap:12px;margin-top:26px}
+.pbar{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center}
+.pbar>b{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.pbar .tr{display:flex;align-items:center;gap:12px;min-width:0}
+.pbar .fl{height:40px;background:var(--navy);width:calc((100% - 250px) * var(--r));min-width:8px}
+.pbar.hi .fl{background:var(--red)}
+.pbar .val{font-family:var(--display);font-weight:800;font-size:30px;line-height:1;color:var(--navy);white-space:nowrap}
+.pbar.hi .val{color:var(--red)}
+a.nl{color:inherit;text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:5px}
+a.nl:hover{color:var(--red)}
+.pot{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;margin-top:8px;align-items:start}
+.pot p{font-size:18px;line-height:1.45;margin-top:14px}
+.pot p.mut{color:var(--muted);font-size:16px;margin-top:26px}
+@media (max-width:860px){.pot{grid-template-columns:minmax(0,1fr);gap:8px}.pbar{grid-template-columns:70px 1fr}.pbar .fl{width:calc((100% - 210px) * var(--r))}.pbar .val{font-size:24px}}
+html,body,.stage{overflow:clip}
 </style>
 
 </head>
@@ -221,6 +239,23 @@ thead th.x{color:var(--red);border-bottom-color:var(--red)}
 </tbody></table></div>
 <p class="note">Costos de Taboola: estimados de terceros; Taboola no publica lista de precios y vende por subasta.</p>
 </div>
+</div>
+</div>
+</section>
+
+<section class="slide s-point" id="potencial" aria-label="El potencial">
+<div class="wrap"><div class="point nonum"><div>
+<p class="kicker">La propuesta</p>
+<h2>El potencial</h2>
+<p class="txt">MX News puede generar <a class="nl" href="calculo/#base">$100 millones MXN</a> al año con 3 o 4 marcas.</p>
+</div></div>
+<div class="pot">
+<div class="pbars" role="img" aria-label="Ingreso anual de MX News: piloto 40 millones MXN, base 100 millones MXN, alto 190 millones MXN">
+<div class="pbar"><b>Piloto</b><div class="tr"><div class="fl" style="--r:.21"></div><span class="val"><a class="nl" href="calculo/#piloto">$40 millones MXN</a></span></div></div>
+<div class="pbar hi"><b>Base</b><div class="tr"><div class="fl" style="--r:.53"></div><span class="val"><a class="nl" href="calculo/#base">$100 millones MXN</a></span></div></div>
+<div class="pbar"><b>Alto</b><div class="tr"><div class="fl" style="--r:1"></div><span class="val"><a class="nl" href="calculo/#alto">$190 millones MXN</a></span></div></div>
+</div>
+<div><p class="mut">Ingreso anual en pesos. Equivale a <a class="nl" href="calculo/#mensual">$3.3 millones MXN</a> al mes en el piloto, <a class="nl" href="calculo/#mensual">$8.3 millones MXN</a> al mes en el base y <a class="nl" href="calculo/#mensual">$15.8 millones MXN</a> al mes en el alto.</p><p>Las marcas chinas invierten entre <a class="nl" href="calculo/#digital">$1,900 y $3,100 millones MXN</a> al año en publicidad digital en México, y entre <a class="nl" href="calculo/#display">$260 y $430 millones MXN</a> en display.</p><p><b style="color:var(--navy)">El piloto de 12 meses con 1 o 2 marcas prueba el escenario de <a class="nl" href="calculo/#piloto">$40 millones MXN</a>.</b></p><p class="note">Estimaciones con supuestos declarados, no datos de mercado. Cada número abre su cálculo.</p></div>
 </div>
 </div>
 </section>
