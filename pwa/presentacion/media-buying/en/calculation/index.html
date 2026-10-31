@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Media Buying calculation detail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{
+  --red:#C3141E; --navy:#0F2340; --ink:#1A1D24; --paper:#FFFFFF; --mist:#F3F1EE; --line:#E2DDD8; --muted:#5E5A57; --gold:#B8893A;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--navy)}
+.mast{background:var(--red);color:#fff;position:relative;overflow:hidden}
+.mast .wrap{max-width:880px;margin:0 auto;padding-block:40px 34px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px;position:relative}
+.kicker{font-family:var(--f-display);font-weight:600;letter-spacing:.24em;text-transform:uppercase;font-size:.95rem}
+.mast h1{font-family:var(--f-display);font-weight:700;text-transform:uppercase;font-size:clamp(2rem,5.5vw,3.3rem);line-height:.98}
+.mast h1 span{color:#FFD9B0}
+.mast .sub{opacity:.92;max-width:62ch}
+.mast a{color:#fff;font-weight:600}
+.back{display:inline-flex;align-items:center;gap:8px;width:max-content;height:44px;padding:0 18px 0 12px;border-radius:999px;background:var(--navy);color:#fff;font-family:var(--f-display);font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.back:hover{background:#061225}
+main{max-width:880px;margin:0 auto;padding-block:8px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav.idx{display:flex;flex-wrap:wrap;gap:8px 18px;padding-block:18px;border-bottom:1px solid var(--line);font-family:var(--f-display);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+section{display:grid;grid-template-columns:170px 1fr;gap:24px;padding-block:26px;border-bottom:1px solid var(--line);scroll-margin-top:8px}
+section>*{min-width:0}
+section:target{background:linear-gradient(90deg,var(--mist),transparent 70%)}
+.lbl{font-family:var(--f-display);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--red);font-size:1.15rem;line-height:1.15;border-top:3px solid var(--red);padding-top:8px;align-self:start}
+.txt{display:grid;gap:12px;max-width:68ch}
+.txt h2{font-family:var(--f-display);font-weight:700;font-size:1.9rem;line-height:1.05;color:var(--navy)}
+.txt h3{font-family:var(--f-display);font-weight:600;font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);margin-top:6px}
+.res{font-family:var(--f-display);font-weight:700;font-size:1.25rem;color:var(--navy)}
+ol.list,ul.list{margin:0;padding-left:1.3em;display:grid;gap:8px}
+ol.list li::marker{font-family:var(--f-display);font-weight:700;color:var(--red)}
+ul.list li::marker{color:var(--red)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.93rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;color:#fff;background:var(--navy)}
+tr.tot td{font-weight:700;background:var(--mist);border-top:2px solid var(--red)}
+.note{font-size:.9rem;color:var(--muted);border-left:3px solid var(--gold);padding-left:12px}
+@media (max-width:680px){section{grid-template-columns:1fr;gap:12px}}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <a class="back" href="../#potencial"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Back to the slide</a>
+    <div class="kicker">Xinhua Media Buying · Calculation annex</div>
+    <h1>How <span>each number</span> is derived</h1>
+    <p class="sub">Detail of the "The potential" slide. All figures in Mexican pesos; exchange rate of 19.20 pesos per dollar when the source is in dollars. These are estimates with stated assumptions, not market data. Mexico only.</p>
+  </div>
+</header>
+<main>
+  <nav class="idx" aria-label="Index"><a href="#tarifas">Rates</a><a href="#paquetes">Packages</a><a href="#mercado">Market</a><a href="#piloto">Pilot</a><a href="#base">Base</a><a href="#alto">High</a><a href="#mensual">Per month</a><a href="#reparto">Split</a><a href="#razonable">Sanity check</a></nav>
+<section id="tarifas"><div class="lbl">Creator rates</div><div class="txt"><h2>$5,000, $10,000 and $25,000 MXN per reel</h2><p class="res">What a creator costs in Mexico in 2026, by size.</p><h3>How it is derived</h3><div class="tbl"><table><thead><tr><th>Tier</th><th>Followers</th><th>Range per reel or video (2026 market)</th><th>Rate used</th></tr></thead><tbody>
+<tr><td>Nano</td><td>1K to 10K</td><td>$500 to $4,000 MXN</td><td>Not used</td></tr>
+<tr><td>Micro</td><td>10K to 50K</td><td>$3,000 to $15,000 MXN</td><td><b>$5,000 MXN</b></td></tr>
+<tr><td>High micro</td><td>50K to 100K</td><td>$8,000 to $15,000 MXN</td><td><b>$10,000 MXN</b></td></tr>
+<tr><td>Mid-tier</td><td>100K to 500K</td><td>$15,000 to $120,000 MXN</td><td><b>$25,000 MXN</b> (150K to 300K followers)</td></tr>
+</tbody></table></div>
+<p class="note">Rates are rising 20–35% in 2026; TikTok is 10–25% cheaper than Instagram for nano and micro; Mexico is 60–70% cheaper than the United States. Packages are reviewed every 6 months.</p></div></section>
+<section id="paquetes"><div class="lbl">Packages and margin</div><div class="txt"><h2>Price = creator cost ÷ 0.6</h2><p class="res">Three monthly packages, a campaign, licenses and an ambassador; the creator receives about 60%.</p><h3>How it is derived</h3><div class="tbl"><table><thead><tr><th>Package</th><th>Content</th><th>Creator cost</th><th>Price</th><th>Margin</th></tr></thead><tbody>
+<tr><td>Presence</td><td>4 micro reels a month</td><td>4 × $5,000 = $20,000</td><td><b>$35,000 MXN a month</b></td><td>$15,000 (43%)</td></tr>
+<tr><td>Voice</td><td>6 micro + 2 mid-tier a month</td><td>$30,000 + $50,000 = $80,000</td><td><b>$130,000 MXN a month</b></td><td>$50,000 (38%)</td></tr>
+<tr><td>Embassy</td><td>8 micro + 4 mid-tier a month</td><td>$40,000 + $100,000 = $140,000</td><td><b>$220,000 MXN a month</b></td><td>$80,000 (36%)</td></tr>
+<tr><td>Launch campaign</td><td>10 micro + 4 mid-tier in 2–4 weeks</td><td>$150,000</td><td><b>$250,000 MXN</b></td><td>$100,000 (40%)</td></tr>
+<tr><td>Content license</td><td>Use in ads, 3 months; 30% to the creator</td><td>—</td><td><b>+40% of the fee</b></td><td>~25%</td></tr>
+<tr><td>Exclusive ambassador</td><td>1 mid-tier creator, 4 pieces a month, 6–12 months</td><td>$80,000 a month</td><td><b>$130,000 MXN a month</b></td><td>$50,000 (38%)</td></tr>
+</tbody></table></div>
+<p class="note">The margin covers production, creator management, measurement and sales commission. Mexican agencies charge a 20–30% commission for the same (Favikon).</p></div></section>
+<section id="mercado"><div class="lbl">Market</div><div class="txt"><h2>$80 to $250 million MXN a year</h2><p class="res">What Chinese brands spend on content creators in Mexico.</p><h3>How it is derived</h3><ol class="list">
+<li>Digital advertising in Mexico reached <b>$124,625 million MXN</b> in 2025, 66.6% of a $191,315 million total (Valor Total Media 2026: AVE, CIM, IAB Mexico).</li>
+<li>Influencer marketing in Mexico is worth <b>US$240–300 million</b> a year, about $4,300–5,500 million MXN (Capgemini 2023; Goldfish 2024): 3.5–4.4% of digital spend.</li>
+<li>Chinese brands invest <b>$1,900–3,100 million MXN</b> a year in digital advertising in Mexico (MX News calculation detail).</li>
+<li>If they allocate 4–8% of that digital spend to creators (above average, because they are new consumer brands that need a local voice): $1,900 × 4% = $76 million and $3,100 × 8% = $248 million. Rounded to <b>$80–250 million MXN a year</b>.</li>
+<li>Universe: <b>60 to 80 Chinese consumer brands</b> in Mexico (cars 20–27, phones 8, TV and home 8–10, e-commerce 6–8, food 2–4, apps 3) plus 30 new Asian brands looking for retail space (Colliers).</li>
+</ol>
+<p class="note">Assumption to validate: nobody measures creator spend in Mexico yet (AVE, CIM and IAB Mexico will publish a first figure in 2027) and there is no public figure per Chinese brand. It is corrected with the first 3 real quotes.</p></div></section>
+<section id="piloto"><div class="lbl">Pilot scenario</div><div class="txt"><h2>$2.5 million MXN in 6 months</h2><p class="res">Three Chinese brands: 1 Presence and 2 Voice, plus 2 campaigns and licenses.</p><h3>How it is derived</h3><ol class="list">
+<li>Packages: ($35,000 + 2 × $130,000) × 6 months = $295,000 × 6 = <b>$1.77 million MXN</b>.</li>
+<li>Campaigns: 2 × $250,000 = <b>$0.5 million MXN</b>.</li>
+<li>Content licenses: 10% on packages and campaigns = <b>$0.23 million MXN</b>.</li>
+<li>Total: $1.77 + $0.5 + $0.23 = $2.5 million MXN. That is <b>$417,000 MXN a month</b> on average.</li>
+</ol></div></section>
+<section id="base"><div class="lbl">Base scenario</div><div class="txt"><h2>$14 million MXN a year</h2><p class="res">Year 1: 10 brands at year end, 7 active on average (3 Presence, 5 Voice and 2 Embassy at 70% occupancy).</p><h3>How it is derived</h3><ol class="list">
+<li>Packages: (3 × $35,000 + 5 × $130,000 + 2 × $220,000) × 12 × 70% = $1,195,000 × 12 × 0.7 = <b>$10.0 million MXN</b>.</li>
+<li>Campaigns: 8 × $250,000 = <b>$2.0 million MXN</b>.</li>
+<li>Exclusive ambassador: 1 × $130,000 × 6 months = <b>$0.8 million MXN</b>.</li>
+<li>Licenses: 10% on packages and campaigns = <b>$1.2 million MXN</b>.</li>
+<li>Total: $10.0 + $2.0 + $0.8 + $1.2 = $14.0 million MXN, i.e. <b>$14 million MXN</b>.</li>
+</ol></div></section>
+<section id="alto"><div class="lbl">High scenario</div><div class="txt"><h2>$40 million MXN a year</h2><p class="res">Year 2 or 3: 20 brands active all year (6 Presence, 10 Voice and 4 Embassy).</p><h3>How it is derived</h3><ol class="list">
+<li>Packages: (6 × $35,000 + 10 × $130,000 + 4 × $220,000) × 12 = $2,390,000 × 12 = <b>$28.7 million MXN</b>.</li>
+<li>Campaigns: 16 × $250,000 = <b>$4.0 million MXN</b>.</li>
+<li>Exclusive ambassadors: 2 × $130,000 × 12 = <b>$3.1 million MXN</b>.</li>
+<li>Licenses: 10% on packages and campaigns = <b>$3.3 million MXN</b>.</li>
+<li>Total: $28.7 + $4.0 + $3.1 + $3.3 = $39.1 million MXN, rounded to <b>$40 million MXN</b>. It is a ceiling, not a target.</li>
+</ol></div></section>
+<section id="mensual"><div class="lbl">Revenue per month</div><div class="txt"><h2>$417,000, $1.2 and $3.3 million MXN</h2><p class="res">Each scenario's revenue divided by its months.</p><h3>How it is derived</h3><div class="tbl"><table><thead><tr><th>Scenario</th><th>Revenue</th><th>Calculation</th><th>Per month</th></tr></thead><tbody>
+<tr><td>Pilot (6 months)</td><td>$2.5 million MXN</td><td>$2.5 ÷ 6 = 0.417</td><td>$417,000 MXN</td></tr>
+<tr><td>Base (year 1)</td><td>$14 million MXN</td><td>$14 ÷ 12 = 1.17</td><td>$1.2 million MXN</td></tr>
+<tr><td>High (year 2 or 3)</td><td>$40 million MXN</td><td>$40 ÷ 12 = 3.33</td><td>$3.3 million MXN</td></tr>
+</tbody></table></div></div></section>
+<section id="reparto"><div class="lbl">Split</div><div class="txt"><h2>Creator ~60%, margin ~40% in three equal parts</h2><p class="res">What each party receives: Xinhua, Intiviso and whoever makes the sale.</p><h3>How it is derived</h3><ol class="list">
+<li>The creator receives about 60% of the price (see packages). The <b>remaining 40%</b> is the margin that pays for production, management, measurement and sales.</li>
+<li>That margin is split in three equal parts: Xinhua, Intiviso and the party that makes the sale. It is the same one-third scheme as MX News and Business Growth.</li>
+</ol>
+<div class="tbl"><table><thead><tr><th>Scenario</th><th>Revenue</th><th>Creators (~60%)</th><th>Margin (~40%)</th><th>Per party (1/3)</th><th>Per party, per month</th></tr></thead><tbody>
+<tr><td>Pilot (6 months)</td><td>$2.5 million MXN</td><td>$1.5 M</td><td>$1.0 M</td><td>$0.33 million MXN</td><td>$55,000 MXN</td></tr>
+<tr><td>Base (year 1)</td><td>$14 million MXN</td><td>$8.4 M</td><td>$5.6 M</td><td>$1.9 million MXN</td><td>$156,000 MXN</td></tr>
+<tr><td>High (year 2 or 3)</td><td>$40 million MXN</td><td>$24 M</td><td>$16 M</td><td>$5.3 million MXN</td><td>$435,000 MXN</td></tr>
+</tbody></table></div>
+<p class="note">Pending for the director: confirm the one-third split, whether there is a fixed operating budget in addition to the split, and who invoices the client (Xinhua or Intiviso).</p></div></section>
+<section id="razonable"><div class="lbl">Sanity check</div><div class="txt"><h2>What share of the market each scenario represents</h2><p class="res">Against the estimated creator spend of Chinese brands and against the universe of 60–80 brands.</p><div class="tbl"><table><thead><tr><th>Scenario</th><th>Brands</th><th>Against $80–250 million MXN</th><th>Against 60–80 brands</th></tr></thead><tbody>
+<tr><td>Pilot</td><td>3</td><td>2–6% (annualized)</td><td>4–5%</td></tr>
+<tr><td>Base</td><td>10</td><td>6–18%</td><td>13–17%</td></tr>
+<tr><td>High</td><td>20</td><td>16–50%</td><td>25–33%</td></tr>
+</tbody></table></div>
+<p>The pilot and base cases are defensible. The high case is ambitious: it requires displacing the agencies of Shein, Temu, Xiaomi and the carmakers, or capturing the 30 new brands arriving.</p>
+<h3>Risks</h3>
+<ul class="list">
+<li>The directory has a single technology creator; cars and phones require niche creators, which cost more.</li>
+<li>Credibility: paid content labeled as advertising, never mixed with Xinhua news (propaganda perception).</li>
+<li>Licenses and exclusivity require contracts with each creator.</li>
+</ul>
+<h3>Sources</h3>
+<ul class="list">
+<li>Valor Total Media 2026 (AVE, CIM, IAB Mexico): <a href="https://expansion.mx/mercadotecnia/2026/10/13/cuanto-dinero-llega-influencers-intermediacion-calculo" target="_blank" rel="noopener">Expansión</a>.</li>
+<li>Creator rates 2026: <a href="https://www.creatorscrate.cc/recursos/estado-influencer-marketing-mexico-reporte-2026" target="_blank" rel="noopener">Creators Crate</a>, <a href="https://shortway.com.mx/cuanto-cuesta/contratar-influencer" target="_blank" rel="noopener">Shortway</a>, <a href="https://www.armandoplanes.mx/experiencias/cuanto-gana-influencer-mexico/" target="_blank" rel="noopener">Armando Planes</a>, <a href="https://influee.co/mx/blog/tiktok-influencer-rates" target="_blank" rel="noopener">Influee</a>.</li>
+<li>Influencer marketing in Mexico: <a href="https://www.elfinanciero.com.mx/empresas/2023/03/14/influencers-mexicanos-el-negocio-que-vale-mas-de-240-mdd/" target="_blank" rel="noopener">El Financiero / Capgemini</a>, <a href="https://marketing4ecommerce.mx/la-inversion-en-influencer-marketing-sera-de-mas-de-300-mdd-en-mexico-goldfish/" target="_blank" rel="noopener">Marketing4eCommerce / Goldfish</a>.</li>
+<li>Agency commissions: <a href="https://www.favikon.com/es/blog/how-much-influencer-marketing-agencies-charge" target="_blank" rel="noopener">Favikon</a>.</li>
+<li>Chinese brands in Mexico: <a href="https://www.autosnuevos.mx/marcas-de-autos/chinas" target="_blank" rel="noopener">AutosNuevos.mx</a>, <a href="https://es-us.noticias.yahoo.com/marcas-chinas-mantienen-crecimiento-m%C3%A9xico-004026977.html" target="_blank" rel="noopener">NIQ</a>, <a href="https://mexicobusiness.news/es/ecommerce/news/kuai-kuai-llega-mexico-expansion-de-marcas-minoristas" target="_blank" rel="noopener">Mexico Business News / Colliers</a>.</li>
+<li>Digital spend of Chinese brands: <a href="../../../en/calculation/" target="_blank" rel="noopener">MX News calculation detail</a>.</li>
+</ul></div></section>
+</main>
+</body>
+</html>

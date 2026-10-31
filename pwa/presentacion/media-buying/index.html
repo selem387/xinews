@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Xinhua Media Buying · Presentación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+html,body{margin:0}*,*::before,*::after{box-sizing:border-box}
+:root{
+  --navy:#0F2340; --navy-2:#1B3358; --red:#C3141E; --red-soft:#FF5A63; --pink:#F2A5AA;
+  --ink:#1A1F2B; --muted:#4A5468; --line:#D5DCE8; --paper:#FFFFFF; --mist:#F3F5F9;
+  --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+  --body:'Source Sans 3','Segoe UI',Arial,sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;overflow:hidden}
+.deck{position:relative;height:100%;display:flex;flex-direction:column}
+.stage{position:relative;flex:1;min-height:0}
+.slide{position:absolute;inset:0;overflow-y:auto;display:flex;opacity:0;visibility:hidden;transform:translateX(24px);transition:opacity .35s ease,transform .35s ease,visibility 0s .35s}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .35s ease}
+.slide.prev{transform:translateX(-24px)}
+@media (prefers-reduced-motion:reduce){.slide,.slide.on{transition:none;transform:none}}
+.wrap{width:100%;max-width:1180px;margin:auto;padding-block:48px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+p{margin:0}
+.kicker{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+
+/* Portada */
+.s-cover{background:var(--navy);color:#fff}
+.cover{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}
+.cover > div:first-child{padding-left:0.5cm;min-width:0}
+.s-cover .wrap{max-width:none;padding-left:max(5vw,24px);padding-right:max(5vw,24px)}
+.cover > div:last-child{justify-self:end;display:flex;flex-direction:column;align-items:center;min-width:0}
+.cover .kicker{color:var(--pink)}
+.cover h1{font-weight:800;font-size:clamp(46px,6.4vw,92px);line-height:.95;margin-top:18px}
+.cover h1 .n{color:var(--red-soft)}
+.cover h1 .sub{display:block;font-weight:700;font-size:.62em;line-height:1.05;margin-top:18px;color:#D5DCE8}
+.cover .lead{margin-top:28px;font-size:18px;color:#C5CEDD;max-width:46ch}
+.live{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;text-decoration:none;font-size:16px}
+.live:hover{background:#A9111A}
+.live:focus-visible,.navbtn:focus-visible,.dot:focus-visible,.next-cover:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.next-cover{display:inline-flex;align-items:center;gap:12px;margin-top:36px;min-height:52px;padding:0 24px 0 28px;border:2px solid #fff;border-radius:999px;background:transparent;color:#fff;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.next-cover:hover{background:#fff;color:var(--navy)}
+.board{width:min(380px,100%);display:grid;gap:14px}
+.card{background:var(--navy-2);border:1px solid #2A3D5E;border-radius:16px;padding:20px 22px;display:grid;gap:6px}
+.card strong{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;color:var(--red-soft)}
+.card span{color:#C5CEDD;font-size:15px;line-height:1.35}
+
+/* Objetivo */
+.s-obj{background:var(--red);color:#fff}
+.s-obj .kicker{color:#FFD3D6}
+.s-obj h2{margin-top:22px;font-weight:700;font-size:clamp(34px,4.6vw,64px);line-height:1.05;max-width:24ch}
+
+/* Puntos */
+.s-point{background:var(--paper)}
+.point{display:grid;grid-template-columns:auto minmax(0,1fr);gap:40px;align-items:start}
+.num{font-family:var(--display);font-weight:800;font-size:clamp(120px,16vw,220px);line-height:.8;color:var(--red)}
+.num.sm{font-size:clamp(90px,10vw,140px)}
+.point.nonum{grid-template-columns:minmax(0,1fr)}
+.point .kicker{color:var(--muted)}
+.point h2{margin-top:10px;font-weight:800;font-size:clamp(40px,5vw,68px);line-height:1;color:var(--navy)}
+.point .txt{margin-top:22px;font-size:clamp(20px,2.1vw,28px);line-height:1.4;max-width:40ch}
+.point .txt b{color:var(--navy)}
+.fact{margin-top:28px;display:inline-flex;align-items:baseline;gap:14px;padding:14px 22px;background:var(--mist);border-radius:8px}
+.fact strong{font-family:var(--display);font-weight:800;font-size:48px;line-height:1;color:var(--red)}
+.fact span{font-size:16px;color:var(--muted);max-width:30ch}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.svc.c3{grid-template-columns:1fr 1fr 1fr}
+.svc div{background:var(--mist);border-radius:10px;padding:16px 18px;display:grid;gap:6px;align-content:start}
+.svc b{font-family:var(--display);font-weight:800;font-size:22px;color:var(--red);line-height:1}
+.svc h3{font-weight:700;font-size:19px;color:var(--navy);line-height:1.15}
+.svc p{font-size:15px;color:var(--muted);line-height:1.4}
+.svc small{font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy)}
+
+/* Por qué se gana */
+.why{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;margin-top:28px}
+.why h3{font-weight:700;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:6px 12px;display:inline-block}
+.why .a h3{background:var(--navy)} .why .b h3{background:var(--red)}
+.why .a p{margin-top:16px;font-size:19px;line-height:1.45}
+.why .a .pk{margin-top:16px;display:grid;gap:10px}
+.why .a .pk div{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:baseline;padding:10px 12px;background:var(--mist);border-radius:8px}
+.why .a .pk b{font-family:var(--display);font-size:20px;color:var(--navy)}
+.why .a .pk span{font-family:var(--display);font-weight:800;font-size:22px;color:var(--red);white-space:nowrap}
+.why .a .pk small{grid-column:1/-1;font-size:13px;color:var(--muted)}
+.tbl{margin-top:16px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);border-bottom:2px solid var(--navy)}
+td.x{background:#FBECED;font-weight:600;color:var(--navy)}
+thead th.x{color:var(--red);border-bottom-color:var(--red)}
+tr.tot td{font-weight:700;background:var(--mist);border-top:2px solid var(--red)}
+.note{margin-top:10px;font-size:13px;color:var(--muted)}
+
+/* Pasos */
+.steps{display:flex;gap:10px;margin-bottom:34px;flex-wrap:wrap}
+.steps span{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:999px;background:var(--mist);color:var(--muted)}
+.steps span.cur{background:var(--navy);color:#fff}
+.steps span.done{background:#E3E8F0;color:var(--navy)}
+
+/* Flechas laterales */
+.side{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:rgba(15,35,64,.82);color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.side:hover{background:var(--red);border-color:var(--red)}
+.side:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.side:disabled{opacity:0;pointer-events:none}
+.side-prev{left:max(12px,env(safe-area-inset-left,0px))}
+.side-next{right:max(12px,env(safe-area-inset-right,0px))}
+
+/* Navegación */
+.bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:var(--paper)}
+.brand{padding-left:0.5cm;font-family:var(--display);font-weight:800;font-size:20px;color:var(--navy);text-decoration:none} .brand b{color:var(--red)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.dot{width:28px;height:28px;border:0;border-radius:50%;background:transparent;cursor:pointer;display:grid;place-items:center;padding:0}
+.dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dot[aria-current="true"]::after{background:var(--red);transform:scale(1.25)}
+.ctrls{display:flex;align-items:center;gap:8px;padding-right:0.5cm}
+.count{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;min-width:46px;text-align:center}
+.navbtn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--navy);background:var(--paper);color:var(--navy);cursor:pointer;display:grid;place-items:center}
+.navbtn:hover{background:var(--navy);color:#fff}
+.navbtn:disabled{opacity:.3;cursor:default;background:var(--paper);color:var(--navy)}
+.lang{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin-right:10px}
+.lang:hover{color:var(--red)}
+
+/* El potencial */
+.pbars{display:grid;gap:12px;margin-top:26px}
+.pbar{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center}
+.pbar>b{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.pbar .tr{display:flex;align-items:center;gap:12px;min-width:0}
+.pbar .fl{height:40px;background:var(--navy);width:calc((100% - 250px) * var(--r));min-width:8px}
+.pbar.hi .fl{background:var(--red)}
+.pbar .val{font-family:var(--display);font-weight:800;font-size:30px;line-height:1;color:var(--navy);white-space:nowrap}
+.pbar.hi .val{color:var(--red)}
+a.nl{color:inherit;text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:5px}
+a.nl:hover{color:var(--red)}
+.pot{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;margin-top:8px;align-items:start}
+.pot p{font-size:18px;line-height:1.45;margin-top:14px}
+.pot p.mut{color:var(--muted);font-size:16px;margin-top:26px}
+.bigs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
+.why .big{margin-top:18px;display:flex;align-items:baseline;gap:12px}
+.why .big strong{font-family:var(--display);font-weight:800;font-size:72px;line-height:1;color:var(--red)}
+.why .big span{color:var(--muted);font-size:15px;max-width:22ch}
+.bigs .big{flex-direction:column;gap:6px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.ghost{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;border:2px solid var(--navy);color:var(--navy);font-weight:700;text-decoration:none;font-size:16px}
+.ghost:hover{background:var(--navy);color:#fff}
+
+/* Índice de proyectos (presentación general) */
+.trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:30px}
+.trio a{display:grid;gap:10px;align-content:start;padding:24px 22px;border-radius:14px;background:var(--mist);text-decoration:none;color:inherit;border-top:6px solid var(--navy);min-height:220px}
+.trio a:nth-child(2){border-top-color:var(--red)}
+.trio a:hover{background:#E9EDF4}
+.trio b{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.trio h3{font-weight:800;font-size:30px;line-height:1;color:var(--navy)}
+.trio p{font-size:17px;line-height:1.4;color:var(--ink)}
+.trio small{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:auto}
+.cmp td.n,.cmp th.n{text-align:right;white-space:nowrap}
+.cmp td.p{font-family:var(--display);font-weight:800;font-size:19px;color:var(--navy)}
+.cmp thead th{font-size:15px}
+.cmp td{font-size:15px;padding:9px 10px}
+.cmp td.sub{color:var(--muted);font-size:13px}
+
+@media (max-width:860px){
+  .cover{gap:28px}
+  .next-cover{margin-top:24px}
+  .why{grid-template-columns:minmax(0,1fr)}
+  .point{grid-template-columns:minmax(0,1fr);gap:8px}
+  .dots{display:none}
+  .wrap{padding-block:32px}
+  .svc,.svc.c3,.trio{grid-template-columns:1fr}
+  .pot{grid-template-columns:minmax(0,1fr);gap:8px}.pbar{grid-template-columns:70px 1fr}.pbar .fl{width:calc((100% - 210px) * var(--r))}.pbar .val{font-size:24px}
+}
+@media (max-width:600px){.cover{grid-template-columns:minmax(0,1fr)}}
+.slide:not(.s-cover) .wrap{padding-left:calc(max(24px,env(safe-area-inset-left,0px)) + 1cm)}
+html,body,.stage{overflow:clip}
+</style>
+</head>
+<body>
+<div class="deck">
+<div class="stage" id="stage">
+<section class="slide s-cover" id="s1" aria-label="Portada">
+<div class="wrap cover">
+<div>
+<p class="kicker">Propuesta · Xinhua Media Buying</p>
+<h1>Voces mexicanas para <span class="n">marcas chinas</span><span class="sub">Creadores de contenido que hablan bien de las empresas chinas en México</span></h1>
+<p class="lead">Xinhua contrata creadores de contenido en crecimiento para que hablen de las marcas chinas, y les cobra a esas marcas como un servicio. VI Magazine/Intiviso selecciona, produce, publica y mide.</p>
+<button class="next-cover" type="button" data-go="1">Comenzar <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+<div><div class="board" role="list" aria-label="Cifras clave"><div class="card" role="listitem"><strong>60–80</strong><span>marcas chinas de consumo venden hoy en México: autos, celulares, hogar, e-commerce, alimentos y apps</span></div><div class="card" role="listitem"><strong>$80–250</strong><span>millones MXN al año que esas marcas destinan a creadores de contenido (estimación propia)</span></div><div class="card" role="listitem"><strong>45 %</strong><span>de las marcas en México planea aumentar su inversión en micro creadores en 2026 (SAMY / IAB México)</span></div></div></div>
+</div>
+</section>
+<section class="slide s-obj" id="s2" aria-label="Objetivo">
+<div class="wrap"><p class="kicker">Objetivo</p><h2>Que Xinhua ponga voces mexicanas creíbles al servicio de las marcas chinas: creadores de contenido en crecimiento que hablan de sus productos, y que se cobra a esas marcas como un servicio.</h2></div>
+</section>
+<section class="slide s-point" id="s3" aria-label="Propósito">
+<div class="wrap point"><div class="num">1</div><div>
+<p class="kicker">La propuesta</p><h2>Propósito</h2><p class="txt">Xinhua no busca beneficio propio: busca el de toda China, a través del éxito de las empresas chinas, <b>empezando por México.</b> La reputación de una marca china en México se construye con voces locales, no con anuncios traducidos.</p>
+</div></div>
+</section>
+<section class="slide s-point" id="s4" aria-label="Estrategia">
+<div class="wrap point"><div class="num">2</div><div>
+<p class="kicker">La propuesta</p><h2>Estrategia</h2><p class="txt">Xinhua <b>selecciona y contrata creadores de 10 mil a 300 mil seguidores</b> (base: directorio de 24 creadores de tecnología, viajes, gastronomía, arquitectura y documental). Las marcas chinas pagan paquetes mensuales, campañas y licencias; VI Magazine/Intiviso opera selección, producción, publicación y medición. El contenido va marcado como publicidad y <b>nunca se mezcla con las noticias de Xinhua</b>.</p>
+</div></div>
+</section>
+<section class="slide s-point" id="s5" aria-label="El desafío">
+<div class="wrap point"><div class="num">3</div><div>
+<p class="kicker">La propuesta</p><h2>El desafío</h2><p class="txt">Las marcas chinas crecen en México pese a aranceles de hasta 50 %, pero compiten con <b>reputación prestada</b>: distancia cultural, desconfianza del consumidor y agencias locales que cobran 20 a 30 % de comisión sin conocer China ni a sus marcas.</p><div class="fact"><strong>+19 %</strong><span>creció la venta de cómputo de marcas chinas en el 1T-2026, contra 9.5 % del mercado (NIQ)</span></div>
+</div></div>
+</section>
+<section class="slide s-point" id="s6" aria-label="Cómo se gana">
+<div class="wrap"><div class="point"><div class="num sm">4</div><div>
+<p class="kicker">La propuesta</p><h2>Cómo se gana</h2><p class="txt">Siete formas de cobrar a la marca china; lo habitual es combinar la 1, la 2 y la 5:</p>
+</div></div>
+<div class="svc c3"><div><b>01</b><h3>Cuota mensual fija</h3><p>Paquete de N piezas de N creadores</p><small>$35,000 a $220,000 MXN al mes</small></div><div><b>02</b><h3>Por campaña</h3><p>Lanzamiento, Buen Fin, apertura: 10 a 15 creadores, 2 a 4 semanas</p><small>$250,000 MXN por campaña</small></div><div><b>03</b><h3>Comisión de agencia</h3><p>Sobre el honorario del creador</p><small>20 a 30 %</small></div><div><b>04</b><h3>Por resultados</h3><p>CPM, CPC o CPA con código del creador; solo como bono sobre una cuota base</p><small>CPM $40 a $110 MXN</small></div><div><b>05</b><h3>Licencia de contenido</h3><p>Uso del contenido en anuncios de la marca, 3 meses</p><small>+30 a +50 % del honorario</small></div><div><b>06</b><h3>Embajador exclusivo</h3><p>6 a 12 meses, 4 piezas al mes</p><small>$130,000 MXN al mes</small></div><div><b>07</b><h3>Intercambio por producto</h3><p>Xinhua cobra solo la gestión</p><small>$15,000 a $25,000 MXN por campaña</small></div></div>
+</div>
+</section>
+<section class="slide s-point" id="s7" aria-label="Por qué se gana">
+<div class="wrap"><div class="point"><div class="num sm">5</div><div>
+<p class="kicker">La propuesta</p><h2>Por qué se gana</h2>
+</div></div>
+<div class="why">
+<div class="a"><h3>Para la marca china</h3><p>Paga un paquete mensual que incluye creadores, producción, publicación y medición. Tres paquetes según cuánta voz necesita; el creador recibe cerca del 60 % del precio.</p><div class="pk"><div><b>Presencia</b><span>$35,000 MXN al mes</span><small>4 reels de creadores micro</small></div><div><b>Voz</b><span>$130,000 MXN al mes</span><small>6 reels micro y 2 de creadores medios</small></div><div><b>Embajada</b><span>$220,000 MXN al mes</span><small>8 reels micro y 4 de creadores medios</small></div></div></div>
+<div class="b"><h3>Contra las alternativas</h3><div class="tbl"><table><thead><tr><th>Concepto</th><th>Contratar creadores directo</th><th>Agencia de influencers</th><th class=x>Xinhua Media Buying</th></tr></thead><tbody><tr><td>Qué paga</td><td>Honorario por pieza ($5,000 a $25,000 MXN)</td><td>Honorario + comisión de 20 a 30 %</td><td class=x>Paquete mensual con todo incluido</td></tr><tr><td>Selección de creadores</td><td>La marca, sin datos</td><td>La agencia, con su cartera</td><td class=x>Directorio propio y creadores de nicho</td></tr><tr><td>Producción, publicación y medición</td><td>La marca</td><td>Incluida</td><td class=x>Incluida: VI Magazine/Intiviso</td></tr><tr><td>Conocimiento de China y de sus marcas</td><td>No</td><td>No</td><td class=x>Sí: Xinhua</td></tr><tr><td>Encuadre</td><td>Aislado</td><td>Aislado</td><td class=x>Bajo "China Brands Going Global"</td></tr></tbody></table></div><p class="note">Tarifas de creadores en México 2026 (Creators Crate, Shortway, Influee); comisiones de agencias (Favikon).</p></div>
+</div>
+</div>
+</section>
+<section class="slide s-point" id="potencial" aria-label="El potencial">
+<div class="wrap"><div class="point"><div class="num sm">6</div><div>
+<p class="kicker">La propuesta</p><h2>El potencial</h2><p class="txt">Media Buying puede generar <a class="nl" href="calculo/#base">$14 millones MXN</a> al año con 10 marcas.</p>
+</div></div>
+<div class="pot">
+<div class="pbars" role="img" aria-label="Ingreso de Media Buying: piloto 2.5 millones MXN en 6 meses, base 14 millones MXN al año, alto 40 millones MXN al año"><div class="pbar"><b>Piloto</b><div class="tr"><div class="fl" style="--r:0.06"></div><span class="val"><a class="nl" href="calculo/#piloto">$2.5 millones MXN</a></span></div></div><div class="pbar hi"><b>Base</b><div class="tr"><div class="fl" style="--r:0.35"></div><span class="val"><a class="nl" href="calculo/#base">$14 millones MXN</a></span></div></div><div class="pbar"><b>Alto</b><div class="tr"><div class="fl" style="--r:1"></div><span class="val"><a class="nl" href="calculo/#alto">$40 millones MXN</a></span></div></div></div>
+<div><p class="mut">El piloto es de 6 meses; base y alto son ingresos anuales. Equivale a <a class="nl" href="calculo/#mensual">$417,000 MXN</a> al mes en el piloto, <a class="nl" href="calculo/#mensual">$1.2 millones MXN</a> al mes en el base y <a class="nl" href="calculo/#mensual">$3.3 millones MXN</a> al mes en el alto.</p><p>Las marcas chinas destinan entre <a class="nl" href="calculo/#mercado">$80 y $250 millones MXN</a> al año a creadores de contenido en México. Del precio, cerca del 60 % es para el creador y <a class="nl" href="calculo/#reparto">40 % es margen en tres partes iguales</a>.</p><p><b style="color:var(--navy)">El piloto de 6 meses con 3 marcas chinas prueba el escenario de <a class="nl" href="calculo/#piloto">$2.5 millones MXN</a>.</b></p><p class="note">Estimaciones con supuestos declarados, no datos de mercado. Cada número abre su cálculo.</p></div>
+</div>
+</div>
+</section>
+<section class="slide s-point" id="s8" aria-label="Paso 1 · Marcas y creadores">
+<div class="wrap">
+<div class="steps"><span class="cur">Paso 1 · Marcas y creadores</span><span class="">Paso 2 · Piloto de 6 meses</span><span class="">Paso 3 · Escalar</span></div>
+<div class="point"><div class="num">1</div><div>
+<p class="kicker">Ruta de trabajo</p><h2>Primer paso</h2><p class="txt">Elegir <b>tres marcas chinas</b> para el piloto y quién hace el primer contacto, cerrar contratos con los primeros creadores del directorio y acordar el encuadre bajo "China Brands Going Global".</p>
+</div></div>
+</div>
+</section>
+<section class="slide s-point" id="s9" aria-label="Paso 2 · Piloto de 6 meses">
+<div class="wrap">
+<div class="steps"><span class="done">Paso 1 · Marcas y creadores</span><span class="cur">Paso 2 · Piloto de 6 meses</span><span class="">Paso 3 · Escalar</span></div>
+<div class="point"><div class="num">2</div><div>
+<p class="kicker">Ruta de trabajo</p><h2>Segundo paso</h2><p class="txt">Operar el <b>piloto de 6 meses</b>: 3 marcas (1 Presencia y 2 Voz), 2 campañas y licencias de contenido; publicación marcada como publicidad y reporte mensual de alcance, interacción y ventas con código.</p>
+</div></div>
+</div>
+</section>
+<section class="slide s-point" id="s10" aria-label="Paso 3 · Escalar">
+<div class="wrap">
+<div class="steps"><span class="done">Paso 1 · Marcas y creadores</span><span class="done">Paso 2 · Piloto de 6 meses</span><span class="cur">Paso 3 · Escalar</span></div>
+<div class="point"><div class="num">3</div><div>
+<p class="kicker">Ruta de trabajo</p><h2>Tercer paso</h2><p class="txt">Con los resultados del piloto, <b>escalar a 10 marcas</b> en el primer año y conectar cada marca con MX News y Business Growth: la marca que contrata creadores es anunciante natural de la pantalla −1 y cliente natural de la prospección.</p>
+</div></div>
+</div>
+</section>
+<button class="side side-prev" id="sprev" type="button" aria-label="Diapositiva anterior"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+<button class="side side-next" id="snext" type="button" aria-label="Diapositiva siguiente"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<nav class="bar" aria-label="Navegación de la presentación">
+<a class="brand" href="../general/">Xinhua <b>Media Buying</b></a>
+<div class="dots" id="dots"></div>
+<div class="ctrls">
+<a class="lang" href="en/">English</a>
+<button class="navbtn" id="prev" type="button" aria-label="Diapositiva anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+<span class="count" id="count">1 / 10</span>
+<button class="navbtn" id="next" type="button" aria-label="Diapositiva siguiente"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+</nav>
+</div>
+<script>var GOTO='Ir a la diapositiva';
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var dots=document.getElementById('dots'), count=document.getElementById('count');
+  var prev=document.getElementById('prev'), next=document.getElementById('next');
+  var sprev=document.getElementById('sprev'), snext=document.getElementById('snext');
+  var cur=0;
+  slides.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='dot'; b.type='button';
+    b.setAttribute('aria-label',GOTO+' '+(i+1)+': '+s.getAttribute('aria-label'));
+    b.addEventListener('click',function(){go(i)});
+    dots.appendChild(b);
+  });
+  function go(i){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach(function(s,k){
+      s.classList.toggle('on',k===i);
+      s.classList.toggle('prev',k<i);
+      s.setAttribute('aria-hidden',k===i?'false':'true');
+      if(k===i){s.scrollTop=0}
+    });
+    [].forEach.call(dots.children,function(d,k){d.setAttribute('aria-current',k===i?'true':'false')});
+    count.textContent=(i+1)+' / '+slides.length;
+    prev.disabled=sprev.disabled=i===0; next.disabled=snext.disabled=i===slides.length-1;
+    cur=i;
+    try{history.replaceState(null,'','#'+slides[i].id)}catch(e){}
+  }
+  prev.addEventListener('click',function(){go(cur-1)});
+  next.addEventListener('click',function(){go(cur+1)});
+  sprev.addEventListener('click',function(){go(cur-1)});
+  snext.addEventListener('click',function(){go(cur+1)});
+  [].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.addEventListener('click',function(){go(+b.getAttribute('data-go'))})});
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(cur+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home'){go(0)} else if(e.key==='End'){go(slides.length-1)}
+  });
+  var x0=null,y0=null;
+  document.getElementById('stage').addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+  document.getElementById('stage').addEventListener('touchend',function(e){
+    if(x0===null)return;
+    var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5){go(cur+(dx<0?1:-1))}
+    x0=null;
+  });
+  var start=0, h=(location.hash||'').slice(1);
+  slides.forEach(function(s,i){if(s.id===h)start=i});
+  go(start);
+})();
+</script>
+</body>
+</html>

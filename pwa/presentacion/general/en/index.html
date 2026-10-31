@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Xinhua Business Growth · Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+html,body{margin:0}*,*::before,*::after{box-sizing:border-box}
+:root{
+  --navy:#0F2340; --navy-2:#1B3358; --red:#C3141E; --red-soft:#FF5A63; --pink:#F2A5AA;
+  --ink:#1A1F2B; --muted:#4A5468; --line:#D5DCE8; --paper:#FFFFFF; --mist:#F3F5F9;
+  --display:'Barlow Condensed','Arial Narrow',Arial,sans-serif;
+  --body:'Source Sans 3','Segoe UI',Arial,sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;overflow:hidden}
+.deck{position:relative;height:100%;display:flex;flex-direction:column}
+.stage{position:relative;flex:1;min-height:0}
+.slide{position:absolute;inset:0;overflow-y:auto;display:flex;opacity:0;visibility:hidden;transform:translateX(24px);transition:opacity .35s ease,transform .35s ease,visibility 0s .35s}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .35s ease}
+.slide.prev{transform:translateX(-24px)}
+@media (prefers-reduced-motion:reduce){.slide,.slide.on{transition:none;transform:none}}
+.wrap{width:100%;max-width:1180px;margin:auto;padding-block:48px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+p{margin:0}
+.kicker{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+
+/* Portada */
+.s-cover{background:var(--navy);color:#fff}
+.cover{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}
+.cover > div:first-child{padding-left:0.5cm;min-width:0}
+.s-cover .wrap{max-width:none;padding-left:max(5vw,24px);padding-right:max(5vw,24px)}
+.cover > div:last-child{justify-self:end;display:flex;flex-direction:column;align-items:center;min-width:0}
+.cover .kicker{color:var(--pink)}
+.cover h1{font-weight:800;font-size:clamp(46px,6.4vw,92px);line-height:.95;margin-top:18px}
+.cover h1 .n{color:var(--red-soft)}
+.cover h1 .sub{display:block;font-weight:700;font-size:.62em;line-height:1.05;margin-top:18px;color:#D5DCE8}
+.cover .lead{margin-top:28px;font-size:18px;color:#C5CEDD;max-width:46ch}
+.live{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;text-decoration:none;font-size:16px}
+.live:hover{background:#A9111A}
+.live:focus-visible,.navbtn:focus-visible,.dot:focus-visible,.next-cover:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.next-cover{display:inline-flex;align-items:center;gap:12px;margin-top:36px;min-height:52px;padding:0 24px 0 28px;border:2px solid #fff;border-radius:999px;background:transparent;color:#fff;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.next-cover:hover{background:#fff;color:var(--navy)}
+.board{width:min(380px,100%);display:grid;gap:14px}
+.card{background:var(--navy-2);border:1px solid #2A3D5E;border-radius:16px;padding:20px 22px;display:grid;gap:6px}
+.card strong{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;color:var(--red-soft)}
+.card span{color:#C5CEDD;font-size:15px;line-height:1.35}
+
+/* Objetivo */
+.s-obj{background:var(--red);color:#fff}
+.s-obj .kicker{color:#FFD3D6}
+.s-obj h2{margin-top:22px;font-weight:700;font-size:clamp(34px,4.6vw,64px);line-height:1.05;max-width:24ch}
+
+/* Puntos */
+.s-point{background:var(--paper)}
+.point{display:grid;grid-template-columns:auto minmax(0,1fr);gap:40px;align-items:start}
+.num{font-family:var(--display);font-weight:800;font-size:clamp(120px,16vw,220px);line-height:.8;color:var(--red)}
+.num.sm{font-size:clamp(90px,10vw,140px)}
+.point.nonum{grid-template-columns:minmax(0,1fr)}
+.point .kicker{color:var(--muted)}
+.point h2{margin-top:10px;font-weight:800;font-size:clamp(40px,5vw,68px);line-height:1;color:var(--navy)}
+.point .txt{margin-top:22px;font-size:clamp(20px,2.1vw,28px);line-height:1.4;max-width:40ch}
+.point .txt b{color:var(--navy)}
+.fact{margin-top:28px;display:inline-flex;align-items:baseline;gap:14px;padding:14px 22px;background:var(--mist);border-radius:8px}
+.fact strong{font-family:var(--display);font-weight:800;font-size:48px;line-height:1;color:var(--red)}
+.fact span{font-size:16px;color:var(--muted);max-width:30ch}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.svc.c3{grid-template-columns:1fr 1fr 1fr}
+.svc div{background:var(--mist);border-radius:10px;padding:16px 18px;display:grid;gap:6px;align-content:start}
+.svc b{font-family:var(--display);font-weight:800;font-size:22px;color:var(--red);line-height:1}
+.svc h3{font-weight:700;font-size:19px;color:var(--navy);line-height:1.15}
+.svc p{font-size:15px;color:var(--muted);line-height:1.4}
+.svc small{font-family:var(--display);font-weight:700;font-size:16px;color:var(--navy)}
+
+/* Por qué se gana */
+.why{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;margin-top:28px}
+.why h3{font-weight:700;font-size:22px;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:6px 12px;display:inline-block}
+.why .a h3{background:var(--navy)} .why .b h3{background:var(--red)}
+.why .a p{margin-top:16px;font-size:19px;line-height:1.45}
+.why .a .pk{margin-top:16px;display:grid;gap:10px}
+.why .a .pk div{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:baseline;padding:10px 12px;background:var(--mist);border-radius:8px}
+.why .a .pk b{font-family:var(--display);font-size:20px;color:var(--navy)}
+.why .a .pk span{font-family:var(--display);font-weight:800;font-size:22px;color:var(--red);white-space:nowrap}
+.why .a .pk small{grid-column:1/-1;font-size:13px;color:var(--muted)}
+.tbl{margin-top:16px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase;color:var(--navy);border-bottom:2px solid var(--navy)}
+td.x{background:#FBECED;font-weight:600;color:var(--navy)}
+thead th.x{color:var(--red);border-bottom-color:var(--red)}
+tr.tot td{font-weight:700;background:var(--mist);border-top:2px solid var(--red)}
+.note{margin-top:10px;font-size:13px;color:var(--muted)}
+
+/* Pasos */
+.steps{display:flex;gap:10px;margin-bottom:34px;flex-wrap:wrap}
+.steps span{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:999px;background:var(--mist);color:var(--muted)}
+.steps span.cur{background:var(--navy);color:#fff}
+.steps span.done{background:#E3E8F0;color:var(--navy)}
+
+/* Flechas laterales */
+.side{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:rgba(15,35,64,.82);color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.side:hover{background:var(--red);border-color:var(--red)}
+.side:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.side:disabled{opacity:0;pointer-events:none}
+.side-prev{left:max(12px,env(safe-area-inset-left,0px))}
+.side-next{right:max(12px,env(safe-area-inset-right,0px))}
+
+/* Navegación */
+.bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:var(--paper)}
+.brand{padding-left:0.5cm;font-family:var(--display);font-weight:800;font-size:20px;color:var(--navy);text-decoration:none} .brand b{color:var(--red)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.dot{width:28px;height:28px;border:0;border-radius:50%;background:transparent;cursor:pointer;display:grid;place-items:center;padding:0}
+.dot::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dot[aria-current="true"]::after{background:var(--red);transform:scale(1.25)}
+.ctrls{display:flex;align-items:center;gap:8px;padding-right:0.5cm}
+.count{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;min-width:46px;text-align:center}
+.navbtn{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--navy);background:var(--paper);color:var(--navy);cursor:pointer;display:grid;place-items:center}
+.navbtn:hover{background:var(--navy);color:#fff}
+.navbtn:disabled{opacity:.3;cursor:default;background:var(--paper);color:var(--navy)}
+.lang{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;margin-right:10px}
+.lang:hover{color:var(--red)}
+
+/* El potencial */
+.pbars{display:grid;gap:12px;margin-top:26px}
+.pbar{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center}
+.pbar>b{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.pbar .tr{display:flex;align-items:center;gap:12px;min-width:0}
+.pbar .fl{height:40px;background:var(--navy);width:calc((100% - 250px) * var(--r));min-width:8px}
+.pbar.hi .fl{background:var(--red)}
+.pbar .val{font-family:var(--display);font-weight:800;font-size:30px;line-height:1;color:var(--navy);white-space:nowrap}
+.pbar.hi .val{color:var(--red)}
+a.nl{color:inherit;text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:5px}
+a.nl:hover{color:var(--red)}
+.pot{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;margin-top:8px;align-items:start}
+.pot p{font-size:18px;line-height:1.45;margin-top:14px}
+.pot p.mut{color:var(--muted);font-size:16px;margin-top:26px}
+.bigs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
+.why .big{margin-top:18px;display:flex;align-items:baseline;gap:12px}
+.why .big strong{font-family:var(--display);font-weight:800;font-size:72px;line-height:1;color:var(--red)}
+.why .big span{color:var(--muted);font-size:15px;max-width:22ch}
+.bigs .big{flex-direction:column;gap:6px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.ghost{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;border:2px solid var(--navy);color:var(--navy);font-weight:700;text-decoration:none;font-size:16px}
+.ghost:hover{background:var(--navy);color:#fff}
+
+/* Índice de proyectos (presentación general) */
+.trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:30px}
+.trio a{display:grid;gap:10px;align-content:start;padding:24px 22px;border-radius:14px;background:var(--mist);text-decoration:none;color:inherit;border-top:6px solid var(--navy);min-height:220px}
+.trio a:nth-child(2){border-top-color:var(--red)}
+.trio a:hover{background:#E9EDF4}
+.trio b{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.trio h3{font-weight:800;font-size:30px;line-height:1;color:var(--navy)}
+.trio p{font-size:17px;line-height:1.4;color:var(--ink)}
+.trio small{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:auto}
+.cmp td.n,.cmp th.n{text-align:right;white-space:nowrap}
+.cmp td.p{font-family:var(--display);font-weight:800;font-size:19px;color:var(--navy)}
+.cmp thead th{font-size:15px}
+.cmp td{font-size:15px;padding:9px 10px}
+.cmp td.sub{color:var(--muted);font-size:13px}
+
+@media (max-width:860px){
+  .cover{gap:28px}
+  .next-cover{margin-top:24px}
+  .why{grid-template-columns:minmax(0,1fr)}
+  .point{grid-template-columns:minmax(0,1fr);gap:8px}
+  .dots{display:none}
+  .wrap{padding-block:32px}
+  .svc,.svc.c3,.trio{grid-template-columns:1fr}
+  .pot{grid-template-columns:minmax(0,1fr);gap:8px}.pbar{grid-template-columns:70px 1fr}.pbar .fl{width:calc((100% - 210px) * var(--r))}.pbar .val{font-size:24px}
+}
+@media (max-width:600px){.cover{grid-template-columns:minmax(0,1fr)}}
+.slide:not(.s-cover) .wrap{padding-left:calc(max(24px,env(safe-area-inset-left,0px)) + 1cm)}
+html,body,.stage{overflow:clip}
+.cmp th.x{color:var(--red);border-bottom-color:var(--red)}.cmp td.x{background:#FBECED;font-weight:700;color:var(--navy)}</style>
+</head>
+<body>
+<div class="deck">
+<div class="stage" id="stage">
+<section class="slide s-cover" id="s1" aria-label="Cover">
+<div class="wrap cover">
+<div>
+<p class="kicker">Proposal · Xinhua Mexico</p>
+<h1>Xinhua <span class="n">Business Growth</span><span class="sub">Three projects so Chinese companies win in Mexico</span></h1>
+<p class="lead">Xinhua puts its credibility, knowledge and network at the service of Chinese brands; VI Magazine/Intiviso runs the technology and services. Three projects, one purpose.</p>
+<button class="next-cover" type="button" data-go="1">Start <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+<div><div class="board" role="list" aria-label="Key figures"><div class="card" role="listitem"><strong>$126 MXN</strong><span>million MXN combined revenue of the three projects in the base year</span></div><div class="card" role="listitem"><strong>$14 MXN</strong><span>million MXN for Xinhua in the base year; $33 million MXN in the high scenario</span></div><div class="card" role="listitem"><strong>3</strong><span>projects sold to the same Chinese brands and companies, reinforcing one another</span></div></div></div>
+</div>
+</section>
+<section class="slide s-point" id="proyectos" aria-label="The three projects">
+<div class="wrap"><div class="point nonum"><div>
+<p class="kicker">The three projects</p><h2>One purpose, three projects</h2><p class="txt">Each can be presented and approved separately; together they make Xinhua the main promoter of Chinese companies in Mexico.</p>
+</div></div>
+<div class="trio"><a href="../../media-buying/en/"><b>Project 1</b><h3>Xinhua Media Buying</h3><p>Mexican content creators who speak well of Chinese brands, charged to those brands as a service.</p><small>See the presentation →</small></a><a href="../../en/"><b>Project 2</b><h3>MX News</h3><p>Xinhua news and Chinese company advertising on the −1 screen of Chinese-brand phones.</p><small>See the presentation →</small></a><a href="../../business-growth/en/"><b>Project 3</b><h3>China–Latam Business Growth</h3><p>Intelligence, prospecting and qualified meetings so Chinese companies sell in Mexico, paid mostly for results.</p><small>See the presentation →</small></a></div>
+</div>
+</section>
+<section class="slide s-point" id="media-buying" aria-label="Project 1 · Xinhua Media Buying">
+<div class="wrap"><div class="point"><div class="num">1</div><div>
+<p class="kicker">Project 1 · Xinhua Media Buying</p><h2>Mexican voices for Chinese brands</h2><p class="txt">Xinhua hires <b>content creators with 10,000 to 300,000 followers</b> to talk about Chinese brands in Mexico, and charges those brands monthly packages, campaigns and licenses. Content is labeled as advertising and never mixed with the news.</p>
+</div></div>
+<div class="svc c3"><div><b>What</b><p style="font-size:16px;color:var(--ink)">Reels and videos from growing creators; 3 monthly packages, campaigns, licenses and ambassadors</p></div><div><b>Who pays</b><p style="font-size:16px;color:var(--ink)">60 to 80 Chinese consumer brands: cars, phones, home, e-commerce, food and apps</p></div><div><b>Split</b><p style="font-size:16px;color:var(--ink)">Creator ~60%; margin ~40% in three equal parts: Xinhua, Intiviso and whoever sells</p></div></div>
+<div class="ctas"><a class="live" href="../../media-buying/en/">See the full presentation <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div>
+</section>
+<section class="slide s-point" id="media-buying-potencial" aria-label="Project 1 · Xinhua Media Buying · The potential">
+<div class="wrap"><div class="point"><div class="num sm">1</div><div>
+<p class="kicker">Project 1 · Xinhua Media Buying</p><h2>The potential</h2><p class="txt">Media Buying can generate <a class="nl" href="../../media-buying/en/calculation/#base">$14 million MXN</a> a year with 10 brands.</p>
+</div></div>
+<div class="pot">
+<div class="pbars"><div class="pbar"><b>Pilot</b><div class="tr"><div class="fl" style="--r:0.06"></div><span class="val"><a class="nl" href="../../media-buying/en/calculation/#piloto">$2.5 million MXN</a></span></div></div><div class="pbar hi"><b>Base</b><div class="tr"><div class="fl" style="--r:0.35"></div><span class="val"><a class="nl" href="../../media-buying/en/calculation/#base">$14 million MXN</a></span></div></div><div class="pbar"><b>High</b><div class="tr"><div class="fl" style="--r:1"></div><span class="val"><a class="nl" href="../../media-buying/en/calculation/#alto">$40 million MXN</a></span></div></div></div>
+<div><p class="mut">6-month pilot; base and high are annual revenue. That is <a class="nl" href="../../media-buying/en/calculation/#mensual">$417,000 MXN</a> a month in the pilot, <a class="nl" href="../../media-buying/en/calculation/#mensual">$1.2 million MXN</a> in the base case and <a class="nl" href="../../media-buying/en/calculation/#mensual">$3.3 million MXN</a> in the high case.</p><p>For Xinhua (one third of the ~40% margin): <a class="nl" href="../../media-buying/en/calculation/#reparto">$0.33, $1.9 and $5.3 million MXN</a> in pilot, base and high. Chinese brands spend <a class="nl" href="../../media-buying/en/calculation/#mercado">$80 to $250 million MXN</a> a year on creators in Mexico.</p><p class="note">Estimates with stated assumptions, not market data. Every number opens its calculation.</p></div>
+</div>
+<div class="ctas"><a class="ghost" href="../../media-buying/en/calculation/">See the calculation detail <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div>
+</section>
+<section class="slide s-point" id="mx-news" aria-label="Project 2 · MX News">
+<div class="wrap"><div class="point"><div class="num">2</div><div>
+<p class="kicker">Project 2 · MX News</p><h2>News and advertising on the −1 screen</h2><p class="txt">A portal of <b>Xinhua news and Chinese company advertising</b>, preinstalled on the −1 screen of Chinese-brand phones (56% of the phones sold in Mexico). Phone brands get 70% of ad revenue; Chinese advertisers pay less than with Taboola and Google.</p>
+</div></div>
+<div class="svc c3"><div><b>What</b><p style="font-size:16px;color:var(--ink)">A −1 screen with Xinhua and local news, and Chinese brand advertising at a preferential price</p></div><div><b>Who pays</b><p style="font-size:16px;color:var(--ink)">Chinese advertisers; phone brands provide the space and receive 70%</p></div><div><b>Split</b><p style="font-size:16px;color:var(--ink)">Of the remaining 30%: 10% Xinhua, 10% Intiviso and 10% whoever sells</p></div></div>
+<div class="ctas"><a class="live" href="../../en/">See the full presentation <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div>
+</section>
+<section class="slide s-point" id="mx-news-potencial" aria-label="Project 2 · MX News · The potential">
+<div class="wrap"><div class="point"><div class="num sm">2</div><div>
+<p class="kicker">Project 2 · MX News</p><h2>The potential</h2><p class="txt">MX News can generate <a class="nl" href="../../en/calculation/#base">$100 million MXN</a> a year with 3 or 4 brands.</p>
+</div></div>
+<div class="pot">
+<div class="pbars"><div class="pbar"><b>Pilot</b><div class="tr"><div class="fl" style="--r:0.21"></div><span class="val"><a class="nl" href="../../en/calculation/#piloto">$40 million MXN</a></span></div></div><div class="pbar hi"><b>Base</b><div class="tr"><div class="fl" style="--r:0.53"></div><span class="val"><a class="nl" href="../../en/calculation/#base">$100 million MXN</a></span></div></div><div class="pbar"><b>High</b><div class="tr"><div class="fl" style="--r:1"></div><span class="val"><a class="nl" href="../../en/calculation/#alto">$190 million MXN</a></span></div></div></div>
+<div><p class="mut">Annual revenue, before the split with the phone brands. That is <a class="nl" href="../../en/calculation/#mensual">$3.3 million MXN</a> a month in the pilot, <a class="nl" href="../../en/calculation/#mensual">$8.3 million MXN</a> in the base case and <a class="nl" href="../../en/calculation/#mensual">$15.8 million MXN</a> in the high case.</p><p>For Xinhua (10% of revenue): <b>$4, $10 and $19 million MXN</b> in pilot, base and high. Chinese brands invest <a class="nl" href="../../en/calculation/#digital">$1,900 to $3,100 million MXN</a> a year in digital advertising in Mexico.</p><p class="note">Estimates with stated assumptions, not market data. Every number opens its calculation.</p></div>
+</div>
+<div class="ctas"><a class="ghost" href="../../en/calculation/">See the calculation detail <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div>
+</section>
+<section class="slide s-point" id="business-growth" aria-label="Project 3 · China–Latam Business Growth">
+<div class="wrap"><div class="point"><div class="num">3</div><div>
+<p class="kicker">Project 3 · China–Latam Business Growth</p><h2>From market entry to sales</h2><p class="txt">Market intelligence, <b>prospecting of buyers and distributors, qualified meetings and sales automation</b> for Chinese companies that sell or will sell in Mexico. Charged as implementation, a monthly fee, and a charge per qualified meeting and per accepted opportunity.</p>
+</div></div>
+<div class="svc c3"><div><b>What</b><p style="font-size:16px;color:var(--ink)">Four services measured with transparent indicators; 3 packages: Entry, Growth and Expansion</p></div><div><b>Who pays</b><p style="font-size:16px;color:var(--ink)">300 to 500 Chinese companies selling in Mexico, plus 30 to 42 new ones a year</p></div><div><b>Split</b><p style="font-size:16px;color:var(--ink)">40% operations (Intiviso); 60% margin in three equal parts</p></div></div>
+<div class="ctas"><a class="live" href="../../business-growth/en/">See the full presentation <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div>
+</section>
+<section class="slide s-point" id="business-growth-potencial" aria-label="Project 3 · China–Latam Business Growth · The potential">
+<div class="wrap"><div class="point"><div class="num sm">3</div><div>
+<p class="kicker">Project 3 · China–Latam Business Growth</p><h2>The potential</h2><p class="txt">Business Growth can generate <a class="nl" href="../../business-growth/en/calculation/#base">$12 million MXN</a> a year with 8 clients.</p>
+</div></div>
+<div class="pot">
+<div class="pbars"><div class="pbar"><b>Pilot</b><div class="tr"><div class="fl" style="--r:0.04"></div><span class="val"><a class="nl" href="../../business-growth/en/calculation/#piloto">$1.8 million MXN</a></span></div></div><div class="pbar hi"><b>Base</b><div class="tr"><div class="fl" style="--r:0.27"></div><span class="val"><a class="nl" href="../../business-growth/en/calculation/#base">$12 million MXN</a></span></div></div><div class="pbar"><b>High</b><div class="tr"><div class="fl" style="--r:1"></div><span class="val"><a class="nl" href="../../business-growth/en/calculation/#alto">$45 million MXN</a></span></div></div></div>
+<div><p class="mut">6-month pilot; base and high are annual revenue. That is <a class="nl" href="../../business-growth/en/calculation/#mensual">$300,000 MXN</a> a month in the pilot, <a class="nl" href="../../business-growth/en/calculation/#mensual">$1.0 million MXN</a> in the base case and <a class="nl" href="../../business-growth/en/calculation/#mensual">$3.8 million MXN</a> in the high case.</p><p>For Xinhua (20% of revenue): <a class="nl" href="../../business-growth/en/calculation/#reparto">$0.36, $2.4 and $9 million MXN</a> in pilot, base and high. Each client pays <a class="nl" href="../../business-growth/en/calculation/#cliente">$1.4 to $3.9 million MXN</a> a year depending on its package.</p><p class="note">Estimates with stated assumptions, not market data. Every number opens its calculation.</p></div>
+</div>
+<div class="ctas"><a class="ghost" href="../../business-growth/en/calculation/">See the calculation detail <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+</div>
+</section>
+<section class="slide s-point" id="comparativa" aria-label="Comparison">
+<div class="wrap"><div class="point nonum"><div>
+<p class="kicker">Comparison</p><h2>The three projects, stage by stage</h2><p class="txt" style="font-size:20px">Revenue for the period, revenue per month and what Xinhua receives in each scenario.</p>
+</div></div>
+<div class="tbl cmp"><table><thead><tr><th class="">Stage</th><th class="">Project</th><th class="n">Period revenue</th><th class="n">Per month</th><th class="n x">For Xinhua</th><th class="n">Xinhua per month</th></tr></thead><tbody><tr><td class="p" rowspan="4">Pilot</td><td>Media Buying · 6 months</td><td class="n">$2.5 million MXN</td><td class="n">$417,000 MXN</td><td class="n x">$0.33 million MXN</td><td class="n">$55,000 MXN</td></tr><tr><td>MX News · 12 months</td><td class="n">$40 million MXN</td><td class="n">$3.3 million MXN</td><td class="n x">$4.0 million MXN</td><td class="n">$333,000 MXN</td></tr><tr><td>Business Growth · 6 months</td><td class="n">$1.8 million MXN</td><td class="n">$300,000 MXN</td><td class="n x">$0.36 million MXN</td><td class="n">$60,000 MXN</td></tr><tr class="tot"><td>Total</td><td class="n">$44 million MXN</td><td class="n">$4.0 million MXN</td><td class="n x">$4.7 million MXN</td><td class="n">$450,000 MXN</td></tr><tr><td class="p" rowspan="4">Base · year 1</td><td>Media Buying · 10 brands</td><td class="n">$14 million MXN</td><td class="n">$1.2 million MXN</td><td class="n x">$1.9 million MXN</td><td class="n">$156,000 MXN</td></tr><tr><td>MX News · 3 or 4 brands</td><td class="n">$100 million MXN</td><td class="n">$8.3 million MXN</td><td class="n x">$10 million MXN</td><td class="n">$833,000 MXN</td></tr><tr><td>Business Growth · 8 clients</td><td class="n">$12 million MXN</td><td class="n">$1.0 million MXN</td><td class="n x">$2.4 million MXN</td><td class="n">$200,000 MXN</td></tr><tr class="tot"><td>Total</td><td class="n">$126 million MXN</td><td class="n">$10.5 million MXN</td><td class="n x">$14.3 million MXN</td><td class="n">$1.2 million MXN</td></tr><tr><td class="p" rowspan="4">High · year 2 or 3</td><td>Media Buying · 20 brands</td><td class="n">$40 million MXN</td><td class="n">$3.3 million MXN</td><td class="n x">$5.3 million MXN</td><td class="n">$435,000 MXN</td></tr><tr><td>MX News · all brands</td><td class="n">$190 million MXN</td><td class="n">$15.8 million MXN</td><td class="n x">$19 million MXN</td><td class="n">$1.6 million MXN</td></tr><tr><td>Business Growth · 20 clients</td><td class="n">$45 million MXN</td><td class="n">$3.8 million MXN</td><td class="n x">$9 million MXN</td><td class="n">$750,000 MXN</td></tr><tr class="tot"><td>Total</td><td class="n">$275 million MXN</td><td class="n">$22.9 million MXN</td><td class="n x">$33.3 million MXN</td><td class="n">$2.8 million MXN</td></tr></tbody></table></div>
+<p class="note">All figures in Mexican pesos (MXN). The MX News pilot runs 12 months; Media Buying and Business Growth pilots run 6. "For Xinhua": 10% of revenue in MX News, one third of the ~40% margin in Media Buying (13%) and 20% of revenue in Business Growth. MX News revenue is before the split with the phone brands.</p>
+</div>
+</section>
+<button class="side side-prev" id="sprev" type="button" aria-label="Previous slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+<button class="side side-next" id="snext" type="button" aria-label="Next slide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<nav class="bar" aria-label="Presentation navigation">
+<span class="brand">Xinhua <b>Business Growth</b></span>
+<div class="dots" id="dots"></div>
+<div class="ctrls">
+<a class="lang" href="../">Español</a>
+<button class="navbtn" id="prev" type="button" aria-label="Previous slide"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+<span class="count" id="count">1 / 10</span>
+<button class="navbtn" id="next" type="button" aria-label="Next slide"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+</nav>
+</div>
+<script>var GOTO='Go to slide';
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var dots=document.getElementById('dots'), count=document.getElementById('count');
+  var prev=document.getElementById('prev'), next=document.getElementById('next');
+  var sprev=document.getElementById('sprev'), snext=document.getElementById('snext');
+  var cur=0;
+  slides.forEach(function(s,i){
+    var b=document.createElement('button');
+    b.className='dot'; b.type='button';
+    b.setAttribute('aria-label',GOTO+' '+(i+1)+': '+s.getAttribute('aria-label'));
+    b.addEventListener('click',function(){go(i)});
+    dots.appendChild(b);
+  });
+  function go(i){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach(function(s,k){
+      s.classList.toggle('on',k===i);
+      s.classList.toggle('prev',k<i);
+      s.setAttribute('aria-hidden',k===i?'false':'true');
+      if(k===i){s.scrollTop=0}
+    });
+    [].forEach.call(dots.children,function(d,k){d.setAttribute('aria-current',k===i?'true':'false')});
+    count.textContent=(i+1)+' / '+slides.length;
+    prev.disabled=sprev.disabled=i===0; next.disabled=snext.disabled=i===slides.length-1;
+    cur=i;
+    try{history.replaceState(null,'','#'+slides[i].id)}catch(e){}
+  }
+  prev.addEventListener('click',function(){go(cur-1)});
+  next.addEventListener('click',function(){go(cur+1)});
+  sprev.addEventListener('click',function(){go(cur-1)});
+  snext.addEventListener('click',function(){go(cur+1)});
+  [].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.addEventListener('click',function(){go(+b.getAttribute('data-go'))})});
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(cur+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1)}
+    else if(e.key==='Home'){go(0)} else if(e.key==='End'){go(slides.length-1)}
+  });
+  var x0=null,y0=null;
+  document.getElementById('stage').addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+  document.getElementById('stage').addEventListener('touchend',function(e){
+    if(x0===null)return;
+    var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0;
+    if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5){go(cur+(dx<0?1:-1))}
+    x0=null;
+  });
+  var start=0, h=(location.hash||'').slice(1);
+  slides.forEach(function(s,i){if(s.id===h)start=i});
+  go(start);
+})();
+</script>
+</body>
+</html>

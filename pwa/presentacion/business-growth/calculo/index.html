@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Detalle de cálculo Business Growth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{
+  --red:#C3141E; --navy:#0F2340; --ink:#1A1D24; --paper:#FFFFFF; --mist:#F3F1EE; --line:#E2DDD8; --muted:#5E5A57; --gold:#B8893A;
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--navy)}
+.mast{background:var(--red);color:#fff;position:relative;overflow:hidden}
+.mast .wrap{max-width:880px;margin:0 auto;padding-block:40px 34px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px;position:relative}
+.kicker{font-family:var(--f-display);font-weight:600;letter-spacing:.24em;text-transform:uppercase;font-size:.95rem}
+.mast h1{font-family:var(--f-display);font-weight:700;text-transform:uppercase;font-size:clamp(2rem,5.5vw,3.3rem);line-height:.98}
+.mast h1 span{color:#FFD9B0}
+.mast .sub{opacity:.92;max-width:62ch}
+.mast a{color:#fff;font-weight:600}
+.back{display:inline-flex;align-items:center;gap:8px;width:max-content;height:44px;padding:0 18px 0 12px;border-radius:999px;background:var(--navy);color:#fff;font-family:var(--f-display);font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.back:hover{background:#061225}
+main{max-width:880px;margin:0 auto;padding-block:8px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+nav.idx{display:flex;flex-wrap:wrap;gap:8px 18px;padding-block:18px;border-bottom:1px solid var(--line);font-family:var(--f-display);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+section{display:grid;grid-template-columns:170px 1fr;gap:24px;padding-block:26px;border-bottom:1px solid var(--line);scroll-margin-top:8px}
+section>*{min-width:0}
+section:target{background:linear-gradient(90deg,var(--mist),transparent 70%)}
+.lbl{font-family:var(--f-display);font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--red);font-size:1.15rem;line-height:1.15;border-top:3px solid var(--red);padding-top:8px;align-self:start}
+.txt{display:grid;gap:12px;max-width:68ch}
+.txt h2{font-family:var(--f-display);font-weight:700;font-size:1.9rem;line-height:1.05;color:var(--navy)}
+.txt h3{font-family:var(--f-display);font-weight:600;font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;color:var(--red);margin-top:6px}
+.res{font-family:var(--f-display);font-weight:700;font-size:1.25rem;color:var(--navy)}
+ol.list,ul.list{margin:0;padding-left:1.3em;display:grid;gap:8px}
+ol.list li::marker{font-family:var(--f-display);font-weight:700;color:var(--red)}
+ul.list li::marker{color:var(--red)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.93rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;color:#fff;background:var(--navy)}
+tr.tot td{font-weight:700;background:var(--mist);border-top:2px solid var(--red)}
+.note{font-size:.9rem;color:var(--muted);border-left:3px solid var(--gold);padding-left:12px}
+@media (max-width:680px){section{grid-template-columns:1fr;gap:12px}}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <a class="back" href="../#potencial"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Volver a la diapositiva</a>
+    <div class="kicker">China–Latam Business Growth · Anexo de cálculo</div>
+    <h1>Cómo se llega a <span>cada número</span></h1>
+    <p class="sub">Detalle de la diapositiva "El potencial". Todo en pesos mexicanos. Tipo de cambio de 19.20 pesos por dólar cuando la fuente está en dólares. Son estimaciones con supuestos declarados, no datos de mercado. Solo México.</p>
+  </div>
+</header>
+<main>
+  <nav class="idx" aria-label="Índice"><a href="#precios">Precios</a><a href="#paquetes">Paquetes</a><a href="#cliente">Por cliente</a><a href="#universo">Universo</a><a href="#piloto">Piloto</a><a href="#base">Base</a><a href="#alto">Alto</a><a href="#mensual">Por mes</a><a href="#reparto">Reparto</a><a href="#razonable">Prueba de razonabilidad</a></nav>
+
+
+  <section id="precios">
+    <div class="lbl">Precios de referencia</div>
+    <div class="txt">
+      <h2>$6,000 MXN por reunión calificada y $15,000 MXN por oportunidad aceptada</h2>
+      <p class="res">Lo que cobra el mercado por prospección B2B externalizada en 2026, ajustado a México.</p>
+      <h3>Cómo se llega</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Concepto</th><th>Mercado 2026</th><th>En pesos</th><th>Precio que se usa</th></tr></thead>
+        <tbody>
+          <tr><td>Mensualidad de prospección (retainer)</td><td>US$3,000 a US$10,000 al mes (agencias de appointment setting); en México, "Lead Connect" $45,000 MXN al mes + implementación $35,000 MXN; agencia integral B2B $55,000 a $110,000 MXN al mes</td><td>$58,000 a $192,000 MXN</td><td>$45,000 / $85,000 / $150,000 MXN según paquete</td></tr>
+          <tr><td>Implementación (pago único)</td><td>Diagnóstico de consultoría en México $20,000 a $60,000 MXN; implementación de sistema de prospección $35,000 MXN; consultoría de entrada a mercado $50,000 a $250,000 MXN</td><td>—</td><td>$60,000 / $100,000 / $150,000 MXN según paquete</td></tr>
+          <tr><td>Reunión calificada presentada</td><td>US$300 a US$600 por reunión calificada que sí ocurre; US$800 a US$1,500 con directivos</td><td>$5,800 a $11,500 MXN</td><td><b>$6,000 MXN</b> (extremo bajo: México es 50 a 70 % más barato que EE. UU. en este servicio)</td></tr>
+          <tr><td>Oportunidad aceptada por ventas (SQL)</td><td>US$800 a US$2,000 por oportunidad calificada</td><td>$15,400 a $38,400 MXN</td><td><b>$15,000 MXN</b> (extremo bajo)</td></tr>
+        </tbody></table></div>
+      <p class="note">La pauta publicitaria de prospección (LinkedIn, Google, Meta) se cobra aparte al cliente, como hace todo el mercado; no entra en estos ingresos. Un SDR interno en México cuesta $15,000 a $30,000 MXN al mes más herramientas, y tarda 3 meses en rendir: es el punto de comparación del cliente.</p>
+    </div>
+  </section>
+
+  <section id="paquetes">
+    <div class="lbl">Paquetes</div>
+    <div class="txt">
+      <h2>Entrada, Crecimiento y Expansión</h2>
+      <p class="res">Tres niveles según el tamaño y la etapa de la empresa china en México.</p>
+      <h3>Cómo se llega</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Paquete</th><th>Para quién</th><th>Implementación</th><th>Mensualidad</th><th>Resultados típicos al mes</th><th>Variable típico al mes</th></tr></thead>
+        <tbody>
+          <tr><td>Entrada</td><td>Empresa por entrar o recién llegada: diagnóstico de mercado, lista de 300 cuentas objetivo, campaña de prospección, CRM automatizado</td><td>$60,000 MXN</td><td>$45,000 MXN</td><td>6 reuniones calificadas y 2 oportunidades aceptadas</td><td>6 × $6,000 + 2 × $15,000 = <b>$66,000 MXN</b></td></tr>
+          <tr><td>Crecimiento</td><td>Empresa ya en México que busca distribuidores y clientes B2B: prospección en 2 o 3 segmentos, posicionamiento, seguimiento automatizado</td><td>$100,000 MXN</td><td>$85,000 MXN</td><td>10 reuniones y 3 oportunidades</td><td>10 × $6,000 + 3 × $15,000 = <b>$105,000 MXN</b></td></tr>
+          <tr><td>Expansión</td><td>Empresa consolidada que crece a más estados o segmentos: varios equipos de venta, comunicación corporativa, inteligencia permanente</td><td>$150,000 MXN</td><td>$150,000 MXN</td><td>15 reuniones y 5 oportunidades</td><td>15 × $6,000 + 5 × $15,000 = <b>$165,000 MXN</b></td></tr>
+        </tbody></table></div>
+      <p class="note">Supuesto a validar: el número de reuniones y oportunidades por mes es un objetivo de operación, no un dato de mercado. Las agencias de appointment setting prometen 10 a 20 reuniones calificadas al mes por cuenta; se toma la mitad baja por el ciclo de venta largo en México y por tratarse de empresas nuevas en el mercado.</p>
+    </div>
+  </section>
+
+  <section id="cliente">
+    <div class="lbl">Ingreso por cliente</div>
+    <div class="txt">
+      <h2>$1.4, $2.4 y $3.9 millones MXN al año por cliente</h2>
+      <p class="res">Lo que paga una empresa china en un año completo, con resultados típicos.</p>
+      <h3>Cómo se llega</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Paquete</th><th>Implementación</th><th>Mensualidad × 12</th><th>Variable × 12</th><th>Al año</th><th>Al mes (sin implementación)</th></tr></thead>
+        <tbody>
+          <tr><td>Entrada</td><td>$60,000</td><td>$540,000</td><td>$792,000</td><td><b>$1.39 millones MXN</b></td><td>$111,000 MXN</td></tr>
+          <tr><td>Crecimiento</td><td>$100,000</td><td>$1,020,000</td><td>$1,260,000</td><td><b>$2.38 millones MXN</b></td><td>$190,000 MXN</td></tr>
+          <tr><td>Expansión</td><td>$150,000</td><td>$1,800,000</td><td>$1,980,000</td><td><b>$3.93 millones MXN</b></td><td>$315,000 MXN</td></tr>
+        </tbody></table></div>
+      <p class="note">Más de la mitad del ingreso es variable: solo se cobra cuando la reunión ocurre y cuando el cliente acepta la oportunidad. Eso es lo que lo hace vendible a una empresa que no conoce el mercado.</p>
+    </div>
+  </section>
+
+  <section id="universo">
+    <div class="lbl">Universo de clientes</div>
+    <div class="txt">
+      <h2>300 a 500 empresas chinas que venden en México</h2>
+      <p class="res">Las que pueden contratar un servicio de desarrollo comercial.</p>
+      <h3>Cómo se llega</h3>
+      <ol class="list">
+        <li>Hay <b>más de 1,400 empresas con capital chino</b> registradas con inversión extranjera directa en México (Secretaría de Economía, 2026); 1,302 entre 2006 y septiembre de 2025 (AMPIP). Si se cuentan intermediarios y oficinas de representación, la Cámara de Comercio y Tecnología México-China estima <b>4,000 a 5,000</b>.</li>
+        <li>No todas venden en México: muchas son maquila para exportar a Estados Unidos. Se toma que <b>30 a 40 %</b> de las registradas vende al mercado mexicano (autopartes a armadoras locales, maquinaria, electrónica, comercio y e-commerce, consumo): 1,400 × 0.3 = 420 y 1,400 × 0.4 = 560.</li>
+        <li>De esas, se descuentan las muy pequeñas sin presupuesto: queda un universo atendible de <b>300 a 500</b>. Incluye las 60 a 80 marcas chinas de consumo del estudio de Media Buying y las B2B (autopartes, maquinaria, energía, electrónica).</li>
+        <li>Se suman cada año las que entran: <b>42 proyectos chinos anunciados en México en 2024</b> (CEPAL, 57 % del valor anunciado en la región) y 30 proyectos previstos en 2025. El Estado de México solo tiene 80 empresas chinas y 16 por llegar.</li>
+      </ol>
+      <p class="note">Supuesto a validar: no existe un padrón público de empresas chinas por tipo de operación en México. El porcentaje que vende al mercado local se corrige con el directorio de la Cámara México-China. La inversión china cayó 80 % en 2025 por los aranceles y repuntó a un récord en el primer semestre de 2026 ($596 millones USD): el flujo de empresas nuevas es volátil.</p>
+    </div>
+  </section>
+
+  <section id="piloto">
+    <div class="lbl">Escenario piloto</div>
+    <div class="txt">
+      <h2>$1.8 millones MXN en 6 meses</h2>
+      <p class="res">Dos empresas chinas: una Entrada y una Crecimiento.</p>
+      <h3>Cómo se llega</h3>
+      <ol class="list">
+        <li>Implementaciones: $60,000 + $100,000 = <b>$160,000 MXN</b>.</li>
+        <li>Mensualidades: ($45,000 + $85,000) × 6 meses = <b>$780,000 MXN</b>.</li>
+        <li>Variables: el primer mes es de arranque y no produce reuniones; se cobran 5 meses: ($66,000 + $105,000) × 5 = <b>$855,000 MXN</b>.</li>
+        <li>Total: $160,000 + $780,000 + $855,000 = $1,795,000, redondeado a <b>$1.8 millones MXN</b>. Son <b>$300,000 MXN al mes</b> en promedio.</li>
+      </ol>
+      <p class="note">El piloto dura 6 meses porque una reunión calificada tarda 4 a 8 semanas en salir y una oportunidad aceptada 2 a 4 meses: con 90 días solo se verían reuniones, no oportunidades.</p>
+    </div>
+  </section>
+
+  <section id="base">
+    <div class="lbl">Escenario base</div>
+    <div class="txt">
+      <h2>$12 millones MXN al año</h2>
+      <p class="res">Año 1: 8 clientes al cierre, 5 en promedio durante el año.</p>
+      <h3>Cómo se llega</h3>
+      <ol class="list">
+        <li>Se firman 8 clientes en el año (3 Entrada, 3 Crecimiento, 2 Expansión); como entran escalonados, el promedio activo es de 5 (2 Entrada, 2 Crecimiento, 1 Expansión).</li>
+        <li>Implementaciones de los 8: 3 × $60,000 + 3 × $100,000 + 2 × $150,000 = <b>$780,000 MXN</b>.</li>
+        <li>Mensualidades de los 5 promedio: (2 × $45,000 + 2 × $85,000 + $150,000) × 12 = $410,000 × 12 = <b>$4.92 millones MXN</b>.</li>
+        <li>Variables de los 5 promedio: (2 × $66,000 + 2 × $105,000 + $165,000) × 12 = $507,000 × 12 = <b>$6.08 millones MXN</b>.</li>
+        <li>Total: $0.78 + $4.92 + $6.08 = $11.78 millones MXN, redondeado a <b>$12 millones MXN</b>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="alto">
+    <div class="lbl">Escenario alto</div>
+    <div class="txt">
+      <h2>$45 millones MXN al año</h2>
+      <p class="res">Año 2 o 3: 20 clientes activos todo el año.</p>
+      <h3>Cómo se llega</h3>
+      <ol class="list">
+        <li>20 clientes: 8 Entrada, 8 Crecimiento y 4 Expansión, activos los 12 meses; además 8 clientes nuevos que entran en el año y pagan implementación.</li>
+        <li>Implementaciones nuevas: 3 × $60,000 + 3 × $100,000 + 2 × $150,000 = <b>$780,000 MXN</b>.</li>
+        <li>Mensualidades: (8 × $45,000 + 8 × $85,000 + 4 × $150,000) × 12 = $1,640,000 × 12 = <b>$19.68 millones MXN</b>.</li>
+        <li>Variables: (8 × $66,000 + 8 × $105,000 + 4 × $165,000) × 12 = $2,028,000 × 12 = <b>$24.34 millones MXN</b>.</li>
+        <li>Total: $0.78 + $19.68 + $24.34 = $44.8 millones MXN, redondeado a <b>$45 millones MXN</b>. Es un techo, no una meta.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="mensual">
+    <div class="lbl">Ingreso por mes</div>
+    <div class="txt">
+      <h2>$300,000, $1.0 y $3.8 millones MXN</h2>
+      <p class="res">El ingreso de cada escenario entre sus meses.</p>
+      <h3>Cómo se llega</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Escenario</th><th>Ingreso</th><th>Cálculo</th><th>Al mes</th></tr></thead>
+        <tbody>
+          <tr><td>Piloto (6 meses)</td><td>$1.8 millones MXN</td><td>$1.8 ÷ 6 = 0.30</td><td>$300,000 MXN</td></tr>
+          <tr><td>Base (año 1)</td><td>$12 millones MXN</td><td>$12 ÷ 12 = 1.0</td><td>$1.0 millones MXN</td></tr>
+          <tr><td>Alto (año 2 o 3)</td><td>$45 millones MXN</td><td>$45 ÷ 12 = 3.75</td><td>$3.8 millones MXN</td></tr>
+        </tbody></table></div>
+      <p class="note">Promedio del periodo completo. Los primeros meses de cada cliente son menores porque el variable empieza cuando salen las primeras reuniones.</p>
+    </div>
+  </section>
+
+  <section id="reparto">
+    <div class="lbl">Reparto</div>
+    <div class="txt">
+      <h2>40 % costo de operación, 60 % de margen en tres partes iguales</h2>
+      <p class="res">Lo que recibe cada parte: Xinhua, Intiviso y quien hace la venta.</p>
+      <h3>Cómo se llega</h3>
+      <ol class="list">
+        <li>No hay un tercero que cobre (ni marca de celulares ni creador): el ingreso es la cuota del servicio. El costo de operarlo (datos, herramientas de prospección, personal de SDR y análisis, CRM, medición) lo absorbe Intiviso y se estima en <b>40 % del ingreso</b>.</li>
+        <li>El margen de <b>60 %</b> se reparte en tres partes iguales de 20 % cada una: Xinhua, Intiviso y la parte que haga la venta (ventas y marketing de Xinhua o un tercero). Es el mismo esquema de tercios de MX News y Media Buying.</li>
+      </ol>
+      <div class="tbl"><table>
+        <thead><tr><th>Escenario</th><th>Ingreso</th><th>Operación (40 %)</th><th>Margen (60 %)</th><th>Por cada parte (20 %)</th><th>Por parte, al mes</th></tr></thead>
+        <tbody>
+          <tr><td>Piloto (6 meses)</td><td>$1.8 millones MXN</td><td>$0.72 M</td><td>$1.08 M</td><td>$0.36 millones MXN</td><td>$60,000 MXN</td></tr>
+          <tr><td>Base (año 1)</td><td>$12 millones MXN</td><td>$4.8 M</td><td>$7.2 M</td><td>$2.4 millones MXN</td><td>$200,000 MXN</td></tr>
+          <tr><td>Alto (año 2 o 3)</td><td>$45 millones MXN</td><td>$18 M</td><td>$27 M</td><td>$9 millones MXN</td><td>$750,000 MXN</td></tr>
+        </tbody></table></div>
+      <p class="note">Supuesto a validar: el 40 % de operación se confirma con el presupuesto real de los dos primeros clientes. Las agencias del sector operan con márgenes brutos de 40 a 60 %.</p>
+    </div>
+  </section>
+
+  <section id="razonable">
+    <div class="lbl">Prueba de razonabilidad</div>
+    <div class="txt">
+      <h2>Qué parte del universo representa cada escenario y si el cliente puede pagarlo</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Escenario</th><th>Clientes</th><th>Contra universo de 300 a 500</th><th>Contra 42 empresas nuevas al año</th></tr></thead>
+        <tbody>
+          <tr><td>Piloto</td><td>2</td><td>0.4 % a 0.7 %</td><td>5 %</td></tr>
+          <tr><td>Base</td><td>8</td><td>1.6 % a 2.7 %</td><td>19 %</td></tr>
+          <tr><td>Alto</td><td>20</td><td>4 % a 7 %</td><td>48 %</td></tr>
+        </tbody></table></div>
+      <p>El piloto y el base son defendibles: captan menos de 3 % de las empresas chinas que venden en México. El alto exige captar una de cada 20 y supone que Xinhua se vuelve la puerta de entrada reconocida para las empresas nuevas, bajo "China Brands Going Global".</p>
+      <h3>¿Puede pagarlo el cliente?</h3>
+      <ol class="list">
+        <li>Las empresas B2B destinan en promedio <b>7.7 % de sus ingresos</b> a marketing (Gartner) y <b>22 %</b> de ese presupuesto a agencias y servicios externos: cerca de <b>1.7 % de los ingresos</b> va a proveedores como este.</li>
+        <li>El paquete Entrada ($1.4 millones MXN al año) cabe en una empresa con ventas en México de $80 millones MXN o más; el Crecimiento ($2.4 millones) en una de $140 millones o más; el Expansión ($3.9 millones) en una de $230 millones o más. Las marcas chinas de consumo, las automotrices y las de autopartes superan con holgura esas ventas.</li>
+        <li>Contra la alternativa: dos SDR internos cuestan $30,000 a $60,000 MXN al mes más herramientas y 3 meses de curva, sin inteligencia de mercado ni red de contactos. El servicio se paga sobre todo por resultados, cosa que un empleado no ofrece.</li>
+      </ol>
+      <h3>Fuentes</h3>
+      <ul class="list">
+        <li>Precios de appointment setting 2026 (US$300–600 por reunión, retainers US$3,000–10,000): <a href="https://saleshive.com/blog/pay-per-meeting-models-best-practices-deals" target="_blank" rel="noopener">SalesHive</a>, <a href="https://tomba.io/blog/appointment-setting-companies" target="_blank" rel="noopener">Tomba</a>, <a href="https://www.demandnexus.io/appointment-setting-costs/" target="_blank" rel="noopener">Demand Nexus</a>, <a href="https://outboundsalespro.com/best-appointment-setting-companies/" target="_blank" rel="noopener">Outbound Sales Pro</a>.</li>
+        <li>Precios en México: <a href="https://marketerosmx.com/" target="_blank" rel="noopener">Marketeros MX (Lead Connect)</a>, <a href="https://cocktailmarketing.com.mx/lead-generation-2/" target="_blank" rel="noopener">Cocktail Marketing</a>, <a href="https://www.unocollective.com/recursos/guias/cuanto-cuesta-agencia-marketing-mexico" target="_blank" rel="noopener">Uno Collective</a>, <a href="https://globalwin.com.mx/blog/consultoria-de-negocios-en-mexico-como-optimizar-tu-modelo-de-negocio-en-5-pasos/" target="_blank" rel="noopener">Globalwin</a>, <a href="https://blackringbusiness.com/blog/cuanto-cobra-un-consultor-empresarial-en-mexico-en-2026/" target="_blank" rel="noopener">Black Ring</a>.</li>
+        <li>Costo de un SDR en Latinoamérica y México: <a href="https://www.1840andco.com/sales/appointment-setters" target="_blank" rel="noopener">1840 & Co</a>, <a href="https://lathire.com/best-places-to-hire-appointment-setters/" target="_blank" rel="noopener">LatHire</a>, vacantes en OCC y Computrabajo (2026).</li>
+        <li>Empresas chinas en México (1,400+ registradas; 4,000–5,000 con oficinas): <a href="https://es.marketingtochina.com/mexico-inversion-china-fabricas-2026/" target="_blank" rel="noopener">Marketing to China</a>, <a href="https://www.xataka.com.mx/otros-1/1-000-empresas-chinas-operan-mexico-pais-busca-ser-nueva-plataforma-para-entrar-a-america-aranceles" target="_blank" rel="noopener">Xataka México / El Economista</a>, <a href="https://eltiempomx.com/noticia/2026/empresas-chinas-ocupan-36-de-parques-industriales-en-mexico.html" target="_blank" rel="noopener">AMPIP</a>.</li>
+        <li>Proyectos chinos nuevos (42 en 2024): <a href="https://puertointerior.guanajuato.gob.mx/blog/2025/07/25/mexico-principal-destino-de-inversiones-chinas-en-latinoamerica-cepal-42-proyectos-fueron-desarrollados-en-el-pais/" target="_blank" rel="noopener">CEPAL</a>. IED china 2025–2026: <a href="https://elceo.com/economia/mexico-recibe-inversion-extranjera-record-desde-china-y-de-otros-asiaticos-a-pesar-de-los-aranceles/" target="_blank" rel="noopener">El CEO</a>, <a href="https://mexicobusiness.news/es/trade-and-investment/news/inversion-china-y-nearshoring-en-mexico-un-retroceso" target="_blank" rel="noopener">Mexico Business News</a>.</li>
+        <li>Expectativas de las empresas chinas en México (66.2 % optimistas): <a href="https://paulinaaguilarvela.com/friccion-comercial-entre-china-y-mexico-perspectivas-2026/" target="_blank" rel="noopener">Perspectivas 2026 (encuesta citada por Expansión)</a>.</li>
+        <li>Presupuesto de marketing B2B (7.7 % de ingresos; 22 % a agencias): <a href="https://www.merca20.com/?p=12483105" target="_blank" rel="noopener">Merca2.0 / Gartner</a>.</li>
+        <li>Universo de marcas chinas de consumo (60 a 80): <a href="../../media-buying/calculo/" target="_blank" rel="noopener">Estudio Xinhua Media Buying</a>.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>
